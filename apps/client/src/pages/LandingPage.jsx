@@ -1,24 +1,32 @@
 function LandingPage() {
   return (
     <>
-      <section className="dark:bg-gray-800 dark:text-gray-100">
-        <div className="container mx-auto flex flex-col items-center px-4 py-16 text-center md:py-32 md:px-10 lg:px-32 xl:max-w-3xl">
-          <h1 className="text-4xl font-bold leading-none sm:text-5xl">
-            Quisquam necessita vel
-            <span className="dark:text-violet-400">laborum doloribus</span>
-            delectus
-          </h1>
-          <p className="px-8 mt-8 mb-12 text-lg">
-            Cupiditate minima voluptate temporibus quia? Architecto beatae esse
-            ab amet vero eaque explicabo!
-          </p>
-          <div className="flex flex-wrap justify-center">
-            <button className="px-8 py-3 m-2 text-lg font-semibold rounded dark:bg-violet-400 dark:text-gray-900">
-              Get started
-            </button>
-            <button className="px-8 py-3 m-2 text-lg border rounded dark:text-gray-50 dark:border-gray-700">
-              Learn more
-            </button>
+      <section>
+        <div className="mx-auto max-w-screen-xl lg:h-screen lg:items-center lg:flex">
+          <div className="px-4 py-12 mx-auto max-w-7xl sm:px-6 md:px-12 lg:px-24 lg:py-24">
+            <div className="flex flex-col w-full mb-12 text-center">
+              <div className="inline-flex items-center justify-center flex-shrink-0 w-44 h-44 mx-auto mb-5 text-blue-600 rounded-full bg-gray-50 shadow-amber-400 hover:animate-pulse">
+                <img src="../src/assets/2.png" loading="lazy" alt="logo" />
+              </div>
+              <h1 className="max-w-5xl text-2xl font-bold leading-none tracking-tighter text-neutral-600 md:text-5xl lg:text-6xl lg:max-w-7xl">
+                The freedom to make <br className="hidden lg:block" />
+                better choices
+              </h1>
+
+              <p className="max-w-xl mx-auto mt-8 text-base leading-relaxed text-center text-gray-500">
+                Having to move into a new space can seem overwhelming and we
+                understand it. Watch this space for any updates.
+              </p>
+
+              <a
+                href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                className="mx-auto mt-8 text-sm font-semibold text-blue-600 hover:text-neutral-600"
+                title="read more"
+              >
+                {" "}
+                Learn More »{" "}
+              </a>
+            </div>
           </div>
         </div>
       </section>
