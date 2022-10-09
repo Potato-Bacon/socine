@@ -1,75 +1,78 @@
 const express = require("express");
-const app = express();
-const AWS = require("aws-sdk");
-const s3 = new AWS.S3();
+const multer = require("multer");
 const router = express.Router();
+const uuid = require("uuid").v4;
+const { s3Uploadv2 } = require("./S3Service");
 
-router.get("*", async (req, res) => {
-  let filename = req.path.slice(1);
+const cloudinary = require("cloudinary").v2;
 
-  try {
-    let s3File = await s3
-      .getObject({
-        Bucket: process.env.BUCKET,
-        Key: filename,
-      })
-      .promise();
+const storage = multer.diskStorage({
+  filename: (req, file, cb) => {
+    const { originalname } = file;
+    cb(null, `${uuid()}-${originalname}`);
+  },
+});
 
-    res.set("Content-type", s3File.ContentType);
-    res.send(s3File.Body.toString()).end();
-  } catch (error) {
-    if (error.code === "NoSuchKey") {
-      console.log(`No such key ${filename}`);
-      res.sendStatus(404).end();
-    } else {
-      console.log(error);
-      res.sendStatus(500).end();
+// const storage = multer.memoryStorage({
+//   filename: (req, file, cb) => {
+//     const { originalname } = file;
+//     cb(null, `${uuid()}-${originalname}`);
+//   },
+// });
+
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+const fileFilter = (req, file, cb) => {
+  if (file.mimetype.split("/")[0] === "image") {
+    cb(null, true);
+  } else {
+    cb(new multer.MulterError("LIMIT_UNEXPECTED_FILE"), false);
+  }
+};
+
+const upload = multer({
+  storage,
+  fileFilter,
+  limits: { fileSize: 100000000, files: 5 },
+});
+
+router.post("/upload", upload.array("image", 5), async (req, res) => {
+  // const file = req.files[0];
+  // const result = await s3Uploadv2(file);
+  // res.send({ status: "success", result });
+
+  const images = req.files;
+  console.log(images);
+
+  const multipleImage = images.map((picture) =>
+    cloudinary.uploader.upload(picture.path, {
+      upload_preset: "rooms",
+      use_filename: true,
+    })
+  );
+
+  const imageResponse = await Promise.all(multipleImage);
+  const imageURL = imageResponse.map((image) => image.url);
+  console.log(imageURL);
+  res.status(200).send({ imageURL });
+});
+
+router.use((error, req, res, next) => {
+  if (error instanceof multer.MulterError) {
+    if (error.code === "LIMIT_FILE_SIZE") {
+      return res.status(400).send({ msg: "File is too large" });
+    }
+    if (error.code === "LIMIT_FILE_COUNT") {
+      return res.status(400).send({ msg: "File limit reached" });
+    }
+    if (error.code === "LIMIT_UNEXPECTED_FILE") {
+      return res.status(400).send({ msg: "File must be an image" });
     }
   }
 });
 
-// curl -i -XPUT --data '{"k1":"value 1", "k2": "value 2"}' -H 'Content-type: application/json' https://some-app.cyclic.app/myFile.txt
-app.put("*", async (req, res) => {
-  let filename = req.path.slice(1);
-
-  console.log(typeof req.body);
-
-  await s3
-    .putObject({
-      Body: JSON.stringify(req.body),
-      Bucket: process.env.BUCKET,
-      Key: filename,
-    })
-    .promise();
-
-  res.set("Content-type", "text/plain");
-  res.send("ok").end();
-});
-
-// curl -i -XDELETE https://some-app.cyclic.app/myFile.txt
-app.delete("*", async (req, res) => {
-  let filename = req.path.slice(1);
-
-  await s3
-    .deleteObject({
-      Bucket: process.env.BUCKET,
-      Key: filename,
-    })
-    .promise();
-
-  res.set("Content-type", "text/plain");
-  res.send("ok").end();
-});
-
-// /////////////////////////////////////////////////////////////////////////////
-// Catch all handler for all other request.
-app.use("*", (req, res) => {
-  res.sendStatus(404).end();
-});
-
-// /////////////////////////////////////////////////////////////////////////////
-// Start the server
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`index.js listening at http://localhost:${port}`);
-});
+module.exports = router;

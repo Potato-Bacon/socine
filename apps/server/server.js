@@ -5,6 +5,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const registerController = require("./controllers/RegisterController");
 const loginController = require("./controllers/LoginController");
+const imagesController = require("./controllers/ImagesController");
 
 //configuration
 const port = process.env.PORT ?? 3000;
@@ -25,6 +26,7 @@ app.use(express.json());
 //controllers
 app.use("/register", registerController);
 app.use("/login", loginController);
+app.use("/images", imagesController);
 
 //test
 app.get("/", (req, res) => {
