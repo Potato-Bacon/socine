@@ -26,6 +26,7 @@ app.use(express.json());
 app.use("/register", registerController);
 app.use("/login", loginController);
 
+//test
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
