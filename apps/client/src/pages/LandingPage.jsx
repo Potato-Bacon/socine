@@ -22,8 +22,9 @@ function LandingPage() {
               </h1>
 
               <p className="max-w-xl mx-auto mt-8 text-base leading-relaxed text-center text-gray-500">
-                Having to move into a new space can seem overwhelming and we
-                understand it. Watch this space for any updates.
+                Having to move into a new space and connect with strangers can
+                seem overwhelming and you are not alone. Watch this space for
+                updates.
               </p>
 
               <a
