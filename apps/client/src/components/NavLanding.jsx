@@ -9,7 +9,7 @@ function NavLanding() {
             <div className="flex-1 md:flex md:items-center md:gap-12">
               <a className="block text-teal-600 dark:text-teal-300" href="/">
                 <div className="inline-flex items-center justify-center flex-shrink-0 w-12 h-12mx-auto text-blue-600 rounded-full bg-gray-50 hover:animate-pulse">
-                  <img src="../src/assets/2.png" loading="lazy" alt="logo" />
+                  <img src="../Logo.png" loading="lazy" alt="logo" />
                 </div>
               </a>
             </div>
