@@ -1,0 +1,21 @@
+{
+  "name": "socine",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "start": "cd apps/server && npm run start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "turbo": "^1.5.5"
+    
+  },
+  "workspaces": [
+    "apps/*"
+  ]
+}
