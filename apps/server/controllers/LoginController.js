@@ -26,8 +26,8 @@ router.post("/", async (req, res) => {
     const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
       expiresIn: "1h",
     });
-    res.status(200).send({ msg: "login", accessToken });
-  } else res.status(400).send({ error: "Wrong password" });
+    res.status(200).send({ msg: "login", payload, accessToken });
+  } else res.status(400).send({ msg: "Wrong password" });
 });
 
 module.exports = router;

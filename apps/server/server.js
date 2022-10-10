@@ -24,9 +24,9 @@ app.use(cors());
 app.use(express.json());
 
 //controllers
-app.use("/register", registerController);
-app.use("/login", loginController);
-app.use("/images", imagesController);
+app.use("/api/register", registerController);
+app.use("/api/login", loginController);
+app.use("/api/images", imagesController);
 
 //test
 app.get("/", (req, res) => {
