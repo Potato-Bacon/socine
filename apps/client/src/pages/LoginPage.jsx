@@ -3,8 +3,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import * as Yup from "yup";
 
-const url = "http://localhost:5173/login";
-const SERVER = import.meta.env.SERVER;
+const url = "/api/login";
 
 function LoginPage({ setUsername, setToken }) {
   const navigate = useNavigate();
@@ -20,7 +19,8 @@ function LoginPage({ setUsername, setToken }) {
       password: Yup.string().required("*Required"),
     }),
     onSubmit: async (values) => {
-      const res = await fetch(`${SERVER}login`, {
+      console.log("test");
+      const res = await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -28,17 +28,18 @@ function LoginPage({ setUsername, setToken }) {
         body: JSON.stringify(values),
       });
       const data = await res.json();
+      console.log(data);
 
-      if (data.msg === "No such user found.") {
+      if (data.msg === "Username not found") {
         alert("No such user found. Please create an account.");
-        navigate("/login");
-      } else if (data.msg === "Wrong password.") {
+        console.log("hi");
+      } else if (data.msg === "Wrong password") {
         alert("Wrong password. Please try again.");
-        navigate("/login");
       } else {
-        setUsername(data.userid);
+        setUsername(data.payload);
         setToken(data.token);
-        navigate("/user");
+        console.log(data);
+        // navigate("/user");
       }
     },
   });
