@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import * as Yup from "yup";
 
 const url = "http://localhost:5173/login";
-const SERVER = import.meta.env.VITE_SERVER;
+const SERVER = import.meta.env.SERVER;
 
 function LoginPage({ setUsername, setToken }) {
   const navigate = useNavigate();
@@ -68,6 +68,11 @@ function LoginPage({ setUsername, setToken }) {
                     value={formik.values.username}
                     className="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"
                   />
+                  {formik.touched.username && formik.errors.username ? (
+                    <div className="text-sm text-red-500 italic">
+                      {formik.errors.username}
+                    </div>
+                  ) : null}
                 </div>
 
                 <div>
@@ -87,9 +92,17 @@ function LoginPage({ setUsername, setToken }) {
                   ring-indigo-300 rounded outline-none transition duration-100
                   px-3 py-2"
                   />
+                  {formik.touched.password && formik.errors.password ? (
+                    <div className="text-sm text-rose-500 italic">
+                      {formik.errors.password}
+                    </div>
+                  ) : null}
                 </div>
 
-                <button className="block bg-gray-800 hover:bg-gray-700 active:bg-gray-600 focus-visible:ring ring-gray-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3">
+                <button
+                  type="submit"
+                  className="block bg-gray-800 hover:bg-gray-700 active:bg-gray-600 focus-visible:ring ring-gray-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3"
+                >
                   Log in
                 </button>
 
