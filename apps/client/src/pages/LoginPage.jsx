@@ -6,7 +6,7 @@ import * as Yup from "yup";
 const url = "/api/login";
 
 function LoginPage({ setUsername, setToken }) {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       username: "",

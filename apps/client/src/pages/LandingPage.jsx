@@ -5,6 +5,7 @@ function LandingPage() {
       <div>
         <NavLanding />
       </div>
+      {/* <section className="text-white bg-center bg-cover bg-blend-darken bg-[url('https://images.pexels.com/photos/310452/pexels-photo-310452.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')]"> */}
       <section>
         <div className="mx-auto max-w-screen-xl lg:h-screen lg:items-center lg:flex">
           <div className="px-4 py-12 mx-auto max-w-7xl sm:px-6 md:px-12 lg:px-24 lg:py-24">
