@@ -1,10 +1,10 @@
 import { Outlet } from "react-router-dom";
-import NavBar from "./components/NavProtected";
+import NavProtected from "./components/NavProtected";
 
 const Layout = ({ setToken }) => {
   return (
     <>
-      <NavBar setToken={setToken} />
+      <NavProtected setToken={setToken} />
       <Outlet />
     </>
   );
