@@ -2,23 +2,7 @@ const express = require("express");
 const RoomListing = require("../models/roomListingSchema");
 const router = express.Router();
 
-
-router.get("/seed", async (req,res)=> {
-    const roomListings = []
-
-    await RoomListing.deleteMany()
-
-    RoomListing.create(roomListings, (error, listings) => {
-        if (error) {
-          res.status(500).send({ error });
-        } else {
-          res.status(201).send(listings);
-        }
-      });
-    
-})
-
-
+router.get("/seed", async (req, res) => {});
 
 router.get("/", async (req, res) => {
   try {
@@ -29,8 +13,12 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/:id", async (req,res)=> {
-    try{
-        const roomListings = await RoomListing.find({})
-    }
-})
+router.get("/searchfilter", async (req, res) => {
+  const { interest, personality } = req.query;
+
+  try {
+    const roomListings = await RoomListing.find({});
+  } catch (error) {
+    console.log(error);
+  }
+});
