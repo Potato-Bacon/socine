@@ -27,7 +27,7 @@ const userListingSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    status: { type: "Boolean", required: true, default: active },
+    status: { type: "Boolean", required: true, default: "active" },
   },
   { timestamps: true }
 );
