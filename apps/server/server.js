@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const registerController = require("./controllers/RegisterController");
 const loginController = require("./controllers/LoginController");
 const imagesController = require("./controllers/ImagesController");
+const seedDataController = require("./controllers/SeedDataController");
 
 //configuration
 const port = process.env.PORT ?? 3000;
@@ -27,6 +28,7 @@ app.use(express.json());
 app.use("/api/register", registerController);
 app.use("/api/login", loginController);
 app.use("/api/images", imagesController);
+app.use("/api/seed", seedDataController);
 
 //test
 app.get("/", (req, res) => {

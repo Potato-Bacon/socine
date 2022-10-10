@@ -2,7 +2,6 @@ const express = require("express");
 const multer = require("multer");
 const router = express.Router();
 const uuid = require("uuid").v4;
-const { s3Uploadv2 } = require("./S3Service");
 
 const cloudinary = require("cloudinary").v2;
 
@@ -12,13 +11,6 @@ const storage = multer.diskStorage({
     cb(null, `${uuid()}-${originalname}`);
   },
 });
-
-// const storage = multer.memoryStorage({
-//   filename: (req, file, cb) => {
-//     const { originalname } = file;
-//     cb(null, `${uuid()}-${originalname}`);
-//   },
-// });
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
@@ -41,10 +33,6 @@ const upload = multer({
 });
 
 router.post("/upload", upload.array("image", 5), async (req, res) => {
-  // const file = req.files[0];
-  // const result = await s3Uploadv2(file);
-  // res.send({ status: "success", result });
-
   const images = req.files;
   console.log(images);
 
