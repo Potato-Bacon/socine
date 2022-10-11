@@ -18,6 +18,7 @@
     "apps/*"
   ],
   "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^6.2.0",
     "server": "^1.0.0"
   }
 }

@@ -1,14 +1,16 @@
 import { createContext, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./Layout";
+// Public Route
 import LandingPage from "./pages/LandingPage";
 import MeetDevPage from "./pages/MeetDevPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import TermsConditionsPage from "./pages/TermsConditionsPage";
 import LoginPage from "./pages/LoginPage";
 import RegistrationPage from "./pages/RegistrationPage";
-import HomePage from "./pages/HomePage";
-import ProfilePage from "./pages/ProfilePage";
+// Protected Route
+import UserHome from "./protectedPages/UserHome";
+import UserProfile from "./protectedPages/UserProfile";
 export const PersonContext = createContext();
 
 function App() {
@@ -32,15 +34,20 @@ function App() {
               }
             />
 
+            {/* Protected Route */}
             <Route path="/user" element={<Layout setToken={setToken} />}>
               <Route
                 index
-                element={<HomePage token={token} userName={userName} />}
+                element={<UserHome token={token} userName={userName} />}
               />
               <Route
                 path="/user/profile"
-                element={<ProfilePage token={token} />}
+                element={<UserProfile token={token} />}
               />
+              {/* <Route
+                path="/user/profile"
+                element={<UserProfile token={token} />}
+              /> */}
             </Route>
           </Routes>
         </BrowserRouter>
