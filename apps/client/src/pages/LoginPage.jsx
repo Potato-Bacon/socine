@@ -31,10 +31,9 @@ function LoginPage({ setUsername, setToken }) {
       console.log(data);
 
       if (data.msg === "Username not found") {
-        alert("No such user found. Please create an account.");
-        console.log("hi");
+        alert("User does not exist. Please try again or register an account");
       } else if (data.msg === "Wrong password") {
-        alert("Wrong password. Please try again.");
+        alert("Invalid password. Please try again.");
       } else {
         setUsername(data.payload);
         setToken(data.token);

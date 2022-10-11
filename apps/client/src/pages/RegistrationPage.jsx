@@ -2,6 +2,7 @@ import { useFormik } from "formik";
 import { useNavigate, Link } from "react-router-dom";
 import * as Yup from "yup";
 import YupPassword from "yup-password";
+import { sub } from "date-fns/fp";
 YupPassword(Yup);
 
 const url = "/api/register";
@@ -47,7 +48,10 @@ function RegistrationPage() {
         .min(2, "Choose a last name with atleast 2-15 characters long")
         .max(15, "Choose a last name with atleast 2-15 characters long")
         .required("last name is required"),
-      dob: Yup.date().required("Date of birth is required"),
+      dob: Yup.date()
+        .max(sub({ years: 18 }, new Date()), "User must be over 18 years old")
+        .required("Date of birth is required"),
+
       getEmail: Yup.string().required(),
     }),
     onSubmit: async (values) => {
@@ -62,7 +66,19 @@ function RegistrationPage() {
       const data = await res.json();
       // include error checking
       console.log("Response:", data);
-      navigate("/login");
+
+      if (data.msg === "Username in use") {
+        alert("Username in use. Please try another username");
+      } else if (data.msg === "Email in use") {
+        alert("Email in use. Please try another email");
+      } else if (data.msg === "Wrong Password" && "Username in use") {
+        alert(
+          "There is something wrong with your submmision. Please try again"
+        );
+      } else {
+        alert("Registration Successful - Thank you for being part of Socine");
+        navigate("/login");
+      }
     },
   });
 
@@ -161,9 +177,9 @@ function RegistrationPage() {
                 </div>
 
                 {formik.touched.firstName && formik.errors.firstName ? (
-                  <div className="text-sm text-red-500 italic">
+                  <span className="text-sm text-red-500 italic">
                     {formik.errors.firstName}
-                  </div>
+                  </span>
                 ) : null}
 
                 <div className="col-span-6 sm:col-span-3">
@@ -187,9 +203,9 @@ function RegistrationPage() {
                 </div>
 
                 {formik.touched.lastName && formik.errors.lastName ? (
-                  <div className="text-sm text-red-500 italic">
+                  <span className="text-sm text-red-500 italic">
                     {formik.errors.lastName}
-                  </div>
+                  </span>
                 ) : null}
 
                 <div className="col-span-6">
@@ -210,6 +226,12 @@ function RegistrationPage() {
                     className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                   />
                 </div>
+
+                {formik.touched.date && formik.errors.date ? (
+                  <span className="text-sm text-red-500 italic">
+                    {formik.errors.date}
+                  </span>
+                ) : null}
 
                 <div className="col-span-6">
                   <label
@@ -232,9 +254,9 @@ function RegistrationPage() {
                 </div>
 
                 {formik.touched.username && formik.errors.username ? (
-                  <div className="text-sm text-red-500 italic">
+                  <span className="text-sm text-red-500 italic">
                     {formik.errors.username}
-                  </div>
+                  </span>
                 ) : null}
 
                 <div className="col-span-6">
@@ -256,6 +278,12 @@ function RegistrationPage() {
                     className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                   />
                 </div>
+
+                {formik.touched.email && formik.errors.email ? (
+                  <span className="text-sm text-red-500 italic">
+                    {formik.errors.email}
+                  </span>
+                ) : null}
 
                 <div className="col-span-6 sm:col-span-3">
                   <label
