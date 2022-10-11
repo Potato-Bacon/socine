@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./Layout";
 import LandingPage from "./pages/LandingPage";
 import MeetDevPage from "./pages/MeetDevPage";
+import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
+import TermsConditionsPage from "./pages/TermsConditionsPage";
 import LoginPage from "./pages/LoginPage";
 import RegistrationPage from "./pages/RegistrationPage";
 import HomePage from "./pages/HomePage";
@@ -20,6 +22,8 @@ function App() {
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/developers" element={<MeetDevPage />} />
+            <Route path="/privacypolicy" element={<PrivacyPolicyPage />} />
+            <Route path="/termsconditions" element={<TermsConditionsPage />} />
             <Route path="/register" element={<RegistrationPage />} />
             <Route
               path="/login"

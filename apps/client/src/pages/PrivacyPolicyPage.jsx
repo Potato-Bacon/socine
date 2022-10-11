@@ -1,13 +1,13 @@
 import React from "react";
 import NavPublic from "../components/NavPublic";
 
-function MeetDevPage() {
+function PrivacyPolicyPage() {
   return (
     <>
       <NavPublic />
-      <h1>Meet The Developers</h1>
+      <h1>Privacy Policy Page</h1>
     </>
   );
 }
 
-export default MeetDevPage;
+export default PrivacyPolicyPage;

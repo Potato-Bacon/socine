@@ -1,13 +1,13 @@
 import React from "react";
 import NavPublic from "../components/NavPublic";
 
-function MeetDevPage() {
+function TermsConditionsPage() {
   return (
     <>
       <NavPublic />
-      <h1>Meet The Developers</h1>
+      <h1>Terms and Conditions Page</h1>
     </>
   );
 }
 
-export default MeetDevPage;
+export default TermsConditionsPage;

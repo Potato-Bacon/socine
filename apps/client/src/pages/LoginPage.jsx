@@ -6,7 +6,7 @@ import * as Yup from "yup";
 const url = "/api/login";
 
 function LoginPage({ setUsername, setToken }) {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -39,13 +39,13 @@ function LoginPage({ setUsername, setToken }) {
         setUsername(data.payload);
         setToken(data.token);
         console.log(data);
-        // navigate("/user");
+        navigate("/user");
       }
     },
   });
   return (
     <>
-      <form onSubmit={formik.handleSubmit}>
+      <form autoComplete="off" onSubmit={formik.handleSubmit}>
         <div className="bg-white py-6 sm:py-8 lg:py-12">
           <div className="max-w-screen-2xl px-4 md:px-8 mx-auto">
             <h2 className="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-8">

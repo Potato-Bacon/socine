@@ -1,4 +1,4 @@
-import NavLanding from "../components/NavLanding";
+import NavLanding from "../components/NavPublic";
 function LandingPage() {
   return (
     <>

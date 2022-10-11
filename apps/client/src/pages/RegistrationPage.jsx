@@ -12,17 +12,17 @@ function RegistrationPage() {
     initialValues: {
       username: "",
       password: "",
+      confirmPassword: "",
       email: "",
       firstName: "",
       lastName: "",
       dob: "",
+      getEmail: false,
     },
     validationSchema: Yup.object({
       username: Yup.string()
         .min(5, "Choose a username 5-15 characters long")
         .max(15, "Choose a username 5-15 characters long")
-        .minUppercase(1, "Choose a username with atleast 1 upper case letter")
-        .minSymbols(1, "Choose a username with atleast 1 special character")
         .required("username is required"),
       password: Yup.string()
         .password()
@@ -37,19 +37,21 @@ function RegistrationPage() {
         .required("Password is required"),
       confirmPassword: Yup.string()
         .required("Please confirm your password")
-        .oneOf([Yup.ref("password")], "Passwords do not match"),
+        .oneOf([Yup.ref("password"), null], "Passwords must match"),
       email: Yup.string().email("Invalid Email").required("Email is required"),
       firstName: Yup.string()
-        .min(5, "Choose a first name with atleast 5-15 characters long")
-        .max(15, "Choose a first name with atleast 5-15 characters long")
+        .min(2, "Choose a first name with atleast 2-15 characters long")
+        .max(15, "Choose a first name with atleast 2-15 characters long")
         .required("first name is required"),
       lastName: Yup.string()
-        .min(5, "Choose a last name with atleast 5-15 characters long")
-        .max(15, "Choose a last name with atleast 5-15 characters long")
+        .min(2, "Choose a last name with atleast 2-15 characters long")
+        .max(15, "Choose a last name with atleast 2-15 characters long")
         .required("last name is required"),
       dob: Yup.date().required("Date of birth is required"),
+      getEmail: Yup.string().required(),
     }),
     onSubmit: async (values) => {
+      console.log(values);
       const res = await fetch(url, {
         method: "POST",
         headers: {
@@ -77,12 +79,14 @@ function RegistrationPage() {
             />
 
             <div className="hidden lg:relative lg:block lg:p-12">
-              <div className="inline-flex items-center justify-center flex-shrink-0 w-24 h-24 mx-auto mb-5 text-white rounded-full bg-gray-50 hover:animate-pulse">
-                <img
-                  src="https://res.cloudinary.com/dvhamwchi/image/upload/v1665338159/assets/vc9jwpzmrmui9pwimkqq.png"
-                  loading="lazy"
-                  alt="logo"
-                />
+              <div className="inline-flex items-center justify-center flex-shrink-0 w-24 h-24 mx-auto mb-5 text-white rounded-full bg-gray-50">
+                <a href="/">
+                  <img
+                    src="https://res.cloudinary.com/dvhamwchi/image/upload/v1665338159/assets/vc9jwpzmrmui9pwimkqq.png"
+                    loading="lazy"
+                    alt="logo"
+                  />
+                </a>
               </div>
 
               <h1 className="mt-6 text-2xl font-bold text-white sm:text-3xl md:text-4xl">
@@ -132,6 +136,7 @@ function RegistrationPage() {
               {/* Formik Form - Start */}
 
               <form
+                autoComplete="off"
                 onSubmit={formik.handleSubmit}
                 className="mt-8 grid grid-cols-6 gap-6"
               >
@@ -155,6 +160,12 @@ function RegistrationPage() {
                   />
                 </div>
 
+                {formik.touched.firstName && formik.errors.firstName ? (
+                  <div className="text-sm text-red-500 italic">
+                    {formik.errors.firstName}
+                  </div>
+                ) : null}
+
                 <div className="col-span-6 sm:col-span-3">
                   <label
                     htmlFor="LastName"
@@ -175,6 +186,31 @@ function RegistrationPage() {
                   />
                 </div>
 
+                {formik.touched.lastName && formik.errors.lastName ? (
+                  <div className="text-sm text-red-500 italic">
+                    {formik.errors.lastName}
+                  </div>
+                ) : null}
+
+                <div className="col-span-6">
+                  <label
+                    htmlFor="Date"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Date of Birth
+                  </label>
+
+                  <input
+                    id="dob"
+                    name="dob"
+                    type="date"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.dob}
+                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                  />
+                </div>
+
                 <div className="col-span-6">
                   <label
                     htmlFor="Email"
@@ -190,13 +226,13 @@ function RegistrationPage() {
                     placeholder="Enter your username"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    value={formik.values.lastName}
+                    value={formik.values.username}
                     className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                   />
                 </div>
 
                 {formik.touched.username && formik.errors.username ? (
-                  <div className="text-sm text-red-300 italic">
+                  <div className="text-sm text-red-500 italic">
                     {formik.errors.username}
                   </div>
                 ) : null}
@@ -216,7 +252,7 @@ function RegistrationPage() {
                     placeholder="Enter your email"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    value={formik.values.lastName}
+                    value={formik.values.email}
                     className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                   />
                 </div>
@@ -230,9 +266,13 @@ function RegistrationPage() {
                   </label>
 
                   <input
-                    type="password"
-                    id="Password"
+                    id="password"
                     name="password"
+                    type="password"
+                    placeholder="Enter your password"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.password}
                     className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                   />
                 </div>
@@ -246,9 +286,13 @@ function RegistrationPage() {
                   </label>
 
                   <input
+                    id="confirmPassword"
+                    name="confirmPassword"
                     type="password"
-                    id="PasswordConfirmation"
-                    name="password_confirmation"
+                    placeholder="Confirm password"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.confirmPassword}
                     className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                   />
                 </div>
@@ -256,9 +300,12 @@ function RegistrationPage() {
                 <div className="col-span-6">
                   <label htmlFor="MarketingAccept" className="flex gap-4">
                     <input
+                      id="getEmail"
+                      name="getEmail"
                       type="checkbox"
-                      id="MarketingAccept"
-                      name="marketing_accept"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.getEmail}
                       className="h-5 w-5 rounded-md border-gray-200 bg-white shadow-sm"
                     />
 
@@ -271,20 +318,23 @@ function RegistrationPage() {
 
                 <div className="col-span-6">
                   <p className="text-sm text-gray-500">
-                    By creating an account, you agree to our
-                    <a href="#" className="text-gray-700 underline">
-                      terms and conditions
-                    </a>
-                    and
-                    <a href="#" className="text-gray-700 underline">
-                      privacy policy
-                    </a>
+                    By creating an account, you agree to our{" "}
+                    <button className="text-gray-700 underline">
+                      <Link to="/termsconditions">terms and conditions</Link>
+                    </button>{" "}
+                    and{" "}
+                    <button className="text-gray-700 underline">
+                      <Link to="/PrivacyPolicy">privacy policy</Link>
+                    </button>
                     .
                   </p>
                 </div>
 
                 <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
-                  <button className="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500">
+                  <button
+                    type="submit"
+                    className="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
+                  >
                     Create an account
                   </button>
 

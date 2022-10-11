@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function NavLanding() {
+function NavPublic() {
   return (
     <>
       <header className="bg-white dark:bg-gray-900">
@@ -63,4 +63,4 @@ function NavLanding() {
   );
 }
 
-export default NavLanding;
+export default NavPublic;
