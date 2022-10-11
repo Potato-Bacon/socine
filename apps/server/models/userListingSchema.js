@@ -4,7 +4,6 @@ const userListingSchema = new mongoose.Schema(
   {
     findRoom: { type: Boolean, required: true },
     occupation: { type: String, required: true },
-    roomLocations: { type: String, required: true },
     preferredTown: {
       type: [mongoose.Schema.Types.ObjectId],
       ref: "Town",
@@ -27,7 +26,7 @@ const userListingSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    status: { type: "Boolean", required: true, default: "active" },
+    active: { type: Boolean, required: true, default: true },
   },
   { timestamps: true }
 );

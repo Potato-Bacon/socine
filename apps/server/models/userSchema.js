@@ -29,7 +29,10 @@ const userSchema = new mongoose.Schema(
       type: [mongoose.Schema.Types.ObjectId],
       ref: "Interest",
     },
+    updatedProfile: { type: Boolean, required: true, default: false },
+    getEmail: { type: Boolean, required: true, default: false },
   },
+
   { timestamps: true }
 );
 
