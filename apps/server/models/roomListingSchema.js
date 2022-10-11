@@ -11,18 +11,18 @@ const roomListingSchema = new mongoose.Schema(
       required: true,
     },
     mrt: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: [mongoose.Schema.Types.ObjectId],
       ref: "MRT",
       required: true,
     },
-    image: { type: [String], required: true },
+    image: [String],
     amenities: {
       type: [mongoose.Schema.Types.ObjectId],
       ref: "Amenities",
       required: true,
     },
     listingTags: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: [mongoose.Schema.Types.ObjectId],
       ref: "ListRoomTag",
       required: true,
     },

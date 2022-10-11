@@ -27,9 +27,9 @@ const random = (array) => {
   return Math.floor(Math.random() * array.length);
 };
 
-router.get("/", (req, res) => {
-  res.status(200).send({ msg: "seed route" });
-});
+// router.get("/", (req, res) => {
+//   res.status(200).send({ msg: "seed route" });
+// });
 
 // router.get("/user", async (req, res) => {
 //   // const countryIndex = Math.floor(Math.random() * countries.length);
@@ -2073,1198 +2073,1198 @@ router.get("/", (req, res) => {
 // const uniqueUser = (count) => {
 //   return count++;
 // };
-router.get("/userlisting", async (req, res) => {
-  let count = 1;
-  const newUserListings = [
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-    {
-      findRoom: true,
-      occupation: faker.name.jobTitle(),
-      preferredTown: [towns[random(towns)], towns[random(towns)]],
-      preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
-      budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
-      earlyMoveInDate: faker.date.between(
-        "2022-10-14T00:00:00.000Z",
-        "2022-12-01T00:00:00.000Z"
-      ),
-      userListingTag: [
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-        userListingTags[random(userListingTags)],
-      ],
-      submittedBy: users[count++],
-      active: true,
-    },
-  ];
-  await UserListing.deleteMany();
+// router.get("/userlisting", async (req, res) => {
+//   let count = 1;
+//   const newUserListings = [
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//     {
+//       findRoom: true,
+//       occupation: faker.name.jobTitle(),
+//       preferredTown: [towns[random(towns)], towns[random(towns)]],
+//       preferredMrts: [mrts[random(mrts)], mrts[random(mrts)]],
+//       budget: faker.datatype.number({ min: 500, max: 4000, precision: 100 }),
+//       earlyMoveInDate: faker.date.between(
+//         "2022-10-14T00:00:00.000Z",
+//         "2022-12-01T00:00:00.000Z"
+//       ),
+//       userListingTag: [
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//         userListingTags[random(userListingTags)],
+//       ],
+//       submittedBy: users[count++],
+//       active: true,
+//     },
+//   ];
+//   await UserListing.deleteMany();
 
-  UserListing.create(newUserListings, (error, listings) => {
-    if (error) {
-      res.status(500).send({ error });
-    } else {
-      res.status(201).send(listings);
-    }
-  });
-});
+//   UserListing.create(newUserListings, (error, listings) => {
+//     if (error) {
+//       res.status(500).send({ error });
+//     } else {
+//       res.status(201).send(listings);
+//     }
+//   });
+// });
 
 router.get("/roomlisting", async (req, res) => {
   const roomListings = [
