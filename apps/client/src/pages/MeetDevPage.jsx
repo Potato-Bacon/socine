@@ -29,7 +29,7 @@ function MeetDevPage() {
             <div className="flex flex-col items-center p-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-blue-600 dark:border-gray-700 dark:hover:border-transparent">
               <Img
                 className="object-cover w-52 h-52 rounded-full ring-4 ring-gray-300"
-                src="https://images.unsplash.com/photo-1488508872907-592763824245?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                src="https://res.cloudinary.com/dvhamwchi/image/upload/v1665497071/assets/zi3ghyvnkos9sz7frhcj.jpg"
                 alt=""
               />
 
@@ -80,7 +80,7 @@ function MeetDevPage() {
             <div className="flex flex-col items-center p-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-blue-600 dark:border-gray-700 dark:hover:border-transparent">
               <Img
                 className="object-cover w-52 h-52 rounded-full ring-4 ring-gray-300"
-                src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                src="https://res.cloudinary.com/dvhamwchi/image/upload/v1665497650/assets/t3jnidsisuhaamuc7vcb.jpg"
                 alt=""
               />
 
