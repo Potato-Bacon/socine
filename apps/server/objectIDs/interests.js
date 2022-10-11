@@ -52,8 +52,4 @@ const interests = [
   "634441e31953bd9d609ef3ec",
 ];
 
-const { faker } = require("@faker-js/faker");
-
-console.log(faker.datatype.number({ min: 500, max: 4000, precision: 100 }));
-
 module.exports = interests;

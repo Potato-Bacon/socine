@@ -22,7 +22,7 @@ const userListingSchema = new mongoose.Schema(
       required: true,
     },
     submittedBy: {
-      type: [mongoose.Schema.Types.ObjectId],
+      type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
