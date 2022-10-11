@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 
 function NavProtected({ setToken }) {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const handleLogout = () => {
     console.log("logout");
     setToken(0);
