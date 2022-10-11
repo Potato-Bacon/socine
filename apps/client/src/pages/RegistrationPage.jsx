@@ -180,13 +180,39 @@ function RegistrationPage() {
                     htmlFor="Email"
                     className="block text-sm font-medium text-gray-700"
                   >
+                    Username
+                  </label>
+
+                  <input
+                    id="username"
+                    name="username"
+                    type="text"
+                    placeholder="Enter your username"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.lastName}
+                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                  />
+                </div>
+
+                {formik.touched.username && formik.errors.username ? (
+                  <div className="text-sm text-red-300 italic">
+                    {formik.errors.username}
+                  </div>
+                ) : null}
+
+                <div className="col-span-6">
+                  <label
+                    htmlFor="Email"
+                    className="block text-sm font-medium text-gray-700"
+                  >
                     Email
                   </label>
 
                   <input
-                    id="lastName"
-                    name="lastName"
-                    type="text"
+                    id="email"
+                    name="email"
+                    type="email"
                     placeholder="Enter your email"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}

@@ -1,6 +1,6 @@
 import React from "react";
 
-function MeetDevelopers() {
+function MeetDevPage() {
   return (
     <>
       <h1>Meet The Developers</h1>
@@ -8,4 +8,4 @@ function MeetDevelopers() {
   );
 }
 
-export default MeetDevelopers;
+export default MeetDevPage;

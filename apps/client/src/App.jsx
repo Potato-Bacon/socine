@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./Layout";
 import LandingPage from "./pages/LandingPage";
-import MeetDevelopers from "./pages/MeetDevelopers";
+import MeetDevPage from "./pages/MeetDevPage";
 import LoginPage from "./pages/LoginPage";
 import RegistrationPage from "./pages/RegistrationPage";
 import HomePage from "./pages/HomePage";
@@ -19,7 +19,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<LandingPage />} />
-            <Route path="/developers" element={<MeetDevelopers />} />
+            <Route path="/developers" element={<MeetDevPage />} />
             <Route path="/register" element={<RegistrationPage />} />
             <Route
               path="/login"
