@@ -1,4 +1,5 @@
 import NavLanding from "../components/NavPublic";
+import Img from "react-cool-img";
 function LandingPage() {
   return (
     <>
@@ -11,7 +12,7 @@ function LandingPage() {
           <div className="px-4 py-12 mx-auto max-w-7xl sm:px-6 md:px-12 lg:px-24 lg:py-24">
             <div className="flex flex-col w-full mb-12 text-center">
               <div className="inline-flex items-center justify-center flex-shrink-0 w-44 h-44 mx-auto mb-5 text-blue-600 rounded-full bg-gray-50 hover:animate-pulse">
-                <img
+                <Img
                   src="https://res.cloudinary.com/dvhamwchi/image/upload/v1665338159/assets/vc9jwpzmrmui9pwimkqq.png"
                   loading="lazy"
                   alt="logo"
