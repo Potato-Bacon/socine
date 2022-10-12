@@ -10,14 +10,9 @@ const seedDataController = require("./controllers/SeedDataController");
 const roomListingController = require("./controllers/RoomListingController");
 const userListingController = require("./controllers/UserListingController");
 const authCheckController = require("./controllers/AuthCheckController");
-require("./models/mrtSchema");
-require("./models/townSchema");
 require("./models/roomListingSchema");
 require("./models/interestSchema");
 require("./models/mbtiSchema");
-require("./models/listRoomTagSchema");
-require("./models/userListingTagSchema");
-require("./models/countrySchema");
 
 //configuration
 const port = process.env.PORT ?? 3000;

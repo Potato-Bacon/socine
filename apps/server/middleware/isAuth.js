@@ -8,6 +8,7 @@ const isAuth = async (req, res, next) => {
 
   try {
     const payload = jwt.verify(token, SECRET);
+    console.log(payload);
     const user = await User.findById(payload.userid);
 
     if (user) {
