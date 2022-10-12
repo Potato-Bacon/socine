@@ -38,7 +38,27 @@ function RegistrationForm() {
         .required("Please confirm your password")
         .oneOf([Yup.ref("password"), null], "Passwords must match"),
       email: Yup.string().email("Invalid Email").required("Email is required"),
-      mobileNo: Yup.string().phone("SG").required("Mobile Number is required"),
+      mobileNo: Yup.string()
+        .phone(
+          "AU",
+          "BD",
+          "KH",
+          "CN",
+          "FR",
+          "DE",
+          "IN",
+          "JP",
+          "MY",
+          "NZ",
+          "NO",
+          "PH",
+          "SG",
+          "TW",
+          "TH",
+          "US",
+          "GB"
+        )
+        .required("Mobile Number is required"),
       getEmail: Yup.string().required(),
     }),
     onSubmit: async (values) => {

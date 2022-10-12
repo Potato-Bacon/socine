@@ -2,35 +2,75 @@ import { useFormik } from "formik";
 import { useNavigate, Link } from "react-router-dom";
 import * as Yup from "yup";
 import Img from "react-cool-img";
+import mbti from "../../../server/objectIDs/mbti";
 
 const url = "/api/user/createuserlisting";
 
 function CreateUserListingForm() {
   const navigate = useNavigate();
+  const FILE_SIZE = 500 * 500;
+  const SUPPORTED_FORMATS = [
+    "image/jpg",
+    "image/jpeg",
+    "image/gif",
+    "image/png",
+  ];
   const formik = useFormik({
     initialValues: {
-      findRoom: true,
+      profilePic: "",
+      name: "",
+      age: 0,
+      gender: "",
       occupation: "",
-      preferredTown: "",
-      preferredMrts: "",
+      mbti: "",
+      interests: [""],
+      town: "",
+      mrt: "",
       budget: 0,
       earlyMoveInDate: "",
       userListingTag: "",
+      description: "",
     },
     validationSchema: Yup.object({
-      findRoom: Yup.string().required("*required"),
+      profilePic: Yup.mixed()
+        .test(
+          "fileSize",
+          "File too large",
+          (value) => value === null || (value && value.size <= FILE_SIZE)
+        )
+        .test(
+          "fileFormat",
+          "Unsupported file type",
+          (value) =>
+            value === null || (value && SUPPORTED_FORMATS.includes(value.type))
+        )
+        .required("*required"),
+      name: Yup.string()
+        .min(5, "Choose a name 5-15 characters long")
+        .max(15, "Choose a name 5-15 characters long")
+        .required("*required"),
+      age: Yup.number()
+        .min(18, "You need to be 18 years old and above")
+        .max(99)
+        .positive()
+        .integer()
+        .required("*required"),
+      gender: Yup.string().required("*required"),
       occupation: Yup.string()
         .min(5, "Indicate an occupation 5-15 characters long")
         .max(15, "Indicate a occupation 5-15 characters long")
         .required("*required"),
-      preferredTown: Yup.string().required("*required"),
-      preferredMrts: Yup.string().required("*required"),
+      mbti: Yup.string().required("*required"),
+      interests: Yup.array().required("*required"),
+      town: Yup.string().required("*required"),
+      mrt: Yup.string().required("*required"),
       budget: Yup.number()
         .min(0, "We suggest to indicate a realistic amount")
         .max(9999999)
         .required("*required"),
       earlyMoveInDate: Yup.date().min(new Date()).required("*required"),
       userListingTag: Yup.string().required("*required"),
+      description: Yup.string().min(40, "40-600 character limit").max(600),
     }),
     onSubmit: async (values) => {
       console.log(values);
@@ -74,8 +114,8 @@ function CreateUserListingForm() {
               </h1>
 
               <p className="mt-4 leading-relaxed text-white/90">
-                Setting up a user lisitng is a straight forward process as we
-                have kept it simple and seamless.
+                we have made the process of connecting with other users seamless
+                and quick.
               </p>
             </div>
           </section>
@@ -106,8 +146,8 @@ function CreateUserListingForm() {
                 </h1>
 
                 <p className="mt-4 leading-relaxed text-gray-500">
-                  Setting up a user lisitng is a straight forward process as we
-                  have kept it simple and seamless.
+                  we have made the process of connecting with other users
+                  seamless and quick.
                 </p>
               </div>
 
@@ -118,96 +158,64 @@ function CreateUserListingForm() {
                 onSubmit={formik.handleSubmit}
                 className="mt-8 grid grid-cols-6 gap-6"
               >
+                <div className="col-span-6">
+                  <div className="flex justify-center items-center w-full">
+                    <label
+                      htmlFor="profilePic"
+                      className="flex flex-col justify-center items-center w-1/2 h-32 bg-slate-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+                    >
+                      <div className="flex flex-col justify-center items-center pt-5 pb-6">
+                        <svg
+                          aria-hidden="true"
+                          className="mb-3 w-10 h-10 text-gray-400"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                          ></path>
+                        </svg>
+                        <p className="mb-2 text-sm text-gray-500 dark:text-gray-400 text-center">
+                          <span className="font-semibold text-center">
+                            Click to upload Profile Picture
+                          </span>
+                          <br /> or drag and drop
+                        </p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">
+                          SVG, PNG, JPG or GIF (MAX. 500x500px)
+                        </p>
+                      </div>
+                      <input
+                        id="profilePic"
+                        name="profilePic"
+                        type="file"
+                        className="hidden"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.profilePic}
+                      />
+                    </label>
+                  </div>
+                </div>
+
                 <div className="col-span-6 sm:col-span-3">
                   <label
-                    htmlFor="FirstName"
+                    htmlFor="name"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    First Name
+                    Name
                   </label>
 
                   <input
-                    id="firstName"
-                    name="firstName"
+                    id="name"
+                    name="name"
                     type="text"
-                    placeholder="e.g. Jocelyn"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.firstName}
-                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
-                  />
-                </div>
-
-                {/* {formik.touched.firstName && formik.errors.firstName ? (
-                    <span className="text-sm text-red-500 italic">
-                      {formik.errors.firstName}
-                    </span>
-                ) : null} */}
-
-                <div className="col-span-6 sm:col-span-3">
-                  <label
-                    htmlFor="LastName"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Last Name
-                  </label>
-
-                  <input
-                    id="lastName"
-                    name="lastName"
-                    type="text"
-                    placeholder="e.g. Chua"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.lastName}
-                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
-                  />
-                </div>
-
-                {/* {formik.touched.lastName && formik.errors.lastName ? (
-                  <span className="text-sm text-red-500 italic">
-                    {formik.errors.lastName}
-                  </span>
-                ) : null} */}
-
-                <div className="col-span-6">
-                  <label
-                    htmlFor="Date"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Date of Birth
-                  </label>
-
-                  <input
-                    id="dob"
-                    name="dob"
-                    type="date"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.dob}
-                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
-                  />
-                </div>
-
-                {/* {formik.touched.date && formik.errors.date ? (
-                  <span className="text-sm text-red-500 italic">
-                    {formik.errors.date}
-                  </span>
-                ) : null} */}
-
-                <div className="col-span-6">
-                  <label
-                    htmlFor="Email"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Username
-                  </label>
-
-                  <input
-                    id="username"
-                    name="username"
-                    type="text"
-                    placeholder="Enter your username"
+                    placeholder="Enter your name"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.username}
@@ -215,11 +223,152 @@ function CreateUserListingForm() {
                   />
                 </div>
 
-                {/* {formik.touched.username && formik.errors.username ? (
-                  <span className="text-sm text-red-500 italic">
-                    {formik.errors.username}
+                {formik.touched.name && formik.errors.name ? (
+                  <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
+                    {formik.errors.name}
+                  </span>
+                ) : null}
+
+                <div className="col-span-6 sm:col-span-3">
+                  <label
+                    htmlFor="age"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Age
+                  </label>
+
+                  <input
+                    id="age"
+                    name="age"
+                    type="number"
+                    placeholder="Enter your age"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.age}
+                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                  />
+                </div>
+
+                {formik.touched.age && formik.errors.age ? (
+                  <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
+                    {formik.errors.age}
+                  </span>
+                ) : null}
+
+                <div id="gender" className="col-span-6">
+                  <label
+                    htmlFor="male"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Male
+                  </label>
+
+                  <input
+                    id="gender"
+                    name="gender"
+                    type="radio"
+                    placeholder="select your gender"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.gender}
+                    className="mt-1 w-12 rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                  />
+
+                  {/* female */}
+                  <label
+                    htmlFor="male"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Female
+                  </label>
+
+                  <input
+                    id="gender"
+                    name="gender"
+                    type="radio"
+                    placeholder="select your gender"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.gender}
+                    className="mt-1 w-12 rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                  />
+                </div>
+
+                {/* {formik.touched.gender && formik.errors.gender ? (
+                  <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
+                    {formik.errors.gender}
                   </span>
                 ) : null} */}
+
+                <div className="col-span-6 sm:col-span-3">
+                  <label
+                    htmlFor="occupation"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Occupation
+                  </label>
+
+                  <input
+                    id="occupation"
+                    name="occupation"
+                    type="text"
+                    placeholder="Enter your occupation"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.occupation}
+                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                  />
+                </div>
+
+                <div className="col-span-6 sm:col-span-3">
+                  <label
+                    htmlFor="mbti"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Myers-Breggs Personality
+                  </label>
+
+                  <select>
+                    <option
+                      id="mbti"
+                      name={mbti.id}
+                      type="select"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.mbti}
+                      className="mt-1 w-full rounded-md border-gray-200 bg-white
+                    text-sm text-gray-700 shadow-sm"
+                    >
+                      {mbti.value}
+                    </option>
+                  </select>
+                </div>
+
+                <div className="col-span-6 sm:col-span-3">
+                  <label
+                    htmlFor="mobileNo"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Mobile Number
+                  </label>
+
+                  <input
+                    id="mobileNo"
+                    name="mobileNo"
+                    type="tel"
+                    placeholder="Enter a valid mobile number"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.mobileNo}
+                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                  />
+                </div>
+
+                {formik.touched.mobileNo && formik.errors.mobileNo ? (
+                  <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
+                    {formik.errors.mobileNo}
+                  </span>
+                ) : null}
 
                 <div className="col-span-6">
                   <label
@@ -241,11 +390,11 @@ function CreateUserListingForm() {
                   />
                 </div>
 
-                {/* {formik.touched.email && formik.errors.email ? (
-                  <span className="text-sm text-red-500 italic">
+                {formik.touched.email && formik.errors.email ? (
+                  <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
                     {formik.errors.email}
                   </span>
-                ) : null} */}
+                ) : null}
 
                 <div className="col-span-6 sm:col-span-3">
                   <label
