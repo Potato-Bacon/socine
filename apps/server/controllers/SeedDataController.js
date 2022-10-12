@@ -2070,9 +2070,6 @@ const random = (array) => {
 //   });
 // });
 
-// const uniqueUser = (count) => {
-//   return count++;
-// };
 // router.get("/userlisting", async (req, res) => {
 //   let count = 1;
 //   const newUserListings = [
