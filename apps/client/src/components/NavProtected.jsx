@@ -1,19 +1,29 @@
+/* eslint-disable react/prop-types */
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import Img from "react-cool-img";
+import { Link, useNavigate } from "react-router-dom";
 
-const navigation = [
-  { name: "Home", href: "#", current: true },
-  { name: "Team", href: "#", current: false },
-  { name: "Projects", href: "#", current: false },
-  { name: "Calendar", href: "#", current: false },
-];
+function NavProtected({ setToken }) {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    console.log("logout");
+    sessionStorage.clear;
+    navigate("/");
+  };
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
+  const navigation = [
+    { name: "Home", href: "#", current: true },
+    { name: "Get Connected", href: "#", current: false },
+    { name: "Get Homed", href: "#", current: false },
+    { name: "Calendar", href: "#", current: false },
+  ];
 
-function NavProtected() {
+  function classNames(...classes) {
+    return classes.filter(Boolean).join(" ");
+  }
+
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -97,15 +107,14 @@ function NavProtected() {
                     <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <Menu.Item>
                         {({ active }) => (
-                          <a
-                            href="#"
+                          <button
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                           >
-                            Your Profile
-                          </a>
+                            <Link to="/user/profile">Profile</Link>
+                          </button>
                         )}
                       </Menu.Item>
                       <Menu.Item>
@@ -130,8 +139,21 @@ function NavProtected() {
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                           >
-                            Sign out
+                            Settings
                           </a>
+                        )}
+                      </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <button
+                            onClick={handleLogout}
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
+                          >
+                            Sign out
+                          </button>
                         )}
                       </Menu.Item>
                     </Menu.Items>

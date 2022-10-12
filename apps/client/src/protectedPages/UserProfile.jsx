@@ -1,8 +1,6 @@
-import React from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-
 function UserProfile({ userName, token }) {
+  console.log({ userName });
+  console.log({ token });
   return (
     <>
       <h1>User Profile</h1>

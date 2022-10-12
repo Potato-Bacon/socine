@@ -1,8 +1,6 @@
-import React from "react";
 import NavPublic from "../components/NavPublic";
 import Img from "react-cool-img";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCaretUp } from "@fortawesome/free-solid-svg-icons";
 import {
   faGithub,
   faLinkedin,

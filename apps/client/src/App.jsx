@@ -44,10 +44,6 @@ function App() {
                 path="/user/profile"
                 element={<UserProfile token={token} />}
               />
-              {/* <Route
-                path="/user/profile"
-                element={<UserProfile token={token} />}
-              /> */}
             </Route>
           </Routes>
         </BrowserRouter>
