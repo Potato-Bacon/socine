@@ -12,6 +12,7 @@ const userListingController = require("./controllers/UserListingController");
 const authCheckController = require("./controllers/AuthCheckController");
 const userHomeController = require("./controllers/UserHomeController");
 const Mbti = require("./models/mbtiSchema");
+const Interest = require("./models/interestSchema");
 require("./models/roomListingSchema");
 require("./models/interestSchema");
 require("./models/mbtiSchema");
@@ -52,6 +53,15 @@ app.get("/mbti", async (req, res) => {
   try {
     const mbti = await Mbti.find();
     res.send(mbti);
+  } catch (error) {
+    res.status(500).send({ error });
+  }
+});
+
+app.get("/interests", async (req, res) => {
+  try {
+    const interests = await Interest.find();
+    res.send(interests);
   } catch (error) {
     res.status(500).send({ error });
   }
