@@ -7,11 +7,17 @@ const userListingSchema = new mongoose.Schema(
     age: { type: Number, required: true },
     gender: { type: String, required: true },
     occupation: { type: String, required: true },
-    mbti: { type: mongoose.Schema.Types.ObjectId, ref: "Mbti", required: true },
+    mbti: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Mbti",
+      required: true,
+      autopopulate: true,
+    },
     interests: {
       type: [mongoose.Schema.Types.ObjectId],
       ref: "Interest",
       required: true,
+      autopopulate: true,
     },
     town: { type: String, required: true },
     mrt: { type: String, required: true },

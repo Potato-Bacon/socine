@@ -8,41 +8,63 @@ const router = express.Router();
 router.get("/", async (req, res) => {
   try {
     const allUserListings = await UserListings.find()
-      // .populate({
-      //   path: "submittedBy",
-      //   select: "-password -email",
-      //   populate: [
-      //     {
-      //       path: "interest",
-      //       model: "Interest",
-      //     },
-      //     { path: "mbti", model: "Mbti" },
-      //   ],
-      // })
+      .populate({
+        path: "submittedBy",
+        select:
+          "-password -email -createdAt -updatedAt -favUserListing -favRoomListing -getEmail",
+      })
       .exec();
-    // res.status(200).send(allUserListings);
-
-    const newArray = allUserListings.map((item) => item.submittedBy.valueOf());
-
-    const getName = await User.find(
-      { _id: newArray },
-      { firstName: 1, lastName: 1, dob: 1 }
-    );
-
-    res.status(200).send(newArray, getName);
-
-    // console.log(newArray);
-    // console.log(typeof newArray);
-    // console.log(allUserListings);
+    res.status(200).send(allUserListings);
   } catch (error) {
     console.log(error);
     res.status(500).send({ msg: error });
   }
 });
 
+router.post("/submit", async (req, res) => {
+  const newUserListing = req.body;
+
+  await UserListings.create(newUserListing, (error, submission) => {
+    if (error) {
+      res.status(500).send({ error });
+    } else {
+      res.status(201).send(submission);
+    }
+  });
+});
+
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
+  const userListing = await UserListings.findById(id)
+    .populate({
+      path: "submittedBy",
+      select:
+        "-password -email -createdAt -updatedAt -favUserListing -favRoomListing -getEmail",
+    })
+    .exec();
+
+  if (userListing === null) {
+    res.status(500).send({ error: "Listing not found" });
+  } else {
+    res.status(200).send(userListing);
+  }
+});
 // router.get("/submittedby", async (req, res) => {
 //   User.find({_id: })
 // });
+
+router.put("/edit/:id", async (req, res) => {
+  const { id } = req.params;
+  const userListing = req.body;
+  const updatedListing = await UserListings.findByIdAndUpdate(id, userListing, {
+    new: true,
+  });
+  if (updatedListing === null) {
+    res.status(500).send({ error: "Listing not found" });
+  } else {
+    res.status(200).send(updatedListing);
+  }
+});
 
 router.get("/search", async (req, res) => {
   console.log(req.query.interest);

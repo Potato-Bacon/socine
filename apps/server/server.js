@@ -11,6 +11,7 @@ const roomListingController = require("./controllers/RoomListingController");
 const userListingController = require("./controllers/UserListingController");
 const authCheckController = require("./controllers/AuthCheckController");
 const userHomeController = require("./controllers/UserHomeController");
+const Mbti = require("./models/mbtiSchema");
 require("./models/roomListingSchema");
 require("./models/interestSchema");
 require("./models/mbtiSchema");
@@ -44,6 +45,16 @@ app.use("/api/userhome", userHomeController);
 //test
 app.get("/", (req, res) => {
   res.send("Hello World!");
+});
+
+//get all MBTI
+app.get("/mbti", async (req, res) => {
+  try {
+    const mbti = await Mbti.find();
+    res.send(mbti);
+  } catch (error) {
+    res.status(500).send({ error });
+  }
 });
 
 app.listen(port, () => {
