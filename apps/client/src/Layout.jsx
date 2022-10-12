@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import NavProtected from "./components/NavProtected";
+import NavProtected from "./protectedComponents/NavProtected";
 
 const Layout = ({ setToken }) => {
   return (

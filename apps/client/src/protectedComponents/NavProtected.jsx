@@ -14,10 +14,17 @@ function NavProtected({ setToken }) {
   };
 
   const navigation = [
-    { name: "Home", href: "#", current: true },
-    { name: "Get Connected", href: "#", current: false },
-    { name: "Get Homed", href: "#", current: false },
-    { name: "Calendar", href: "#", current: false },
+    { name: "Home", link: "/user", current: true },
+    {
+      name: "Get Connected with Users",
+      link: "/user/userlisting",
+      current: false,
+    },
+    {
+      name: "Get Connected with Rooms",
+      link: "/user/roomlisting",
+      current: false,
+    },
   ];
 
   function classNames(...classes) {
@@ -25,7 +32,7 @@ function NavProtected({ setToken }) {
   }
 
   return (
-    <Disclosure as="nav" className="bg-gray-800">
+    <Disclosure as="nav" className="bg-blue-800">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -57,9 +64,8 @@ function NavProtected({ setToken }) {
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
-                      <a
+                      <button
                         key={item.name}
-                        href={item.href}
                         className={classNames(
                           item.current
                             ? "bg-gray-900 text-white"
@@ -68,8 +74,8 @@ function NavProtected({ setToken }) {
                         )}
                         aria-current={item.current ? "page" : undefined}
                       >
-                        {item.name}
-                      </a>
+                        <Link to={item.link}>{item.name}</Link>
+                      </button>
                     ))}
                   </div>
                 </div>
@@ -119,28 +125,26 @@ function NavProtected({ setToken }) {
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
-                          <a
-                            href="#"
+                          <button
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                           >
-                            Settings
-                          </a>
+                            <Link to="/user/URL">Create User Listing</Link>
+                          </button>
                         )}
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
-                          <a
-                            href="#"
+                          <button
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                           >
-                            Settings
-                          </a>
+                            <Link to="/user/URL">Create Room Listing</Link>
+                          </button>
                         )}
                       </Menu.Item>
                       <Menu.Item>
