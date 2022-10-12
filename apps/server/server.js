@@ -14,7 +14,6 @@ const userHomeController = require("./controllers/UserHomeController");
 const Mbti = require("./models/mbtiSchema");
 const Interest = require("./models/interestSchema");
 require("./models/roomListingSchema");
-require("./models/interestSchema");
 require("./models/mbtiSchema");
 
 //configuration
@@ -49,7 +48,7 @@ app.get("/", (req, res) => {
 });
 
 //get all MBTI
-app.get("/mbti", async (req, res) => {
+app.get("/api/mbti", async (req, res) => {
   try {
     const mbti = await Mbti.find();
     res.send(mbti);
@@ -58,7 +57,7 @@ app.get("/mbti", async (req, res) => {
   }
 });
 
-app.get("/interests", async (req, res) => {
+app.get("/api/interests", async (req, res) => {
   try {
     const interests = await Interest.find();
     res.send(interests);

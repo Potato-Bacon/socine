@@ -1,4 +1,3 @@
-const util = require("util");
 const interests = [
   "634441e31953bd9d609ef3c0",
   "634441e31953bd9d609ef3c1",

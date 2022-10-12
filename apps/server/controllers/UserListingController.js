@@ -1,7 +1,5 @@
-const { request, Router } = require("express");
 const express = require("express");
 const UserListings = require("../models/userListingSchema");
-const User = require("../models/userSchema");
 
 const router = express.Router();
 
@@ -20,7 +18,6 @@ router.get("/", async (req, res) => {
     res.status(500).send({ msg: error });
   }
 });
-
 router.post("/submit", async (req, res) => {
   const newUserListing = req.body;
 
@@ -33,43 +30,37 @@ router.post("/submit", async (req, res) => {
   });
 });
 
-router.get("/:id", async (req, res) => {
-  const { id } = req.params;
-  const userListing = await UserListings.findById(id)
-    .populate({
-      path: "submittedBy",
-      select:
-        "-password -email -createdAt -updatedAt -favUserListing -favRoomListing -getEmail",
-    })
-    .exec();
-
-  if (userListing === null) {
-    res.status(500).send({ error: "Listing not found" });
-  } else {
-    res.status(200).send(userListing);
-  }
-});
-// router.get("/submittedby", async (req, res) => {
-//   User.find({_id: })
-// });
-
-router.put("/edit/:id", async (req, res) => {
-  const { id } = req.params;
-  const userListing = req.body;
-  const updatedListing = await UserListings.findByIdAndUpdate(id, userListing, {
-    new: true,
-  });
-  if (updatedListing === null) {
-    res.status(500).send({ error: "Listing not found" });
-  } else {
-    res.status(200).send(updatedListing);
-  }
-});
-
 router.get("/search", async (req, res) => {
-  console.log(req.query.interest);
-  const interest = [];
+  const mrt = [];
+  const town = [];
 
+  try {
+    if (req.body.mrt !== undefined) {
+      mrt.push({ mrt: req.body.mrt });
+    }
+    console.log(mrt);
+
+    if (req.body.town !== undefined) {
+      town.push({ town: req.body.town });
+    }
+    const searchLocation = await UserListings.find({
+      $or: [mrt, town],
+    }).exec();
+
+    if (searchLocation === null) {
+      res.status(500).send({ msg: "no results" });
+    } else {
+      res.status(200).send(searchLocation);
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ msg: error });
+  }
+});
+
+router.get("/search/filter", async (req, res) => {
+  // console.log(req.query);
+  const interest = [];
   // const title = [];
   // const budget = [];
   // const preferredMrts = [];
@@ -77,15 +68,13 @@ router.get("/search", async (req, res) => {
   // const mbti = [];
 
   if (req.query.interest !== undefined) {
-    // const abc = req.query.interest;
-    interest.push({ interest: req.query.interest });
+    interest.push({ interests: req.query.interest });
   }
 
   // if (req.query.title !== undefined) {
   //   req.query.title = "";
   // }
-  console.log(interest);
-
+  // console.log(interest);
   // if (req.query.budget !== undefined) {
   //   budget.push({ budget: req.query.budget });
   // }
@@ -114,26 +103,42 @@ router.get("/search", async (req, res) => {
   // console.log("interestNew", req.query.interest);
   // console.log("mbtiNew", req.query.mbti);
 
-  const results = await UserListings.find(
-    {
-      $or: interest,
-    },
-    { _id: 1, preferredMrts: 0, preferredTown: 0 }
-  )
-    // .populate({
-    //   path: "submittedBy",
-    //   select: "-password -email",
-    //   populate: [
-    //     {
-    //       path: "interest",
-    //       model: "Interest",
-    //     },
-    //     { path: "mbti", model: "Mbti" },
-    //   ],
-    // })
-    .exec();
-  // console.log(results.length);
+  const results = await UserListings.find({
+    $or: interest,
+  }).exec();
+  console.log(results.length);
   res.send({ results });
+
+  router.get("/:id", async (req, res) => {
+    const { id } = req.params;
+    const userListing = await UserListings.findById(id)
+      .populate({
+        path: "submittedBy",
+        select:
+          "-password -email -createdAt -updatedAt -favUserListing -favRoomListing -getEmail",
+      })
+      .populate("interests")
+      .populate("mbti")
+      .exec();
+
+    if (userListing === null) {
+      res.status(500).send({ error: "Listing not found" });
+    } else {
+      res.status(200).send(userListing);
+    }
+  });
+});
+router.put("/edit/:id", async (req, res) => {
+  const { id } = req.params;
+  const userListing = req.body;
+  const updatedListing = await UserListings.findByIdAndUpdate(id, userListing, {
+    new: true,
+  });
+  if (updatedListing === null) {
+    res.status(500).send({ error: "Listing not found" });
+  } else {
+    res.status(200).send(updatedListing);
+  }
 });
 
 module.exports = router;
