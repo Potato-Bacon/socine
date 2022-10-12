@@ -9,16 +9,30 @@ function CreateUserListingForm() {
   const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
-      findRoom: true,
+      profilePic: "",
+      name: "",
+      age: 0,
+      gender: "",
       occupation: "",
-      preferredTown: "",
-      preferredMrts: "",
+      mbti: "",
+      interests: [""],
+      town: "",
+      mrt: "",
       budget: 0,
       earlyMoveInDate: "",
       userListingTag: "",
     },
     validationSchema: Yup.object({
-      findRoom: Yup.string().required("*required"),
+      profilePic: Yup.string().required("*required"),
+      name: Yup.string()
+        .min(5, "Choose a name 5-15 characters long")
+        .max(15, "Choose a name 5-15 characters long")
+        .required("*required"),
+      age: Yup.number()
+        .min(18, "You need to be 18 years old and above")
+        .max(99)
+        .required("*required"),
+      gender: Yup.string().required("*required"),
       occupation: Yup.string()
         .min(5, "Indicate an occupation 5-15 characters long")
         .max(15, "Indicate a occupation 5-15 characters long")
@@ -70,12 +84,13 @@ function CreateUserListingForm() {
               </div>
 
               <h1 className="mt-6 text-2xl font-bold text-white sm:text-3xl md:text-4xl">
-                Create User Listing
+                Welcome to Socine
               </h1>
 
               <p className="mt-4 leading-relaxed text-white/90">
-                Setting up a user lisitng is a straight forward process as we
-                have kept it simple and seamless.
+                Having to move into a new space and connect with strangers can
+                seem overwhelming and you are not alone. Socine provides you the
+                freedom to make better choices.
               </p>
             </div>
           </section>
@@ -102,12 +117,13 @@ function CreateUserListingForm() {
                 </a>
 
                 <h1 className="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
-                  Create User Listing
+                  Welcome to Socine
                 </h1>
 
                 <p className="mt-4 leading-relaxed text-gray-500">
-                  Setting up a user lisitng is a straight forward process as we
-                  have kept it simple and seamless.
+                  Having to move into a new space and connect with strangers can
+                  seem overwhelming and you are not alone. Socine provides you
+                  the freedom to make better choices.
                 </p>
               </div>
 
@@ -118,86 +134,9 @@ function CreateUserListingForm() {
                 onSubmit={formik.handleSubmit}
                 className="mt-8 grid grid-cols-6 gap-6"
               >
-                <div className="col-span-6 sm:col-span-3">
-                  <label
-                    htmlFor="FirstName"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    First Name
-                  </label>
-
-                  <input
-                    id="firstName"
-                    name="firstName"
-                    type="text"
-                    placeholder="e.g. Jocelyn"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.firstName}
-                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
-                  />
-                </div>
-
-                {/* {formik.touched.firstName && formik.errors.firstName ? (
-                    <span className="text-sm text-red-500 italic">
-                      {formik.errors.firstName}
-                    </span>
-                ) : null} */}
-
-                <div className="col-span-6 sm:col-span-3">
-                  <label
-                    htmlFor="LastName"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Last Name
-                  </label>
-
-                  <input
-                    id="lastName"
-                    name="lastName"
-                    type="text"
-                    placeholder="e.g. Chua"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.lastName}
-                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
-                  />
-                </div>
-
-                {/* {formik.touched.lastName && formik.errors.lastName ? (
-                  <span className="text-sm text-red-500 italic">
-                    {formik.errors.lastName}
-                  </span>
-                ) : null} */}
-
                 <div className="col-span-6">
                   <label
-                    htmlFor="Date"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Date of Birth
-                  </label>
-
-                  <input
-                    id="dob"
-                    name="dob"
-                    type="date"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.dob}
-                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
-                  />
-                </div>
-
-                {/* {formik.touched.date && formik.errors.date ? (
-                  <span className="text-sm text-red-500 italic">
-                    {formik.errors.date}
-                  </span>
-                ) : null} */}
-
-                <div className="col-span-6">
-                  <label
-                    htmlFor="Email"
+                    htmlFor="username"
                     className="block text-sm font-medium text-gray-700"
                   >
                     Username
@@ -215,11 +154,37 @@ function CreateUserListingForm() {
                   />
                 </div>
 
-                {/* {formik.touched.username && formik.errors.username ? (
-                  <span className="text-sm text-red-500 italic">
+                {formik.touched.username && formik.errors.username ? (
+                  <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
                     {formik.errors.username}
                   </span>
-                ) : null} */}
+                ) : null}
+
+                <div className="col-span-6">
+                  <label
+                    htmlFor="mobileNo"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Mobile Number
+                  </label>
+
+                  <input
+                    id="mobileNo"
+                    name="mobileNo"
+                    type="tel"
+                    placeholder="Enter a valid mobile number"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.mobileNo}
+                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                  />
+                </div>
+
+                {formik.touched.mobileNo && formik.errors.mobileNo ? (
+                  <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
+                    {formik.errors.mobileNo}
+                  </span>
+                ) : null}
 
                 <div className="col-span-6">
                   <label
@@ -241,11 +206,11 @@ function CreateUserListingForm() {
                   />
                 </div>
 
-                {/* {formik.touched.email && formik.errors.email ? (
-                  <span className="text-sm text-red-500 italic">
+                {formik.touched.email && formik.errors.email ? (
+                  <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
                     {formik.errors.email}
                   </span>
-                ) : null} */}
+                ) : null}
 
                 <div className="col-span-6 sm:col-span-3">
                   <label
