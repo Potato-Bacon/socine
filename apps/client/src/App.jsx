@@ -10,7 +10,11 @@ import LoginPage from "./pages/LoginPage";
 import RegistrationPage from "./pages/RegistrationPage";
 // Protected Route
 import UserHome from "./protectedPages/UserHome";
-import UserProfile from "./protectedPages/UserProfile";
+import UserProfilePage from "./protectedPages/UserProfilePage";
+import UserListingPage from "./protectedPages/UserListingPage";
+import RoomListingPage from "./protectedPages/RoomListingPage";
+import CreateUserListingPage from "./protectedPages/CreateUserListingPage";
+import CreateRoomListingPage from "./protectedPages/RoomListingPage";
 export const PersonContext = createContext();
 
 function App() {
@@ -42,7 +46,23 @@ function App() {
               />
               <Route
                 path="/user/profile"
-                element={<UserProfile token={token} />}
+                element={<UserProfilePage token={token} />}
+              />
+              <Route
+                path="/user/userlisting"
+                element={<UserListingPage token={token} />}
+              />
+              <Route
+                path="/user/roomlisting"
+                element={<RoomListingPage token={token} />}
+              />
+              <Route
+                path="/user/createuserlisting"
+                element={<CreateUserListingPage token={token} />}
+              />
+              <Route
+                path="/user/createroomlisting"
+                element={<CreateRoomListingPage token={token} />}
               />
             </Route>
           </Routes>
