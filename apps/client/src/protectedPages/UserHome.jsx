@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 function UserHome({ userName, token }) {
-  const userURL = "/api/user";
+  const userURL = "/api/auth";
 
   useEffect(() => {
     fetch(userURL, {

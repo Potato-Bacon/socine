@@ -1,45 +1,36 @@
 import { useFormik } from "formik";
 import { useNavigate, Link } from "react-router-dom";
 import * as Yup from "yup";
-import "yup-phone";
-import YupPassword from "yup-password";
-YupPassword(Yup);
 import Img from "react-cool-img";
 
-const url = "/api/register";
+const url = "/api/user/createuserlisting";
 
-function RegistrationForm() {
+function CreateUserListingForm() {
   const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
-      username: "",
-      password: "",
-      confirmPassword: "",
-      mobileNo: "",
-      getEmail: false,
+      findRoom: true,
+      occupation: "",
+      preferredTown: "",
+      preferredMrts: "",
+      budget: 0,
+      earlyMoveInDate: "",
+      userListingTag: "",
     },
     validationSchema: Yup.object({
-      username: Yup.string()
-        .min(5, "Choose a username 5-15 characters long")
-        .max(15, "Choose a username 5-15 characters long")
-        .required("username is required"),
-      password: Yup.string()
-        .password()
-        .min(
-          6,
-          "Password is too short - Choose a password with minimum 6 characters"
-        )
-        .minLowercase(1, "Password must contain at least 1 lower-case letter")
-        .minUppercase(1, "Password must contain at least 1 upper-case letter")
-        .minNumbers(1, "Password must contain at least 1 number")
-        .minSymbols(1, "Password must contain at least 1 special character")
-        .required("Password is required"),
-      confirmPassword: Yup.string()
-        .required("Please confirm your password")
-        .oneOf([Yup.ref("password"), null], "Passwords must match"),
-      email: Yup.string().email("Invalid Email").required("Email is required"),
-      mobileNo: Yup.string().phone("SG").required("Mobile Number is required"),
-      getEmail: Yup.string().required(),
+      findRoom: Yup.string().required("*required"),
+      occupation: Yup.string()
+        .min(5, "Indicate an occupation 5-15 characters long")
+        .max(15, "Indicate a occupation 5-15 characters long")
+        .required("*required"),
+      preferredTown: Yup.string().required("*required"),
+      preferredMrts: Yup.string().required("*required"),
+      budget: Yup.number()
+        .min(0, "We suggest to indicate a realistic amount")
+        .max(9999999)
+        .required("*required"),
+      earlyMoveInDate: Yup.date().min(new Date()).required("*required"),
+      userListingTag: Yup.string().required("*required"),
     }),
     onSubmit: async (values) => {
       console.log(values);
@@ -53,22 +44,8 @@ function RegistrationForm() {
       const data = await res.json();
       // include error checking
       console.log("Response:", data);
-
-      if (data.msg === "Username in use") {
-        alert("Username in use. Please try another username");
-      } else if (data.msg === "Email in use") {
-        alert("Email in use. Please try another email");
-      } else if (data.msg === "Wrong Password" && "Username in use") {
-        alert(
-          "There is something wrong with your submmision. Please try again"
-        );
-      } else {
-        alert("Registration Successful - Thank you for being part of Socine");
-        navigate("/login");
-      }
     },
   });
-
   return (
     <>
       <section className="bg-white">
@@ -93,13 +70,12 @@ function RegistrationForm() {
               </div>
 
               <h1 className="mt-6 text-2xl font-bold text-white sm:text-3xl md:text-4xl">
-                Welcome to Socine
+                Create User Listing
               </h1>
 
               <p className="mt-4 leading-relaxed text-white/90">
-                Having to move into a new space and connect with strangers can
-                seem overwhelming and you are not alone. Socine provides you the
-                freedom to make better choices.
+                Setting up a user lisitng is a straight forward process as we
+                have kept it simple and seamless.
               </p>
             </div>
           </section>
@@ -126,13 +102,12 @@ function RegistrationForm() {
                 </a>
 
                 <h1 className="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
-                  Welcome to Socine
+                  Create User Listing
                 </h1>
 
                 <p className="mt-4 leading-relaxed text-gray-500">
-                  Having to move into a new space and connect with strangers can
-                  seem overwhelming and you are not alone. Socine provides you
-                  the freedom to make better choices.
+                  Setting up a user lisitng is a straight forward process as we
+                  have kept it simple and seamless.
                 </p>
               </div>
 
@@ -143,9 +118,86 @@ function RegistrationForm() {
                 onSubmit={formik.handleSubmit}
                 className="mt-8 grid grid-cols-6 gap-6"
               >
+                <div className="col-span-6 sm:col-span-3">
+                  <label
+                    htmlFor="FirstName"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    First Name
+                  </label>
+
+                  <input
+                    id="firstName"
+                    name="firstName"
+                    type="text"
+                    placeholder="e.g. Jocelyn"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.firstName}
+                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                  />
+                </div>
+
+                {/* {formik.touched.firstName && formik.errors.firstName ? (
+                    <span className="text-sm text-red-500 italic">
+                      {formik.errors.firstName}
+                    </span>
+                ) : null} */}
+
+                <div className="col-span-6 sm:col-span-3">
+                  <label
+                    htmlFor="LastName"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Last Name
+                  </label>
+
+                  <input
+                    id="lastName"
+                    name="lastName"
+                    type="text"
+                    placeholder="e.g. Chua"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.lastName}
+                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                  />
+                </div>
+
+                {/* {formik.touched.lastName && formik.errors.lastName ? (
+                  <span className="text-sm text-red-500 italic">
+                    {formik.errors.lastName}
+                  </span>
+                ) : null} */}
+
                 <div className="col-span-6">
                   <label
-                    htmlFor="username"
+                    htmlFor="Date"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Date of Birth
+                  </label>
+
+                  <input
+                    id="dob"
+                    name="dob"
+                    type="date"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.dob}
+                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                  />
+                </div>
+
+                {/* {formik.touched.date && formik.errors.date ? (
+                  <span className="text-sm text-red-500 italic">
+                    {formik.errors.date}
+                  </span>
+                ) : null} */}
+
+                <div className="col-span-6">
+                  <label
+                    htmlFor="Email"
                     className="block text-sm font-medium text-gray-700"
                   >
                     Username
@@ -163,37 +215,11 @@ function RegistrationForm() {
                   />
                 </div>
 
-                {formik.touched.username && formik.errors.username ? (
-                  <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
+                {/* {formik.touched.username && formik.errors.username ? (
+                  <span className="text-sm text-red-500 italic">
                     {formik.errors.username}
                   </span>
-                ) : null}
-
-                <div className="col-span-6">
-                  <label
-                    htmlFor="mobileNo"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Mobile Number
-                  </label>
-
-                  <input
-                    id="mobileNo"
-                    name="mobileNo"
-                    type="tel"
-                    placeholder="Enter a valid mobile number"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.mobileNo}
-                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
-                  />
-                </div>
-
-                {formik.touched.mobileNo && formik.errors.mobileNo ? (
-                  <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
-                    {formik.errors.mobileNo}
-                  </span>
-                ) : null}
+                ) : null} */}
 
                 <div className="col-span-6">
                   <label
@@ -215,11 +241,11 @@ function RegistrationForm() {
                   />
                 </div>
 
-                {formik.touched.email && formik.errors.email ? (
-                  <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
+                {/* {formik.touched.email && formik.errors.email ? (
+                  <span className="text-sm text-red-500 italic">
                     {formik.errors.email}
                   </span>
-                ) : null}
+                ) : null} */}
 
                 <div className="col-span-6 sm:col-span-3">
                   <label
@@ -319,4 +345,4 @@ function RegistrationForm() {
   );
 }
 
-export default RegistrationForm;
+export default CreateUserListingForm;
