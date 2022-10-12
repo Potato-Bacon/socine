@@ -1,8 +1,8 @@
 import { useFormik } from "formik";
 import { useNavigate, Link } from "react-router-dom";
 import * as Yup from "yup";
+import "yup-phone";
 import YupPassword from "yup-password";
-import { sub } from "date-fns/fp";
 YupPassword(Yup);
 import Img from "react-cool-img";
 
@@ -15,9 +15,7 @@ function RegistrationForm() {
       username: "",
       password: "",
       confirmPassword: "",
-      email: "",
-      firstName: "",
-      lastName: "",
+      mobileNo: "",
       getEmail: false,
     },
     validationSchema: Yup.object({
@@ -40,6 +38,7 @@ function RegistrationForm() {
         .required("Please confirm your password")
         .oneOf([Yup.ref("password"), null], "Passwords must match"),
       email: Yup.string().email("Invalid Email").required("Email is required"),
+      mobileNo: Yup.string().phone("SG").required("Mobile Number is required"),
       getEmail: Yup.string().required(),
     }),
     onSubmit: async (values) => {
@@ -146,7 +145,7 @@ function RegistrationForm() {
               >
                 <div className="col-span-6">
                   <label
-                    htmlFor="Email"
+                    htmlFor="username"
                     className="block text-sm font-medium text-gray-700"
                   >
                     Username
@@ -164,11 +163,37 @@ function RegistrationForm() {
                   />
                 </div>
 
-                {/* {formik.touched.username && formik.errors.username ? (
-                  <span className="text-sm text-red-500 italic">
+                {formik.touched.username && formik.errors.username ? (
+                  <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
                     {formik.errors.username}
                   </span>
-                ) : null} */}
+                ) : null}
+
+                <div className="col-span-6">
+                  <label
+                    htmlFor="mobileNo"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Mobile Number
+                  </label>
+
+                  <input
+                    id="mobileNo"
+                    name="mobileNo"
+                    type="tel"
+                    placeholder="Enter a valid mobile number"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.mobileNo}
+                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                  />
+                </div>
+
+                {formik.touched.mobileNo && formik.errors.mobileNo ? (
+                  <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
+                    {formik.errors.mobileNo}
+                  </span>
+                ) : null}
 
                 <div className="col-span-6">
                   <label
@@ -190,11 +215,11 @@ function RegistrationForm() {
                   />
                 </div>
 
-                {/* {formik.touched.email && formik.errors.email ? (
-                  <span className="text-sm text-red-500 italic">
+                {formik.touched.email && formik.errors.email ? (
+                  <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
                     {formik.errors.email}
                   </span>
-                ) : null} */}
+                ) : null}
 
                 <div className="col-span-6 sm:col-span-3">
                   <label
