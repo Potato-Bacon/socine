@@ -1,14 +1,20 @@
-import React from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import NavProtected from "../components/NavProtected";
+import { useEffect } from "react";
 
 function UserHome({ userName, token }) {
-  console.log({ userName });
-  console.log({ token });
+  const userURL = "/api/user";
+
+  useEffect(() => {
+    fetch(userURL, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data));
+  }, [userName, token]);
   return (
     <>
-      <NavProtected />
       <h1>User HomePage</h1>
     </>
   );

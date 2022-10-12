@@ -1,10 +1,10 @@
-import NavLanding from "../components/NavPublic";
+import NavPublic from "../components/NavPublic";
 import Img from "react-cool-img";
 function LandingPage() {
   return (
     <>
       <div>
-        <NavLanding />
+        <NavPublic />
       </div>
       {/* <section className="text-white bg-center bg-cover bg-blend-darken bg-[url('https://images.pexels.com/photos/310452/pexels-photo-310452.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')]"> */}
       <section>

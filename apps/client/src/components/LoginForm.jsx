@@ -1,5 +1,6 @@
+/* eslint-disable react/prop-types */
 import { useFormik } from "formik";
-import { useState } from "react";
+// import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import * as Yup from "yup";
 
@@ -19,7 +20,7 @@ function LoginForm({ setUsername, setToken }) {
       password: Yup.string().required("*Required"),
     }),
     onSubmit: async (values) => {
-      console.log("test");
+      // console.log("test");
       const res = await fetch(url, {
         method: "POST",
         headers: {
@@ -35,8 +36,10 @@ function LoginForm({ setUsername, setToken }) {
       } else if (data.msg === "Wrong password") {
         alert("Invalid password. Please try again.");
       } else {
-        setUsername(data.payload);
-        setToken(data.token);
+        // setUsername(data.payload.userName);
+        // setToken(data.token);
+        sessionStorage.setItem("accessToken", data.accessToken);
+        sessionStorage.setItem("username", data.payload.username);
         console.log(data);
         navigate("/user");
       }
