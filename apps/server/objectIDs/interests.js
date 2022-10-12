@@ -32,6 +32,4 @@ const interests = [
   "634441e31953bd9d609ef3ec",
 ];
 
-console.log(interests.length);
-
 module.exports = interests;

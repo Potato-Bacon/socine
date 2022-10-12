@@ -7,10 +7,7 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    const allUserListings = await UserListings.find(
-      {},
-      { submittedBy: 1, preferredTown: 0, preferredMrts: 0, _id: 0 }
-    )
+    const allUserListings = await UserListings.find()
       // .populate({
       //   path: "submittedBy",
       //   select: "-password -email",
@@ -113,7 +110,7 @@ router.get("/search", async (req, res) => {
     //   ],
     // })
     .exec();
-  console.log(results.length);
+  // console.log(results.length);
   res.send({ results });
 });
 
