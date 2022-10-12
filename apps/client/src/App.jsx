@@ -15,6 +15,9 @@ import UserListingPage from "./protectedPages/UserListingPage";
 import RoomListingPage from "./protectedPages/RoomListingPage";
 import CreateUserListingPage from "./protectedPages/CreateUserListingPage";
 import CreateRoomListingPage from "./protectedPages/RoomListingPage";
+import UserWatchListPage from "./protectedPages/UserWatchListPage";
+import UserListingFocusPage from "./protectedPages/UserListingFocusPage";
+import RoomListingFocusPage from "./protectedPages/RoomListingFocusPage";
 export const PersonContext = createContext();
 
 function App() {
@@ -52,10 +55,22 @@ function App() {
                 path="/user/userlisting"
                 element={<UserListingPage token={token} />}
               />
+
+              <Route
+                path="/user/userlisting/:id"
+                element={<UserListingFocusPage token={token} />}
+              />
+
               <Route
                 path="/user/roomlisting"
                 element={<RoomListingPage token={token} />}
               />
+
+              <Route
+                path="/user/roomlisting/:id"
+                element={<RoomListingFocusPage token={token} />}
+              />
+
               <Route
                 path="/user/createuserlisting"
                 element={<CreateUserListingPage token={token} />}
@@ -63,6 +78,10 @@ function App() {
               <Route
                 path="/user/createroomlisting"
                 element={<CreateRoomListingPage token={token} />}
+              />
+              <Route
+                path="/user/watchlist"
+                element={<UserWatchListPage token={token} />}
               />
             </Route>
           </Routes>

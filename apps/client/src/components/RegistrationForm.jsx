@@ -18,7 +18,6 @@ function RegistrationForm() {
       email: "",
       firstName: "",
       lastName: "",
-      dob: "",
       getEmail: false,
     },
     validationSchema: Yup.object({
@@ -41,18 +40,6 @@ function RegistrationForm() {
         .required("Please confirm your password")
         .oneOf([Yup.ref("password"), null], "Passwords must match"),
       email: Yup.string().email("Invalid Email").required("Email is required"),
-      firstName: Yup.string()
-        .min(2, "Choose a first name with atleast 2-15 characters long")
-        .max(15, "Choose a first name with atleast 2-15 characters long")
-        .required("first name is required"),
-      lastName: Yup.string()
-        .min(2, "Choose a last name with atleast 2-15 characters long")
-        .max(15, "Choose a last name with atleast 2-15 characters long")
-        .required("last name is required"),
-      dob: Yup.date()
-        .max(sub({ years: 18 }, new Date()), "User must be over 18 years old")
-        .required("Date of birth is required"),
-
       getEmail: Yup.string().required(),
     }),
     onSubmit: async (values) => {
@@ -157,83 +144,6 @@ function RegistrationForm() {
                 onSubmit={formik.handleSubmit}
                 className="mt-8 grid grid-cols-6 gap-6"
               >
-                <div className="col-span-6 sm:col-span-3">
-                  <label
-                    htmlFor="FirstName"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    First Name
-                  </label>
-
-                  <input
-                    id="firstName"
-                    name="firstName"
-                    type="text"
-                    placeholder="e.g. Jocelyn"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.firstName}
-                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
-                  />
-                </div>
-
-                {/* {formik.touched.firstName && formik.errors.firstName ? (
-                    <span className="text-sm text-red-500 italic">
-                      {formik.errors.firstName}
-                    </span>
-                ) : null} */}
-
-                <div className="col-span-6 sm:col-span-3">
-                  <label
-                    htmlFor="LastName"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Last Name
-                  </label>
-
-                  <input
-                    id="lastName"
-                    name="lastName"
-                    type="text"
-                    placeholder="e.g. Chua"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.lastName}
-                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
-                  />
-                </div>
-
-                {/* {formik.touched.lastName && formik.errors.lastName ? (
-                  <span className="text-sm text-red-500 italic">
-                    {formik.errors.lastName}
-                  </span>
-                ) : null} */}
-
-                <div className="col-span-6">
-                  <label
-                    htmlFor="Date"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Date of Birth
-                  </label>
-
-                  <input
-                    id="dob"
-                    name="dob"
-                    type="date"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.dob}
-                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
-                  />
-                </div>
-
-                {/* {formik.touched.date && formik.errors.date ? (
-                  <span className="text-sm text-red-500 italic">
-                    {formik.errors.date}
-                  </span>
-                ) : null} */}
-
                 <div className="col-span-6">
                   <label
                     htmlFor="Email"

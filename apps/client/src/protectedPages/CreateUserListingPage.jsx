@@ -1,7 +1,9 @@
+import CreateUserListingForm from "../protectedComponents/CreateUserListingForm";
+
 function CreateUserListingPage() {
   return (
     <>
-      <h1>Create User Listing Page</h1>
+      <CreateUserListingForm />
     </>
   );
 }

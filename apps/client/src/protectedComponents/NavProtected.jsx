@@ -133,6 +133,20 @@ function NavProtected({ setToken }) {
                               )}
                             >
                               <Link to="/user/createuserlisting">
+                                Watch List
+                              </Link>
+                            </button>
+                          )}
+                        </Menu.Item>
+                        <Menu.Item>
+                          {({ active }) => (
+                            <button
+                              className={classNames(
+                                active ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm text-gray-700"
+                              )}
+                            >
+                              <Link to="/user/createuserlisting">
                                 Create User Listing
                               </Link>
                             </button>
@@ -146,7 +160,7 @@ function NavProtected({ setToken }) {
                                 "block px-4 py-2 text-sm text-gray-700"
                               )}
                             >
-                              <Link to="/user/CreateRoomListingPage">
+                              <Link to="/user/createroomlisting">
                                 Create Room Listing
                               </Link>
                             </button>
