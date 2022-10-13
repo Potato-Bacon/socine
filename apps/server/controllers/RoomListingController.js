@@ -56,7 +56,6 @@ router.get("/search", async (req, res) => {
     genderPreference,
     apartmentType,
     rentPerMonth,
-    preferredMBTI,
   } = req.query;
   const searchRooms = await RoomListing.find({
     $or: [

@@ -39,6 +39,5 @@ const userListingSchema = new mongoose.Schema(
 );
 
 const UserListing = mongoose.model("UserListing", userListingSchema);
-// userListingSchema.plugin(require("mongoose-autopopulate"));
 
 module.exports = UserListing;
