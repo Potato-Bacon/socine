@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Img from "react-cool-img";
+import SearchBarUserListing from "../protectedComponents/SearchBarUserListing";
 
 const userListingURL = "/api/userlistings";
 const roomListingURL = "/api/roomlistings";
@@ -19,6 +20,7 @@ function UserListingPage({ userName, token }) {
   }, []);
   return (
     <>
+      <SearchBarUserListing />
       <div>
         <section className="bg-white dark:bg-gray-900">
           <div className="container px-6 py-10 mx-auto">

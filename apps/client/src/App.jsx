@@ -18,6 +18,7 @@ import CreateRoomListingPage from "./protectedPages/CreateRoomListingPage";
 import UserWatchListPage from "./protectedPages/UserWatchListPage";
 import UserListingFocusPage from "./protectedPages/UserListingFocusPage";
 import RoomListingFocusPage from "./protectedPages/RoomListingFocusPage";
+import ProtectedErrorPage from "./protectedPages/ProtectedErrorPage";
 export const PersonContext = createContext();
 
 function App() {
@@ -83,6 +84,7 @@ function App() {
                 path="/user/watchlist"
                 element={<UserWatchListPage token={token} />}
               />
+              <Route path="*" element={<ProtectedErrorPage token={token} />} />
             </Route>
           </Routes>
         </BrowserRouter>
