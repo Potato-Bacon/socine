@@ -3,8 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import * as Yup from "yup";
 import Img from "react-cool-img";
 import { useEffect, useState } from "react";
-import React from "react";
-import AsyncSelect from "react-select/async";
+// import AsyncSelect from "react-select/async";
 import towns from "../staticData/town";
 import mrts from "../staticData/mrts";
 import userListingTags from "../staticData/userLiftingTags";
@@ -18,42 +17,42 @@ function CreateUserListingForm({ userName, token }) {
   const navigate = useNavigate();
   const [mbti, setMbti] = useState([]);
   const [interests, setInterests] = useState([]);
-  const FILE_SIZE = 500 * 500;
-  const SUPPORTED_FORMATS = [
-    "image/jpg",
-    "image/jpeg",
-    "image/gif",
-    "image/png",
-  ];
+  // const FILE_SIZE = 500 * 500;
+  // const SUPPORTED_FORMATS = [
+  //   "image/jpg",
+  //   "image/jpeg",
+  //   "image/gif",
+  //   "image/png",
+  // ];
   const formik = useFormik({
     initialValues: {
       profilePic: "",
       name: "",
-      age: null,
+      age: "",
       gender: "",
       occupation: "",
       mbti: "",
-      interests: [""],
+      interests: "",
       town: "",
       mrt: "",
-      budget: null,
+      budget: "",
       earlyMoveInDate: "",
       userListingTag: "",
       description: "",
     },
     validationSchema: Yup.object({
       profilePic: Yup.mixed()
-        .test(
-          "fileSize",
-          "File too large",
-          (value) => value === null || (value && value.size <= FILE_SIZE)
-        )
-        .test(
-          "fileFormat",
-          "Unsupported file type",
-          (value) =>
-            value === null || (value && SUPPORTED_FORMATS.includes(value.type))
-        )
+        // .test(
+        //   "fileSize",
+        //   "File too large",
+        //   (value) => value === null || (value && value.size <= FILE_SIZE)
+        // )
+        // .test(
+        //   "fileFormat",
+        //   "Unsupported file type",
+        //   (value) =>
+        //     value === null || (value && SUPPORTED_FORMATS.includes(value.type))
+        // )
         .required("*required"),
       name: Yup.string()
         .min(5, "Choose a name 5-15 characters long")
@@ -67,20 +66,25 @@ function CreateUserListingForm({ userName, token }) {
         .required("*required"),
       gender: Yup.string().required("*required"),
       occupation: Yup.string()
-        .min(5, "Indicate an occupation 5-15 characters long")
-        .max(15, "Indicate a occupation 5-15 characters long")
+        .min(5, "Indicate an occupation 5-60 characters long")
+        .max(60, "Indicate a occupation 5-60 characters long")
         .required("*required"),
-      mbti: Yup.string().required("*required"),
-      interests: Yup.array().required("*required"),
-      town: Yup.string().required("*required"),
-      mrt: Yup.string().required("*required"),
+      // mbti: Yup.string().required("*required"),
+      // interests: Yup.string().required("*required"),
+      // town: Yup.string().required("*required"),
+      // mrt: Yup.string().required("*required"),
       budget: Yup.number()
+        .positive()
+        .integer()
         .min(0, "We suggest to indicate a realistic amount")
         .max(9999999)
         .required("*required"),
       earlyMoveInDate: Yup.date().min(new Date()).required("*required"),
-      userListingTag: Yup.string().required("*required"),
-      description: Yup.string().min(40, "40-600 character limit").max(600),
+      // userListingTag: Yup.string().required("*required"),
+      description: Yup.string()
+        .min(40, "40-600 character limit")
+        .max(600)
+        .required("*required"),
     }),
     onSubmit: async (values) => {
       console.log(values);
@@ -229,6 +233,13 @@ function CreateUserListingForm({ userName, token }) {
                     </label>
                   </div>
                 </div>
+
+                {formik.touched.profilePic && formik.errors.profilePic ? (
+                  <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
+                    {formik.errors.profilePic}
+                  </span>
+                ) : null}
+
                 <div className="col-span-6 sm:col-span-3">
                   <label
                     htmlFor="name"
@@ -249,11 +260,11 @@ function CreateUserListingForm({ userName, token }) {
                   />
                 </div>
 
-                {/* {formik.touched.name && formik.errors.name ? (
+                {formik.touched.name && formik.errors.name ? (
                   <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
                     {formik.errors.name}
                   </span>
-                ) : null} */}
+                ) : null}
 
                 <div className="col-span-6 sm:col-span-3">
                   <label
@@ -275,11 +286,11 @@ function CreateUserListingForm({ userName, token }) {
                   />
                 </div>
 
-                {/* {formik.touched.age && formik.errors.age ? (
+                {formik.touched.age && formik.errors.age ? (
                   <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
                     {formik.errors.age}
                   </span>
-                ) : null} */}
+                ) : null}
 
                 <div className="col-span-6">
                   <label
@@ -301,6 +312,12 @@ function CreateUserListingForm({ userName, token }) {
                   />
                 </div>
 
+                {formik.touched.occupation && formik.errors.occupation ? (
+                  <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
+                    {formik.errors.occupation}
+                  </span>
+                ) : null}
+
                 <div className="col-span-6">
                   <label
                     htmlFor="mbti"
@@ -311,24 +328,33 @@ function CreateUserListingForm({ userName, token }) {
 
                   <select
                     id="mbti"
+                    name="mbti"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   >
                     {/* <select
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     > */}
-                    {/* <option selected>Choose a Personality</option> */}
+                    <option value="">Choose a Personality</option>
                     {mbti.map((m) => (
                       <option
+                        // name="mbti"
                         key={uuidv4()}
-                        onChange={formik.handleBlur}
+                        label={m.mbti}
+                        // onChange={formik.handleBlur}
                         onBlur={formik.handleBlur}
                         value={formik.values.mbti}
                       >
-                        {m.mbti} - {m.description}
+                        {m.mbti}
                       </option>
                     ))}
                   </select>
                 </div>
+
+                {formik.touched.mbti && formik.errors.mbti ? (
+                  <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
+                    {formik.errors.mbti}
+                  </span>
+                ) : null}
 
                 <div className="col-span-6">
                   <label
@@ -340,6 +366,7 @@ function CreateUserListingForm({ userName, token }) {
                   <select
                     multiple
                     id="interests"
+                    name="interests"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   >
                     {/* <select
@@ -349,7 +376,7 @@ function CreateUserListingForm({ userName, token }) {
                     {interests.map((i) => (
                       <option
                         key={uuidv4()}
-                        onChange={formik.handleBlur}
+                        onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         value={formik.values.interests}
                       >
@@ -359,6 +386,12 @@ function CreateUserListingForm({ userName, token }) {
                   </select>
                 </div>
 
+                {formik.touched.interests && formik.errors.interests ? (
+                  <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
+                    {formik.errors.interests}
+                  </span>
+                ) : null}
+
                 <div className="col-span-6 sm:col-span-3">
                   <label
                     htmlFor="town"
@@ -366,16 +399,20 @@ function CreateUserListingForm({ userName, token }) {
                   >
                     Town
                   </label>
-                  <select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                  <select
+                    name="town"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  >
                     {/* <select
                       id="interests"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     > */}
-                    {/* <option selected>Choose Town</option> */}
+                    <option value="">Choose Town</option>
                     {towns.map((t) => (
                       <option
+                        // name="town"
                         key={uuidv4()}
-                        onChange={formik.handleBlur}
+                        onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         value={formik.values.town}
                       >
@@ -385,6 +422,12 @@ function CreateUserListingForm({ userName, token }) {
                   </select>
                 </div>
 
+                {formik.touched.town && formik.errors.town ? (
+                  <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
+                    {formik.errors.town}
+                  </span>
+                ) : null}
+
                 <div className="col-span-6 sm:col-span-3">
                   <label
                     htmlFor="mrt"
@@ -392,15 +435,19 @@ function CreateUserListingForm({ userName, token }) {
                   >
                     MRT
                   </label>
-                  <select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                  <select
+                    name="mrt"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  >
                     {/* <select
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     > */}
-                    {/* <option selected>Choose MRT</option> */}
+                    <option value="">Choose MRT</option>
                     {mrts.map((mrt) => (
                       <option
                         key={uuidv4()}
-                        onChange={formik.handleBlur}
+                        // name="mrt"
+                        onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         value={formik.values.mrt}
                       >
@@ -409,6 +456,12 @@ function CreateUserListingForm({ userName, token }) {
                     ))}
                   </select>
                 </div>
+
+                {formik.touched.mrt && formik.errors.mrt ? (
+                  <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
+                    {formik.errors.mrt}
+                  </span>
+                ) : null}
 
                 <div className="col-span-6 sm:col-span-3">
                   <label
@@ -429,16 +482,16 @@ function CreateUserListingForm({ userName, token }) {
                     className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                   />
                 </div>
-                {/* {formik.touched.budget && formik.errors.budget ? (
+                {formik.touched.budget && formik.errors.budget ? (
                   <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
                     {formik.errors.budget}
                   </span>
-                ) : null} */}
+                ) : null}
 
                 {/* earlyMoveInDate */}
                 <div className="col-span-6 sm:col-span-3">
                   <label
-                    htmlFor="budget"
+                    htmlFor="earlyMoveInDate"
                     className="block text-sm font-medium text-gray-700"
                   >
                     Earliest Move in Date
@@ -454,17 +507,27 @@ function CreateUserListingForm({ userName, token }) {
                     className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                   />
                 </div>
-                {/* {formik.touched.earlyMoveInDate && formik.errors.earlyMoveInDate ? (
+
+                {formik.touched.earlyMoveInDate &&
+                formik.errors.earlyMoveInDate ? (
                   <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
                     {formik.errors.earlyMoveInDate}
                   </span>
-                ) : null} */}
+                ) : null}
 
                 {/* User Listing Tag */}
-                <div className="col-span-6 flex-row">
+                {/* <div className="col-span-6 flex-row">
                   {userListingTags.map((ult) => (
                     <>
+                      <label
+                        key={uuidv4()}
+                        htmlFor="userListingTag"
+                        className="flex-row justify-evenly text-sm font-medium text-gray-700 mx-auto"
+                      >
+                        {ult}
+                      </label>
                       <input
+                        key={uuidv4()}
                         id="userListingTag"
                         name="userListingTag"
                         type="checkbox"
@@ -473,16 +536,50 @@ function CreateUserListingForm({ userName, token }) {
                         value={formik.values.userListingTag}
                         className="mt-1 w-5 rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                       />
-                      <label
-                        key={uuidv4()}
-                        htmlFor="userListingTag"
-                        className="flex-row justify-evenly text-sm font-medium text-gray-700 mx-auto"
-                      >
-                        {ult}
-                      </label>
                     </>
                   ))}
                 </div>
+
+                {formik.touched.userListingTag &&
+                formik.errors.userListingTag ? (
+                  <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
+                    {formik.errors.userListingTag}
+                  </span>
+                ) : null} */}
+
+                {/* interest */}
+                <div className="col-span-6 sm:col-span-3">
+                  <label
+                    htmlFor="userListingTag"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    User Listing Tag
+                  </label>
+                  <select
+                    name="userListingTag"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  >
+                    <option value="">Choose Tag</option>
+                    {userListingTags.map((ult) => (
+                      <option
+                        key={uuidv4()}
+                        name="userListingTag"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.mrt}
+                      >
+                        {ult}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {formik.touched.userListingTag &&
+                formik.errors.userListingTag ? (
+                  <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
+                    {formik.errors.userListingTag}
+                  </span>
+                ) : null}
 
                 {/* Description */}
                 <div className="col-span-6">
@@ -504,6 +601,12 @@ function CreateUserListingForm({ userName, token }) {
                     />
                   </div>
                 </div>
+
+                {formik.touched.description && formik.errors.description ? (
+                  <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
+                    {formik.errors.description}
+                  </span>
+                ) : null}
 
                 <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
                   <button

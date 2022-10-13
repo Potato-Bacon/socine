@@ -1,7 +1,8 @@
+import CreateRoomListingForm from "../protectedComponents/CreateRoomListingForm";
 function CreateRoomListingPage() {
   return (
     <>
-      <h1>Create Room Listing Page</h1>
+      <CreateRoomListingForm />
     </>
   );
 }
