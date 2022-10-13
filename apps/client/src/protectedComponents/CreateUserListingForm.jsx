@@ -55,8 +55,8 @@ function CreateUserListingForm({ userName, token }) {
         // )
         .required("*required"),
       name: Yup.string()
-        .min(5, "Choose a name 5-15 characters long")
-        .max(15, "Choose a name 5-15 characters long")
+        .min(2, "Choose a name 2-15 characters long")
+        .max(15, "Choose a name 2-15 characters long")
         .required("*required"),
       age: Yup.number()
         .min(18, "You need to be 18 years old and above")
@@ -338,9 +338,9 @@ function CreateUserListingForm({ userName, token }) {
                     {mbti.map((m) => (
                       <option
                         // name="mbti"
-                        key={uuidv4()}
+                        key={m._id}
                         label={m.mbti}
-                        // onChange={formik.handleBlur}
+                        onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         value={formik.values.mbti}
                       >
@@ -375,7 +375,7 @@ function CreateUserListingForm({ userName, token }) {
                     {/* <option selected>Choose Interests</option> */}
                     {interests.map((i) => (
                       <option
-                        key={uuidv4()}
+                        key={i._id}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         value={formik.values.interests}
@@ -411,7 +411,7 @@ function CreateUserListingForm({ userName, token }) {
                     {towns.map((t) => (
                       <option
                         // name="town"
-                        key={uuidv4()}
+                        key={t._id}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         value={formik.values.town}
@@ -445,7 +445,7 @@ function CreateUserListingForm({ userName, token }) {
                     <option value="">Choose MRT</option>
                     {mrts.map((mrt) => (
                       <option
-                        key={uuidv4()}
+                        key={mrt._id}
                         // name="mrt"
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
@@ -562,7 +562,7 @@ function CreateUserListingForm({ userName, token }) {
                     <option value="">Choose Tag</option>
                     {userListingTags.map((ult) => (
                       <option
-                        key={uuidv4()}
+                        key={ult._id}
                         name="userListingTag"
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}

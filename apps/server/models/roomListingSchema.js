@@ -2,8 +2,11 @@ const mongoose = require("mongoose");
 
 const roomListingSchema = new mongoose.Schema(
   {
+    name: { type: String, required: true },
+    profilePic: { type: String, required: true },
     title: { type: String, required: true },
     description: { type: String, required: true },
+    listingPics: { type: String, required: true },
     address: { type: String, required: true },
     town: {
       type: mongoose.Schema.Types.ObjectId,
@@ -15,7 +18,6 @@ const roomListingSchema = new mongoose.Schema(
       ref: "MRT",
       required: true,
     },
-    image: [String],
     amenities: {
       type: [mongoose.Schema.Types.ObjectId],
       ref: "Amenities",
@@ -28,7 +30,6 @@ const roomListingSchema = new mongoose.Schema(
     },
     wholeUnitOrRoomOnly: { type: String, required: true },
     roomType: String,
-    noOfRooms: Number,
     bathroomType: { type: String, required: true },
     genderPreference: { type: String, required: true },
     apartmentType: { type: String, required: true },
@@ -37,11 +38,6 @@ const roomListingSchema = new mongoose.Schema(
     rentPerMonth: { type: Number, required: true, min: 0 },
     availability: { type: Date, required: true },
     stayLength: { type: String, required: true },
-    preferredMBTI: {
-      type: [mongoose.Schema.Types.ObjectId],
-      ref: "Mbti",
-      required: true,
-    },
     propertyDescription: { type: String, required: true },
     occupantsDescription: { type: String, required: true },
     submittedBy: {
