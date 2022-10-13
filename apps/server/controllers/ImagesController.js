@@ -32,19 +32,27 @@ const upload = multer({
   limits: { fileSize: 100000000, files: 5 },
 });
 
-router.post("/upload", upload.array("image", 5), async (req, res) => {
-  const images = req.files;
+router.post("/upload", upload.single("profilePicture"), async (req, res) => {
+  const images = req.file;
   console.log(images);
 
-  const multipleImage = images.map((picture) =>
-    cloudinary.uploader.upload(picture.path, {
-      upload_preset: "rooms",
-      use_filename: true,
-    })
-  );
+  const singleImage = await cloudinary.uploader.upload(images.path, {
+    upload_preset: "rooms",
+    use_filename: true,
+  });
 
-  const imageResponse = await Promise.all(multipleImage);
-  const imageURL = imageResponse.map((image) => image.url);
+  // const multipleImage = images.map((picture) =>
+  //   cloudinary.uploader.upload(picture.path, {
+  //     upload_preset: "rooms",
+  //     use_filename: true,
+  //   })
+  // );
+
+  // const imageResponse = await Promise.all(multipleImage);
+  // const imageURL = imageResponse.map((image) => image.url);
+
+  const imageURL = singleImage.url;
+
   console.log(imageURL);
   res.status(200).send({ imageURL });
 });

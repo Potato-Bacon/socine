@@ -18,7 +18,8 @@ import CreateRoomListingPage from "./protectedPages/CreateRoomListingPage";
 import UserWatchListPage from "./protectedPages/UserWatchListPage";
 import UserListingFocusPage from "./protectedPages/UserListingFocusPage";
 import RoomListingFocusPage from "./protectedPages/RoomListingFocusPage";
-import ProtectedErrorPage from "./protectedPages/ProtectedErrorPage";
+import { ProtectedRoute } from "./protectedComponents/ProtectedRoute";
+import { AuthProvider } from "./hooks/useAuth";
 export const PersonContext = createContext();
 
 function App() {
@@ -29,48 +30,51 @@ function App() {
     <div className="App">
       <PersonContext.Provider value={userName}>
         <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/developers" element={<MeetDevPage />} />
-            <Route path="/privacypolicy" element={<PrivacyPolicyPage />} />
-            <Route path="/termsconditions" element={<TermsConditionsPage />} />
-            <Route path="/register" element={<RegistrationPage />} />
-            <Route
-              path="/login"
-              element={
-                <LoginPage setUsername={setUsername} setToken={setToken} />
-              }
-            />
-
-            {/* Protected Route */}
-            <Route path="/user" element={<Layout setToken={setToken} />}>
+          <AuthProvider>
+            <Routes>
+              <Route path="/" element={<LandingPage />} />
+              <Route path="/developers" element={<MeetDevPage />} />
+              <Route path="/privacypolicy" element={<PrivacyPolicyPage />} />
               <Route
-                index
-                element={<UserHome token={token} userName={userName} />}
+                path="/termsconditions"
+                element={<TermsConditionsPage />}
               />
+              <Route path="/register" element={<RegistrationPage />} />
               <Route
-                path="/user/profile"
-                element={<UserProfilePage token={token} />}
-              />
-              <Route
-                path="/user/userlisting"
-                element={<UserListingPage token={token} />}
+                path="/login"
+                element={
+                  <LoginPage setUsername={setUsername} setToken={setToken} />
+                }
               />
 
-              <Route
-                path="/user/userlisting/:id"
-                element={<UserListingFocusPage token={token} />}
-              />
+              <Route path="/user" element={<Layout setToken={setToken} />}>
+                <Route
+                  index
+                  element={<UserHome token={token} userName={userName} />}
+                />
+                <Route
+                  path="/user/profile"
+                  element={<UserProfilePage token={token} />}
+                />
+                <Route
+                  path="/user/userlisting"
+                  element={<UserListingPage token={token} />}
+                />
 
-              <Route
-                path="/user/roomlisting"
-                element={<RoomListingPage token={token} />}
-              />
+                <Route
+                  path="/user/userlisting/:id"
+                  element={<UserListingFocusPage token={token} />}
+                />
 
-              <Route
-                path="/user/roomlisting/:id"
-                element={<RoomListingFocusPage token={token} />}
-              />
+                <Route
+                  path="/user/roomlisting"
+                  element={<RoomListingPage token={token} />}
+                />
+
+                <Route
+                  path="/user/roomlisting/:id"
+                  element={<RoomListingFocusPage token={token} />}
+                />
 
               <Route
                 path="/user/createuserlisting"

@@ -12,6 +12,7 @@ const isAuth = async (req, res, next) => {
     const user = await User.findById(payload.userid);
 
     if (user) {
+      res.locals.user = user;
       next();
     } else {
       res.status(401).send({ msg: "Unauthorized" });

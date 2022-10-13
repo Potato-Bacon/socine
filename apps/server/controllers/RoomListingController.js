@@ -12,8 +12,9 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/submit", async (req, res) => {
+router.post("/submit", isAuth, async (req, res) => {
   const newRoomListing = req.body;
+
   RoomListing.create(newRoomListing, (error, submission) => {
     if (error) {
       res.status(500).send({ error });
