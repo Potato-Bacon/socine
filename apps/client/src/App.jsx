@@ -14,7 +14,7 @@ import UserProfilePage from "./protectedPages/UserProfilePage";
 import UserListingPage from "./protectedPages/UserListingPage";
 import RoomListingPage from "./protectedPages/RoomListingPage";
 import CreateUserListingPage from "./protectedPages/CreateUserListingPage";
-import CreateRoomListingPage from "./protectedPages/RoomListingPage";
+import CreateRoomListingPage from "./protectedPages/CreateRoomListingPage";
 import UserWatchListPage from "./protectedPages/UserWatchListPage";
 import UserListingFocusPage from "./protectedPages/UserListingFocusPage";
 import RoomListingFocusPage from "./protectedPages/RoomListingFocusPage";

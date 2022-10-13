@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import Img from "react-cool-img";
 import { useEffect, useState } from "react";

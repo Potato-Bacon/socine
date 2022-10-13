@@ -16,13 +16,6 @@ function CreateRoomListingForm() {
   const navigate = useNavigate();
   const [mbti, setMbti] = useState([]);
   const [interests, setInterests] = useState([]);
-  const FILE_SIZE = 500 * 500;
-  const SUPPORTED_FORMATS = [
-    "image/jpg",
-    "image/jpeg",
-    "image/gif",
-    "image/png",
-  ];
   const formik = useFormik({
     initialValues: {
       fullName: "",
@@ -50,26 +43,14 @@ function CreateRoomListingForm() {
     },
     validationSchema: Yup.object({
       fullName: Yup.string()
-        .min(5, "Choose a name 5-15 characters long")
-        .max(15, "Choose a name 5-15 characters long")
+        .min(5, "Choose a name 5-30 characters long")
+        .max(30, "Choose a name 5-30 characters long")
         .required("*required"),
 
       profilePic: Yup.mixed().required("*required"),
-      // .test(
-      //   "fileSize",
-      //   "File too large",
-      //   (value) => value === null || (value && value.size <= FILE_SIZE)
-      // )
-      // .test(
-      //   "fileFormat",
-      //   "Unsupported file type",
-      //   (value) =>
-      //     value === null || (value && SUPPORTED_FORMATS.includes(value.type))
-      // ),
-
       title: Yup.string()
-        .min(5, "5-15 characters long")
-        .max(15, "5-15 characters long")
+        .min(5, "5-30 characters long")
+        .max(30, "5-30 characters long")
         .required("*required"),
 
       description: Yup.string()
@@ -77,22 +58,10 @@ function CreateRoomListingForm() {
         .max(600)
         .required("*required"),
 
-      listingPics: Yup.mixed()
-        .test(
-          "fileSize",
-          "File too large",
-          (value) => value === null || (value && value.size <= FILE_SIZE)
-        )
-        .test(
-          "fileFormat",
-          "Unsupported file type",
-          (value) =>
-            value === null || (value && SUPPORTED_FORMATS.includes(value.type))
-        ),
-
+      listingPics: Yup.mixed(),
       address: Yup.string()
-        .min(5, "5-15 characters long")
-        .max(15, "5-15 characters long")
+        .min(5, "5-30 characters long")
+        .max(30, "5-30 characters long")
         .required("*required"),
 
       town: Yup.string().required("*required"),
@@ -193,8 +162,8 @@ function CreateRoomListingForm() {
               </h1>
 
               <p className="mt-4 leading-relaxed text-white/90">
-                we have made the process of setting up a lease listing easy and
-                convinient.
+                we have made the process of setting up a room / apartment
+                leasing easy.
               </p>
             </div>
           </section>
@@ -233,6 +202,33 @@ function CreateRoomListingForm() {
               >
                 <div className="col-span-6">
                   <div className="flex justify-center items-center w-full">
+                    {/* Full Name */}
+                    <div className="col-span-6 sm:col-span-3">
+                      <label
+                        htmlFor="fullName"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Full Name
+                      </label>
+
+                      <input
+                        id="fullName"
+                        name="fullName"
+                        type="text"
+                        placeholder="Enter your full name"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.fullName}
+                        className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                      />
+                    </div>
+
+                    {formik.touched.fullName && formik.errors.fullName ? (
+                      <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
+                        {formik.errors.fullName}
+                      </span>
+                    ) : null}
+
                     {/* Upload Profile Picture */}
                     <label
                       htmlFor="profilePic"
@@ -261,7 +257,7 @@ function CreateRoomListingForm() {
                           <br /> or drag and drop
                         </p>
                         <p className="text-xs text-gray-500 dark:text-gray-400">
-                          SVG, PNG, JPG or GIF (MAX. 500x500px)
+                          SVG, PNG, JPG or GIF
                         </p>
                       </div>
                       <input
@@ -277,31 +273,32 @@ function CreateRoomListingForm() {
                   </div>
                 </div>
 
+                {/* title */}
                 <div className="col-span-6 sm:col-span-3">
                   <label
-                    htmlFor="name"
+                    htmlFor="title"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    Name
+                    Full Name
                   </label>
 
                   <input
-                    id="name"
-                    name="name"
+                    id="title"
+                    name="title"
                     type="text"
-                    placeholder="Enter your name"
+                    placeholder="Enter your full name"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    value={formik.values.username}
+                    value={formik.values.fullName}
                     className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                   />
                 </div>
 
-                {/* {formik.touched.name && formik.errors.name ? (
+                {formik.touched.fullName && formik.errors.fullName ? (
                   <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
-                    {formik.errors.name}
+                    {formik.errors.fullName}
                   </span>
-                ) : null} */}
+                ) : null}
 
                 <div className="col-span-6 sm:col-span-3">
                   <label
@@ -559,7 +556,7 @@ function CreateRoomListingForm() {
                     type="submit"
                     className="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
                   >
-                    Create User Listing
+                    Create Room Listing
                   </button>
                 </div>
               </form>
