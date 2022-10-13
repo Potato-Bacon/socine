@@ -1,8 +1,10 @@
 const express = require("express");
 const UserListings = require("../models/userListingSchema");
+const User = require("../models/userSchema");
 
 const router = express.Router();
 
+// get all user listings
 router.get("/", async (req, res) => {
   try {
     const allUserListings = await UserListings.find()
@@ -18,6 +20,8 @@ router.get("/", async (req, res) => {
     res.status(500).send({ msg: error });
   }
 });
+
+//new form
 router.post("/submit", async (req, res) => {
   const newUserListing = req.body;
 
@@ -30,103 +34,145 @@ router.post("/submit", async (req, res) => {
   });
 });
 
-router.get("/search", async (req, res) => {
-  const mrt = [];
-  const town = [];
+//search by location/mrt and filter
+router.post("/search", async (req, res) => {
+  console.log(req.body.input);
+  const mrtOrTown = [];
+  const search = [];
 
   try {
-    if (req.body.mrt !== undefined) {
-      mrt.push({ mrt: req.body.mrt });
-    }
-    console.log(mrt);
+    //if user keys in search input
+    if (req.body.input !== undefined) {
+      mrtOrTown.push({ town: { $regex: req.body.input, $options: "i" } });
+      mrtOrTown.push({ mrt: { $regex: req.body.input, $options: "i" } });
 
-    if (req.body.town !== undefined) {
-      town.push({ town: req.body.town });
+      // search.push({
+      //   $or: mrtOrTown,
+      // });
+      // const result = await UserListings.find({
+      //   $or: mrtOrTown,
+      // });
+      // res.status(200).send(result);
     }
-    const searchLocation = await UserListings.find({
-      $or: [mrt, town],
-    }).exec();
 
-    if (searchLocation === null) {
-      res.status(500).send({ msg: "no results" });
+    //to combine with filter
+
+    if (req.body.interests !== undefined) {
+      search.push({ interests: req.body.interests });
+    }
+
+    console.log(search, "this is search array");
+
+    if (req.body.userListingTag !== undefined) {
+      search.push({ userListingTag: req.body.userListingTag });
+    }
+    const budget = { budget: { $gte: null, $lte: null } };
+    console.log(budget.budget, "first");
+
+    if (req.body.min !== undefined) {
+      budget.budget.$gte = req.body.min;
     } else {
-      res.status(200).send(searchLocation);
+      delete budget.budget.$gte;
     }
+
+    // console.log(budget, "after min logic");
+
+    if (req.body.max !== undefined) {
+      budget.budget.$lte = req.body.max;
+    } else {
+      delete budget.budget.$lte;
+    }
+    console.log(budget, "after max logic");
+
+    if (budget.budget.$gte === undefined && budget.budget.$lte === undefined) {
+      console.log("no properties found");
+    } else {
+      search.push(budget);
+    }
+
+    console.log(search);
+
+    const results = await UserListings.find({
+      $and: search,
+    })
+      .populate({
+        path: "submittedBy",
+        select:
+          "-password -email -createdAt -updatedAt -favUserListing -favRoomListing -getEmail -mobileNumber",
+      })
+      .populate("interests")
+      .populate("mbti")
+      .exec();
+    console.log(results.length);
+    res.send(results);
   } catch (error) {
     console.log(error);
     res.status(500).send({ msg: error });
   }
 });
 
-router.get("/search/filter", async (req, res) => {
-  // console.log(req.query);
-  const interest = [];
-  // const title = [];
-  // const budget = [];
-  // const preferredMrts = [];
-  // const preferredTown = [];
-  // const mbti = [];
+// router.post("/search/filter", async (req, res) => {
+//   console.log(req.query.min, "min value");
+//   console.log(req.query.min, "max value");
 
-  if (req.query.interest !== undefined) {
-    interest.push({ interests: req.query.interest });
+//   const budget = { budget: { $gte: null, $lte: null } };
+//   console.log(budget.budget, "first");
+
+//   if (req.query.interest !== undefined) {
+//     array.push({ interests: req.query.interest });
+//   }
+
+//   if (req.query.userListingTag !== undefined) {
+//     array.push({ userListingTag: req.query.userListingTag });
+//   }
+
+//   if (req.query.min !== undefined) {
+//     budget.budget.$gte = req.query.min;
+//   } else {
+//     delete budget.budget.$gte;
+//   }
+
+//   console.log(budget, "after min logic");
+
+//   if (req.query.max !== undefined) {
+//     budget.budget.$lte = req.query.max;
+//   } else {
+//     delete budget.budget.$lte;
+//   }
+//   console.log(budget, "after max logic");
+
+//   if (budget.budget.$gte === undefined && budget.budget.$lte === undefined) {
+//     console.log("no properties found");
+//   } else {
+//     array.push(budget);
+//   }
+
+//   console.log(array);
+
+//   const results = await UserListings.find({
+//     $and: array,
+//   }).exec();
+//   console.log(results.length);
+//   res.send(results);
+// });
+
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
+  const userListing = await UserListings.findById(id)
+    .populate({
+      path: "submittedBy",
+      select:
+        "-password -email -createdAt -updatedAt -favUserListing -favRoomListing -getEmail",
+    })
+    .populate("interests")
+    .populate("mbti")
+    .exec();
+
+  if (userListing === null) {
+    res.status(500).send({ error: "Listing not found" });
+  } else {
+    res.status(200).send(userListing);
   }
-
-  // if (req.query.title !== undefined) {
-  //   req.query.title = "";
-  // }
-  // console.log(interest);
-  // if (req.query.budget !== undefined) {
-  //   budget.push({ budget: req.query.budget });
-  // }
-  // console.log(array);
-  // console.log(req.query.budget);
-  // if (req.query.preferredTown === NaN) {
-  //   req.query.preferredTown = "";
-  // }
-
-  // if (req.query.preferredMrts === undefined) {
-  //   req.query.preferredMrts = "";
-
-  // console.log(req.query.preferredMrts);
-  // req.query.preferredMrts = "";}
-
-  // if (req.query.interest === isNaN) {
-  //   req.query.interest = "";
-  // }
-  // if (req.query.mbti === undefined) {
-  //   req.query.mbti = "";
-  // }
-  // console.log("titleNew", req.query.title);
-  // console.log("budgetNew", req.query.budget);
-  // console.log("preferredMrtsNew", req.query.preferredMrts);
-  // console.log("preferredTownNew", req.query.preferredTown);
-  // console.log("interestNew", req.query.interest);
-  // console.log("mbtiNew", req.query.mbti);
-
-  const results = await UserListings.find({
-    $or: interest,
-  }).exec();
-  console.log(results.length);
-  res.send({ results });
-
-  router.get("/:id", async (req, res) => {
-    const { id } = req.params;
-    const userListing = await UserListings.findById(id)
-      .populate({
-        path: "submittedBy",
-        select:
-          "-password -email -createdAt -updatedAt -favUserListing -favRoomListing -getEmail",
-      })
-      .populate("interests")
-      .populate("mbti")
-      .exec();
-
-    if (userListing === null) {
-      res.status(500).send({ error: "Listing not found" });
-    } else {
-      res.status(200).send(userListing);
-    }
-  });
 });
 router.put("/edit/:id", async (req, res) => {
   const { id } = req.params;
@@ -138,6 +184,17 @@ router.put("/edit/:id", async (req, res) => {
     res.status(500).send({ error: "Listing not found" });
   } else {
     res.status(200).send(updatedListing);
+  }
+});
+
+router.delete("/delete/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const deleteListing = await UserListings.findByIdAndDelete({ _id: id });
+    res.status(200).send(deleteListing);
+  } catch (error) {
+    res.status(500).send({ msg: error });
   }
 });
 
