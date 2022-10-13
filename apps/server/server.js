@@ -14,7 +14,6 @@ const userHomeController = require("./controllers/UserHomeController");
 const Mbti = require("./models/mbtiSchema");
 const Interest = require("./models/interestSchema");
 require("./models/roomListingSchema");
-require("./models/interestSchema");
 require("./models/mbtiSchema");
 
 //configuration

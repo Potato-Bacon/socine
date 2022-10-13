@@ -11,13 +11,11 @@ const userListingSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Mbti",
       required: true,
-      autopopulate: true,
     },
     interests: {
       type: [mongoose.Schema.Types.ObjectId],
       ref: "Interest",
       required: true,
-      autopopulate: true,
     },
     town: { type: String, required: true },
     mrt: { type: String, required: true },
@@ -40,8 +38,7 @@ const userListingSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-userListingSchema.plugin(require("mongoose-autopopulate"));
-
 const UserListing = mongoose.model("UserListing", userListingSchema);
+// userListingSchema.plugin(require("mongoose-autopopulate"));
 
 module.exports = UserListing;
