@@ -200,7 +200,7 @@ function CreateUserListingForm({ userName, token }) {
                           <br /> or drag and drop
                         </p>
                         <p className="text-xs text-gray-500 dark:text-gray-400">
-                          SVG, PNG, JPG or GIF (MAX. 500x500px)
+                          SVG, PNG, JPG or GIF
                         </p>
                       </div>
                       <input

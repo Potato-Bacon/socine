@@ -36,7 +36,7 @@ function CreateRoomListingForm({ userName, token }) {
       availability: "",
       stayLength: "",
       propertyDescription: "",
-      occupantdescription: "",
+      occupantDescription: "",
     },
     validationSchema: Yup.object({
       fullName: Yup.string()
@@ -57,14 +57,14 @@ function CreateRoomListingForm({ userName, token }) {
 
       listingPics: Yup.mixed().required("A file is required"),
       address: Yup.string()
-        .min(5, "5-30 characters long")
-        .max(30, "5-30 characters long")
+        .min(5, "5-60 characters long")
+        .max(60, "5-60 characters long")
         .required("*required"),
 
       town: Yup.string().required("*required"),
       mrt: Yup.string().required("*required"),
-      amenities: Yup.string().required("*required"),
-      listingTags: Yup.string().required("*required"),
+      amenities: Yup.array().required("*required"),
+      listingTags: Yup.array().required("*required"),
       wholeUnitOrRoomOnly: Yup.string().required("*required"),
       roomType: Yup.string().required("*required"),
       bathroomType: Yup.string().required("*required"),
@@ -696,7 +696,7 @@ function CreateRoomListingForm({ userName, token }) {
                     htmlFor="rentPerMonth"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    Security Deposit
+                    Rent per month
                   </label>
 
                   <input
@@ -706,7 +706,7 @@ function CreateRoomListingForm({ userName, token }) {
                     placeholder="Enter expected monthly rent"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    value={formik.values.securityDeposit}
+                    value={formik.values.rentPerMonth}
                     className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                   />
                 </div>
@@ -816,16 +816,16 @@ function CreateRoomListingForm({ userName, token }) {
                       type="text"
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
-                      value={formik.values.occupantdescription}
+                      value={formik.values.occupantDescription}
                       className="mt-1 w-full h-32 rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                     />
                   </div>
                 </div>
 
-                {formik.touched.occupantdescription &&
-                formik.errors.occupantdescription ? (
+                {formik.touched.occupantDescription &&
+                formik.errors.occupantDescription ? (
                   <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
-                    {formik.errors.occupantdescription}
+                    {formik.errors.occupantDescription}
                   </span>
                 ) : null}
 
