@@ -29,18 +29,20 @@ function LoginForm({ setUsername, setToken }) {
         body: JSON.stringify(values),
       });
       const data = await res.json();
-      console.log(data);
+      // console.log(data);
 
       if (data.msg === "Username not found") {
         alert("User does not exist. Please try again or register an account");
       } else if (data.msg === "Wrong password") {
         alert("Invalid password. Please try again.");
       } else {
-        // setUsername(data.payload.userName);
-        // setToken(data.token);
-        sessionStorage.setItem("accessToken", data.accessToken);
-        sessionStorage.setItem("username", data.payload.username);
-        console.log(data);
+        console.log(data.payload.username);
+        console.log(data.accessToken);
+        setUsername(data.payload.username);
+        setToken(data.accessToken);
+        // sessionStorage.setItem("accessToken", data.accessToken);
+        // sessionStorage.setItem("username", data.payload.username);
+        // console.log(data);
         navigate("/user");
       }
     },

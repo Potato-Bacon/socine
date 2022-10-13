@@ -27,7 +27,7 @@ router.post("/submit", async (req, res) => {
 
   await UserListings.create(newUserListing, (error, submission) => {
     if (error) {
-      res.status(500).send({ error });
+      res.status(500).send({ msg: error });
     } else {
       res.status(201).send(submission);
     }

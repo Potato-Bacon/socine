@@ -12,7 +12,7 @@ function UserHome({ userName, token }) {
     })
       .then((response) => response.json())
       .then((data) => console.log(data));
-  }, [userName, token]);
+  }, []);
   return (
     <>
       <h1>User HomePage</h1>

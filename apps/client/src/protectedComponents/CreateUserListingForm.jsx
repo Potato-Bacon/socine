@@ -11,7 +11,7 @@ import userListingTags from "../staticData/userLiftingTags";
 
 const mbtiURL = "/api/mbti";
 const interestsURL = "/api/interests";
-const userlistingURL = "/api/userlisting/submit";
+const userlistingURL = "/api/userlistings/submit";
 
 function CreateUserListingForm({ userName, token }) {
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ function CreateUserListingForm({ userName, token }) {
   const [interests, setInterests] = useState([]);
   const formik = useFormik({
     initialValues: {
-      profilePic: "",
+      profilePic: null,
       name: "",
       age: "",
       gender: "",
@@ -34,7 +34,7 @@ function CreateUserListingForm({ userName, token }) {
       description: "",
     },
     validationSchema: Yup.object({
-      profilePic: Yup.mixed().required("*required"),
+      profilePic: Yup.mixed().required("A file is required"),
       name: Yup.string()
         .min(2, "Choose a name 2-15 characters long")
         .max(15, "Choose a name 2-15 characters long")
@@ -51,7 +51,7 @@ function CreateUserListingForm({ userName, token }) {
         .max(60, "Indicate a occupation 5-60 characters long")
         .required("*required"),
       mbti: Yup.string().required("*required"),
-      interests: Yup.string().required("*required"),
+      interests: Yup.array().required("*required"),
       town: Yup.string().required("*required"),
       mrt: Yup.string().required("*required"),
       budget: Yup.number()
@@ -76,6 +76,7 @@ function CreateUserListingForm({ userName, token }) {
         },
         body: JSON.stringify(values),
       });
+
       const data = await res.json();
       // include error checking
       console.log("Response:", data);
@@ -206,10 +207,16 @@ function CreateUserListingForm({ userName, token }) {
                         id="profilePic"
                         name="profilePic"
                         type="file"
+                        accept="image/*"
                         className="hidden"
-                        onChange={formik.handleChange}
+                        onChange={(event) => {
+                          formik.setFieldValue(
+                            "profilePic",
+                            event.currentTarget.files
+                          );
+                        }}
                         onBlur={formik.handleBlur}
-                        value={formik.values.profilePic}
+                        value={undefined}
                       />
                     </label>
                   </div>
@@ -272,6 +279,30 @@ function CreateUserListingForm({ userName, token }) {
                     {formik.errors.age}
                   </span>
                 ) : null}
+                <div className="col-span-6 sm:col-span-3">
+                  <label
+                    htmlFor="gender"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Gender
+                  </label>
+                  <select
+                    name="gender"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.gender}
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  >
+                    {/* <select
+                      id="interests"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    > */}
+                    <option value="">Gender</option>
+
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
+                </div>
 
                 <div className="col-span-6">
                   <label
@@ -310,6 +341,9 @@ function CreateUserListingForm({ userName, token }) {
                   <select
                     id="mbti"
                     name="mbti"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.mbti}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   >
                     {/* <select
@@ -321,9 +355,7 @@ function CreateUserListingForm({ userName, token }) {
                         // name="mbti"
                         key={m._id}
                         label={m.mbti}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.mbti}
+                        value={m._id}
                       >
                         {m.mbti}
                       </option>
@@ -348,6 +380,9 @@ function CreateUserListingForm({ userName, token }) {
                     multiple
                     id="interests"
                     name="interests"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.interests}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   >
                     {/* <select
@@ -355,14 +390,8 @@ function CreateUserListingForm({ userName, token }) {
                     > */}
                     {/* <option selected>Choose Interests</option> */}
                     {interests.map((i) => (
-                      <option
-                        key={i._id}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.interests}
-                      >
-                        {i.interests}
-                      </option>
+                      // eslint-disable-next-line react/jsx-key
+                      <option value={[i._id]}>{i.interests}</option>
                     ))}
                   </select>
                 </div>
@@ -382,6 +411,9 @@ function CreateUserListingForm({ userName, token }) {
                   </label>
                   <select
                     name="town"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.town}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   >
                     {/* <select
@@ -390,12 +422,10 @@ function CreateUserListingForm({ userName, token }) {
                     > */}
                     <option value="">Choose Town</option>
                     {towns.map((t) => (
+                      // eslint-disable-next-line react/jsx-key
                       <option
+                        value={t}
                         // name="town"
-                        key={t._id}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.town}
                       >
                         {t}
                       </option>
@@ -418,6 +448,9 @@ function CreateUserListingForm({ userName, token }) {
                   </label>
                   <select
                     name="mrt"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.mrt}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   >
                     {/* <select
@@ -428,9 +461,6 @@ function CreateUserListingForm({ userName, token }) {
                       <option
                         key={mrt._id}
                         // name="mrt"
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.mrt}
                       >
                         {mrt}
                       </option>
@@ -538,17 +568,14 @@ function CreateUserListingForm({ userName, token }) {
                   </label>
                   <select
                     name="userListingTag"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.userListingTag}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   >
                     <option value="">Choose Tag</option>
                     {userListingTags.map((ult) => (
-                      <option
-                        key={ult._id}
-                        name="userListingTag"
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.mrt}
-                      >
+                      <option key={ult._id} value={ult}>
                         {ult}
                       </option>
                     ))}
