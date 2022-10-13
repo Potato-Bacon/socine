@@ -21,12 +21,12 @@ function RoomListingPage({ username, token }) {
           <div className="container px-6 py-10 mx-auto">
             <div className="text-center">
               <h1 className="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-white">
-                From the blog
+                Socine Room Listing
               </h1>
 
               <p className="max-w-lg mx-auto mt-4 text-gray-500">
-                Salami mustard spice tea fridge authentic Chinese food dish salt
-                tasty liquor. Sweet savory foodtruck pie.
+                One place to match your listed properties to other Socine
+                members.
               </p>
             </div>
 
