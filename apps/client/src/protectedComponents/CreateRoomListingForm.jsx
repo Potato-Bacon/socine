@@ -7,19 +7,19 @@ import towns from "../staticData/town";
 import mrts from "../staticData/mrts";
 import roomListingTags from "../staticData/roomListingTags";
 import amenitiesTag from "../staticData/amenitiesTag";
-import { v4 as uuidv4 } from "uuid";
+// import { v4 as uuidv4 } from "uuid";
 
 const roomListingURL = "/api/roomlisting/submit";
 
-function CreateRoomListingForm() {
-  // const navigate = useNavigate();
+function CreateRoomListingForm({ userName, token }) {
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       fullName: "",
-      profilePic: "",
+      profilePic: null,
       title: "",
       description: "",
-      listingPics: "",
+      listingPics: null,
       address: "",
       town: "",
       mrt: "",
@@ -40,14 +40,14 @@ function CreateRoomListingForm() {
     },
     validationSchema: Yup.object({
       fullName: Yup.string()
-        .min(5, "Choose a name 5-30 characters long")
-        .max(30, "Choose a name 5-30 characters long")
+        .min(2, "Choose a name 2-15 characters long")
+        .max(15, "Choose a name 2-15 characters long")
         .required("*required"),
 
-      profilePic: Yup.mixed().required("*required"),
+      profilePic: Yup.mixed().required("A file is required"),
       title: Yup.string()
-        .min(5, "5-30 characters long")
-        .max(30, "5-30 characters long")
+        .min(5, "5-60 characters long")
+        .max(60, "5-60 characters long")
         .required("*required"),
 
       description: Yup.string()
@@ -55,7 +55,7 @@ function CreateRoomListingForm() {
         .max(600)
         .required("*required"),
 
-      listingPics: Yup.mixed(),
+      listingPics: Yup.mixed().required("A file is required"),
       address: Yup.string()
         .min(5, "5-30 characters long")
         .max(30, "5-30 characters long")
@@ -233,11 +233,16 @@ function CreateRoomListingForm() {
                         id="profilePic"
                         name="profilePic"
                         type="file"
-                        className="hidden"
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.profilePic}
                         accept="image/*"
+                        className="hidden"
+                        onChange={(event) => {
+                          formik.setFieldValue(
+                            "profilePic",
+                            event.currentTarget.files
+                          );
+                        }}
+                        onBlur={formik.handleBlur}
+                        value={undefined}
                       />
                     </label>
                   </div>
@@ -313,11 +318,16 @@ function CreateRoomListingForm() {
                         id="listingPics"
                         name="listingPics"
                         type="file"
-                        className="hidden"
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.listingPics}
                         accept="image/*"
+                        className="hidden"
+                        onChange={(event) => {
+                          formik.setFieldValue(
+                            "listingPics",
+                            event.currentTarget.files
+                          );
+                        }}
+                        onBlur={formik.handleBlur}
+                        value={undefined}
                       />
                     </label>
                   </div>
@@ -424,13 +434,13 @@ function CreateRoomListingForm() {
                     multiple
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    value={[formik.values.amenities]}
+                    value={formik.values.amenities}
                     id="amenities"
                     name="amenities"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   >
                     {amenitiesTag.map((amt) => (
-                      <option value={amt}>{amt}</option>
+                      <option value={[amt]}>{amt}</option>
                     ))}
                   </select>
                 </div>
@@ -452,14 +462,14 @@ function CreateRoomListingForm() {
                   <select
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    value={[formik.values.listingTags]}
+                    value={formik.values.listingTags}
                     multiple
                     id="listingTags"
                     name="listingTags"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   >
                     {roomListingTags.map((rlt) => (
-                      <option value={rlt}>{rlt}</option>
+                      <option value={[rlt]}>{rlt}</option>
                     ))}
                   </select>
                 </div>

@@ -293,10 +293,6 @@ function CreateUserListingForm({ userName, token }) {
                     value={formik.values.gender}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   >
-                    {/* <select
-                      id="interests"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    > */}
                     <option value="">Gender</option>
 
                     <option value="Male">Male</option>
@@ -346,9 +342,6 @@ function CreateUserListingForm({ userName, token }) {
                     value={formik.values.mbti}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   >
-                    {/* <select
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    > */}
                     <option value="">Choose a Personality</option>
                     {mbti.map((m) => (
                       <option
@@ -385,9 +378,6 @@ function CreateUserListingForm({ userName, token }) {
                     value={formik.values.interests}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   >
-                    {/* <select
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    > */}
                     {/* <option selected>Choose Interests</option> */}
                     {interests.map((i) => (
                       // eslint-disable-next-line react/jsx-key
@@ -453,9 +443,6 @@ function CreateUserListingForm({ userName, token }) {
                     value={formik.values.mrt}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   >
-                    {/* <select
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    > */}
                     <option value="">Choose MRT</option>
                     {mrts.map((mrt) => (
                       <option
@@ -525,38 +512,6 @@ function CreateUserListingForm({ userName, token }) {
                     {formik.errors.earlyMoveInDate}
                   </span>
                 ) : null}
-
-                {/* User Listing Tag */}
-                {/* <div className="col-span-6 flex-row">
-                  {userListingTags.map((ult) => (
-                    <>
-                      <label
-                        key={uuidv4()}
-                        htmlFor="userListingTag"
-                        className="flex-row justify-evenly text-sm font-medium text-gray-700 mx-auto"
-                      >
-                        {ult}
-                      </label>
-                      <input
-                        key={uuidv4()}
-                        id="userListingTag"
-                        name="userListingTag"
-                        type="checkbox"
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.userListingTag}
-                        className="mt-1 w-5 rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
-                      />
-                    </>
-                  ))}
-                </div>
-
-                {formik.touched.userListingTag &&
-                formik.errors.userListingTag ? (
-                  <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
-                    {formik.errors.userListingTag}
-                  </span>
-                ) : null} */}
 
                 {/* interest */}
                 <div className="col-span-6 sm:col-span-3">
