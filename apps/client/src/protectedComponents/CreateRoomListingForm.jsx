@@ -12,7 +12,7 @@ import { v4 as uuidv4 } from "uuid";
 const roomListingURL = "/api/roomlisting/submit";
 
 function CreateRoomListingForm() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       fullName: "",
@@ -24,7 +24,7 @@ function CreateRoomListingForm() {
       town: "",
       mrt: "",
       amenities: "",
-      listingTags: [""],
+      listingTags: "",
       wholeUnitOrRoomOnly: "",
       roomType: "",
       bathroomType: "",
@@ -316,7 +316,7 @@ function CreateRoomListingForm() {
                         className="hidden"
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
-                        value={formik.values.profilePic}
+                        value={formik.values.listingPics}
                         accept="image/*"
                       />
                     </label>
@@ -421,10 +421,10 @@ function CreateRoomListingForm() {
                     Amenities
                   </label>
                   <select
+                    multiple
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    value={formik.values.amenities}
-                    multiple
+                    value={[formik.values.amenities]}
                     id="amenities"
                     name="amenities"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
@@ -452,7 +452,7 @@ function CreateRoomListingForm() {
                   <select
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    value={formik.values.listingTags}
+                    value={[formik.values.listingTags]}
                     multiple
                     id="listingTags"
                     name="listingTags"

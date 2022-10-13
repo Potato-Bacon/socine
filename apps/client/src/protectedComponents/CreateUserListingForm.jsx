@@ -1,13 +1,13 @@
+/* eslint-disable react/prop-types */
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import Img from "react-cool-img";
 import { useEffect, useState } from "react";
-// import AsyncSelect from "react-select/async";
 import towns from "../staticData/town";
 import mrts from "../staticData/mrts";
 import userListingTags from "../staticData/userLiftingTags";
-import { v4 as uuidv4 } from "uuid";
+// import { v4 as uuidv4 } from "uuid";
 
 const mbtiURL = "/api/mbti";
 const interestsURL = "/api/interests";
@@ -17,13 +17,6 @@ function CreateUserListingForm({ userName, token }) {
   const navigate = useNavigate();
   const [mbti, setMbti] = useState([]);
   const [interests, setInterests] = useState([]);
-  // const FILE_SIZE = 500 * 500;
-  // const SUPPORTED_FORMATS = [
-  //   "image/jpg",
-  //   "image/jpeg",
-  //   "image/gif",
-  //   "image/png",
-  // ];
   const formik = useFormik({
     initialValues: {
       profilePic: "",
@@ -41,19 +34,7 @@ function CreateUserListingForm({ userName, token }) {
       description: "",
     },
     validationSchema: Yup.object({
-      profilePic: Yup.mixed()
-        // .test(
-        //   "fileSize",
-        //   "File too large",
-        //   (value) => value === null || (value && value.size <= FILE_SIZE)
-        // )
-        // .test(
-        //   "fileFormat",
-        //   "Unsupported file type",
-        //   (value) =>
-        //     value === null || (value && SUPPORTED_FORMATS.includes(value.type))
-        // )
-        .required("*required"),
+      profilePic: Yup.mixed().required("*required"),
       name: Yup.string()
         .min(2, "Choose a name 2-15 characters long")
         .max(15, "Choose a name 2-15 characters long")
@@ -69,10 +50,10 @@ function CreateUserListingForm({ userName, token }) {
         .min(5, "Indicate an occupation 5-60 characters long")
         .max(60, "Indicate a occupation 5-60 characters long")
         .required("*required"),
-      // mbti: Yup.string().required("*required"),
-      // interests: Yup.string().required("*required"),
-      // town: Yup.string().required("*required"),
-      // mrt: Yup.string().required("*required"),
+      mbti: Yup.string().required("*required"),
+      interests: Yup.string().required("*required"),
+      town: Yup.string().required("*required"),
+      mrt: Yup.string().required("*required"),
       budget: Yup.number()
         .positive()
         .integer()
@@ -80,7 +61,7 @@ function CreateUserListingForm({ userName, token }) {
         .max(9999999)
         .required("*required"),
       earlyMoveInDate: Yup.date().min(new Date()).required("*required"),
-      // userListingTag: Yup.string().required("*required"),
+      userListingTag: Yup.string().required("*required"),
       description: Yup.string()
         .min(40, "40-600 character limit")
         .max(600)
