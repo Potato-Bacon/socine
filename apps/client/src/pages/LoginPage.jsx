@@ -1,11 +1,11 @@
 import LoginForm from "../components/LoginForm";
 import NavPublic from "../components/NavPublic";
 
-function LoginPage() {
+function LoginPage({ setUsername, setToken }) {
   return (
     <>
       <NavPublic />
-      <LoginForm />
+      <LoginForm setUsername={setUsername} setToken={setToken} />
     </>
   );
 }
