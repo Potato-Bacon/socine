@@ -1,9 +1,8 @@
 const express = require("express");
-const isAuth = require("../middleware/isAuth");
 const RoomListing = require("../models/roomListingSchema");
 const router = express.Router();
 
-router.get("/search", isAuth, async (req, res) => {
+router.get("/search", async (req, res) => {
   const { id } = req.params;
   try {
     const listings = await RoomListing.find({

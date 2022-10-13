@@ -3,7 +3,7 @@ import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Img from "react-cool-img";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, Navigate } from "react-router-dom";
 
 function NavProtected({ setToken }) {
   const navigate = useNavigate();
@@ -30,7 +30,10 @@ function NavProtected({ setToken }) {
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
   }
-
+  console.log(sessionStorage.getItem("accessToken"));
+  if (sessionStorage.getItem("accessToken") === null) {
+    return <Navigate to="/" />;
+  }
   return (
     <Disclosure as="nav" className="bg-white dark:bg-gray-900">
       {({ open }) => (

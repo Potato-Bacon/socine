@@ -36,12 +36,12 @@ function LoginForm({ setUsername, setToken }) {
       } else if (data.msg === "Wrong password") {
         alert("Invalid password. Please try again.");
       } else {
-        console.log(data.payload.username);
+        console.log(data.payload);
         console.log(data.accessToken);
-        setUsername(data.payload.username);
-        setToken(data.accessToken);
-        // sessionStorage.setItem("accessToken", data.accessToken);
-        // sessionStorage.setItem("username", data.payload.username);
+        // setUsername(data.payload.username);
+        // setToken(data.accessToken);
+        sessionStorage.setItem("accessToken", data.accessToken);
+        sessionStorage.setItem("userid", data.payload.userid);
         // console.log(data);
         navigate("/user");
       }

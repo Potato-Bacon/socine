@@ -9,7 +9,6 @@ const imagesController = require("./controllers/ImagesController");
 const seedDataController = require("./controllers/SeedDataController");
 const roomListingController = require("./controllers/RoomListingController");
 const userListingController = require("./controllers/UserListingController");
-const authCheckController = require("./controllers/AuthCheckController");
 const userHomeController = require("./controllers/UserHomeController");
 const Mbti = require("./models/mbtiSchema");
 const Interest = require("./models/interestSchema");
@@ -39,7 +38,6 @@ app.use("/api/images", imagesController);
 app.use("/api/seed", seedDataController);
 app.use("/api/roomlistings", roomListingController);
 app.use("/api/userlistings", userListingController);
-app.use("/api/auth", authCheckController);
 app.use("/api/userhome", userHomeController);
 
 //test

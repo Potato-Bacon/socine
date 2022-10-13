@@ -7,11 +7,11 @@ import { useEffect, useState } from "react";
 import towns from "../staticData/town";
 import mrts from "../staticData/mrts";
 import userListingTags from "../staticData/userLiftingTags";
-// import { v4 as uuidv4 } from "uuid";
-
+import axios from "axios";
 const mbtiURL = "/api/mbti";
 const interestsURL = "/api/interests";
 const userlistingURL = "/api/userlistings/submit";
+const uploadImageUrl = "/api/images/upload";
 
 function CreateUserListingForm({ userName, token }) {
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ function CreateUserListingForm({ userName, token }) {
   const [interests, setInterests] = useState([]);
   const formik = useFormik({
     initialValues: {
-      profilePic: null,
+      profilePicture: null,
       name: "",
       age: "",
       gender: "",
@@ -34,7 +34,7 @@ function CreateUserListingForm({ userName, token }) {
       description: "",
     },
     validationSchema: Yup.object({
-      profilePic: Yup.mixed().required("A file is required"),
+      profilePicture: Yup.mixed().required("A file is required"),
       name: Yup.string()
         .min(2, "Choose a name 2-15 characters long")
         .max(15, "Choose a name 2-15 characters long")
@@ -69,6 +69,30 @@ function CreateUserListingForm({ userName, token }) {
     }),
     onSubmit: async (values) => {
       console.log(values);
+      console.log(values.profilePicture);
+
+      const formData = new FormData();
+
+      formData.append("profilePicture", values.profilePicture);
+
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+
+      await axios.post(uploadImageUrl, formData, config, {}).then((res) => {
+        values.profilePicture = res.data.imageURL;
+      });
+
+      const response = await axios.post(userlistingURL, values);
+      console.log(response);
+
+      // axios.post(uploadImageUrl, formData, config).then((res) => {
+      //   values.profilePicture = res.data.imageURL;
+      //   return axios.post(userlistingURL, values);
+      // });
+
       const res = await fetch(userlistingURL, {
         method: "POST",
         headers: {
@@ -80,6 +104,7 @@ function CreateUserListingForm({ userName, token }) {
       const data = await res.json();
       // include error checking
       console.log("Response:", data);
+      navigate("/users/userlisting");
     },
   });
 
@@ -174,7 +199,7 @@ function CreateUserListingForm({ userName, token }) {
                 <div className="col-span-6">
                   <div className="flex justify-center items-center w-full">
                     <label
-                      htmlFor="profilePic"
+                      htmlFor="profilePicture"
                       className="flex flex-col justify-center items-center w-1/2 h-32 bg-slate-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
                     >
                       <div className="flex flex-col justify-center items-center pt-5 pb-6">
@@ -204,15 +229,15 @@ function CreateUserListingForm({ userName, token }) {
                         </p>
                       </div>
                       <input
-                        id="profilePic"
-                        name="profilePic"
+                        id="profilePicture"
+                        name="profilePicture"
                         type="file"
                         accept="image/*"
                         className="hidden"
                         onChange={(event) => {
                           formik.setFieldValue(
-                            "profilePic",
-                            event.currentTarget.files
+                            "profilePicture",
+                            event.currentTarget.files[0]
                           );
                         }}
                         onBlur={formik.handleBlur}
@@ -222,9 +247,10 @@ function CreateUserListingForm({ userName, token }) {
                   </div>
                 </div>
 
-                {formik.touched.profilePic && formik.errors.profilePic ? (
+                {formik.touched.profilePicture &&
+                formik.errors.profilePicture ? (
                   <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
-                    {formik.errors.profilePic}
+                    {formik.errors.profilePicture}
                   </span>
                 ) : null}
 
