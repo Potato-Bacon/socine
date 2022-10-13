@@ -461,7 +461,7 @@ function CreateUserListingForm({ userName, token }) {
                 ) : null} */}
 
                 {/* User Listing Tag */}
-                <div className="col-span-6 sm:col-span-3">
+                <div className="col-span-6 flex-row">
                   {userListingTags.map((ult) => (
                     <>
                       <input
@@ -476,12 +476,33 @@ function CreateUserListingForm({ userName, token }) {
                       <label
                         key={uuidv4()}
                         htmlFor="userListingTag"
-                        className="block text-sm font-medium text-gray-700"
+                        className="flex-row justify-evenly text-sm font-medium text-gray-700 mx-auto"
                       >
                         {ult}
                       </label>
                     </>
                   ))}
+                </div>
+
+                {/* Description */}
+                <div className="col-span-6">
+                  <label
+                    htmlFor="description"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Description
+                  </label>
+                  <div className="col-span-6">
+                    <textarea
+                      id="description"
+                      name="description"
+                      type="text"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.description}
+                      className="mt-1 w-full h-32 rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                    />
+                  </div>
                 </div>
 
                 <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
