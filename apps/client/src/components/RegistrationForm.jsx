@@ -208,12 +208,12 @@ function RegistrationForm() {
                     className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                   />
                 </div>
-
+                {/* 
                 {formik.touched.mobileNo && formik.errors.mobileNo ? (
                   <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
                     {formik.errors.mobileNo}
                   </span>
-                ) : null}
+                ) : null} */}
 
                 <div className="col-span-6">
                   <label
