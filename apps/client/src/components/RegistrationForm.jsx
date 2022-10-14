@@ -2,8 +2,8 @@ import { useFormik } from "formik";
 import { useNavigate, Link } from "react-router-dom";
 import * as Yup from "yup";
 import "yup-phone";
-import YupPassword from "yup-password";
-YupPassword(Yup);
+// import YupPassword from "yup-password";
+// YupPassword(Yup);
 import Img from "react-cool-img";
 
 const url = "/api/register";
@@ -15,6 +15,7 @@ function RegistrationForm() {
       username: "",
       password: "",
       confirmPassword: "",
+      email: "",
       mobileNo: "",
       getEmail: false,
     },
@@ -24,41 +25,21 @@ function RegistrationForm() {
         .max(15, "Choose a username 5-15 characters long")
         .required("username is required"),
       password: Yup.string()
-        .password()
+        // .password()
         .min(
           6,
           "Password is too short - Choose a password with minimum 6 characters"
         )
-        .minLowercase(1, "Password must contain at least 1 lower-case letter")
-        .minUppercase(1, "Password must contain at least 1 upper-case letter")
-        .minNumbers(1, "Password must contain at least 1 number")
-        .minSymbols(1, "Password must contain at least 1 special character")
+        // .minLowercase(1, "Password must contain at least 1 lower-case letter")
+        // .minUppercase(1, "Password must contain at least 1 upper-case letter")
+        // .minNumbers(1, "Password must contain at least 1 number")
+        // .minSymbols(1, "Password must contain at least 1 special character")
         .required("Password is required"),
       confirmPassword: Yup.string()
         .required("Please confirm your password")
         .oneOf([Yup.ref("password"), null], "Passwords must match"),
       email: Yup.string().email("Invalid Email").required("Email is required"),
-      mobileNo: Yup.string()
-        .phone(
-          "AU",
-          "BD",
-          "KH",
-          "CN",
-          "FR",
-          "DE",
-          "IN",
-          "JP",
-          "MY",
-          "NZ",
-          "NO",
-          "PH",
-          "SG",
-          "TW",
-          "TH",
-          "US",
-          "GB"
-        )
-        .required("Mobile Number is required"),
+      mobileNo: Yup.string().phone("SG").required("Mobile Number is required"),
       getEmail: Yup.string().required(),
     }),
     onSubmit: async (values) => {
@@ -203,12 +184,12 @@ function RegistrationForm() {
                     className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                   />
                 </div>
-                {/* 
+
                 {formik.touched.mobileNo && formik.errors.mobileNo ? (
                   <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
                     {formik.errors.mobileNo}
                   </span>
-                ) : null} */}
+                ) : null}
 
                 <div className="col-span-6">
                   <label
@@ -255,6 +236,11 @@ function RegistrationForm() {
                     className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                   />
                 </div>
+                {formik.touched.password && formik.errors.password ? (
+                  <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
+                    {formik.errors.password}
+                  </span>
+                ) : null}
 
                 <div className="col-span-6 sm:col-span-3">
                   <label
@@ -275,6 +261,13 @@ function RegistrationForm() {
                     className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                   />
                 </div>
+
+                {formik.touched.confirmPassword &&
+                formik.errors.confirmPassword ? (
+                  <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
+                    {formik.errors.confirmPassword}
+                  </span>
+                ) : null}
 
                 <div className="col-span-6">
                   <label htmlFor="MarketingAccept" className="flex gap-4">
