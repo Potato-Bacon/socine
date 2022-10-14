@@ -18,7 +18,8 @@ function UserHome({ userName, token }) {
   }, []);
   return (
     <>
-      <div>
+      <h1>Home</h1>
+      {/* <div>
         <section className="bg-white dark:bg-gray-900">
           <div className="container px-6 py-10 mx-auto">
             <div className="text-center">
@@ -173,7 +174,7 @@ function UserHome({ userName, token }) {
             </div>
           </div>
         </section>
-      </div>
+      </div> */}
     </>
   );
 }
