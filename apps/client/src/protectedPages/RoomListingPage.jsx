@@ -33,17 +33,18 @@ function RoomListingPage({ username, token }) {
             <div className="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2 xl:grid-cols-3">
               <div>
                 <div className="relative">
-                  <img
+                  <Img
+                    loading="lazy"
                     className="object-cover object-center w-full h-64 rounded-lg lg:h-80"
-                    src="https://images.unsplash.com/photo-1624996379697-f01d168b1a52?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                    alt=""
+                    src="https://images.pexels.com/photos/2102587/pexels-photo-2102587.jpeg"
+                    alt="home01"
                   />
 
                   <div className="absolute bottom-0 flex p-3 bg-white dark:bg-gray-900 ">
                     <Img
                       className="object-cover object-center w-10 h-10 rounded-full"
-                      src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                      alt=""
+                      src="https://images.pexels.com/photos/2102587/pexels-photo-2102587.jpeg"
+                      alt="home02"
                     />
 
                     <div className="mx-4">
@@ -58,22 +59,21 @@ function RoomListingPage({ username, token }) {
                 </div>
 
                 <h1 className="mt-6 text-xl font-semibold text-gray-800 dark:text-white">
-                  What do you want to know about UI
+                  Spain inspired home for rent
                 </h1>
 
                 <hr className="w-32 my-6 text-blue-500" />
 
                 <p className="text-sm text-gray-500 dark:text-gray-400">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Blanditiis fugit dolorum amet dolores praesentium, alias nam?
-                  Tempore
+                  Its hard to not miss this lovely home located at the hearts of
+                  Orchard Road.
                 </p>
 
                 <a
                   href="#"
                   className="inline-block mt-4 text-blue-500 underline hover:text-blue-400"
                 >
-                  Read more
+                  Find Out More
                 </a>
               </div>
 
@@ -81,7 +81,7 @@ function RoomListingPage({ username, token }) {
                 <div className="relative">
                   <Img
                     className="object-cover object-center w-full h-64 rounded-lg lg:h-80"
-                    src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                    src="https://images.pexels.com/photos/731082/pexels-photo-731082.jpeg"
                     alt=""
                   />
 
@@ -104,22 +104,20 @@ function RoomListingPage({ username, token }) {
                 </div>
 
                 <h1 className="mt-6 text-xl font-semibold text-gray-800 dark:text-white">
-                  All the features you want to know
+                  Wooden cabin located at East Coast area
                 </h1>
 
                 <hr className="w-32 my-6 text-blue-500" />
 
                 <p className="text-sm text-gray-500 dark:text-gray-400">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Blanditiis fugit dolorum amet dolores praesentium, alias nam?
-                  Tempore
+                  One of the best preserved wooden cabin overlooking the sea.
                 </p>
 
                 <a
                   href="#"
                   className="inline-block mt-4 text-blue-500 underline hover:text-blue-400"
                 >
-                  Read more
+                  Find Out More
                 </a>
               </div>
 
@@ -127,7 +125,7 @@ function RoomListingPage({ username, token }) {
                 <div className="relative">
                   <Img
                     className="object-cover object-center w-full h-64 rounded-lg lg:h-80"
-                    src="https://images.unsplash.com/photo-1597534458220-9fb4969f2df5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"
+                    src="https://images.pexels.com/photos/2631746/pexels-photo-2631746.jpeg"
                     alt=""
                   />
 
@@ -150,22 +148,20 @@ function RoomListingPage({ username, token }) {
                 </div>
 
                 <h1 className="mt-6 text-xl font-semibold text-gray-800 dark:text-white">
-                  Which services you get from Meraki UI
+                  Spacious Master Bedroom for rent
                 </h1>
 
                 <hr className="w-32 my-6 text-blue-500" />
 
                 <p className="text-sm text-gray-500 dark:text-gray-400">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Blanditiis fugit dolorum amet dolores praesentium, alias nam?
-                  Tempore
+                  Looking for a couple to take over this room, before christmas.
                 </p>
 
                 <a
                   href="#"
                   className="inline-block mt-4 text-blue-500 underline hover:text-blue-400"
                 >
-                  Read more
+                  Find Out More
                 </a>
               </div>
             </div>
