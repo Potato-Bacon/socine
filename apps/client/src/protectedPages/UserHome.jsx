@@ -1,18 +1,15 @@
-/* eslint-disable react/prop-types */
-import { useState } from "react";
-import FeaturedListingsUserHome from "../protectedComponents/FeaturedListingsUserHome";
+import { useState, useEffect } from "react";
 
-function UserHome({ userName, token }) {
-  const [featuredUserList, setFeaturedUserList] = useState([]);
-  const [featuredRoomList, setFeaturedRoomList] = useState([]);
+function UserHome() {
+  const [userID, setUserID] = useState("");
+  //fetch userID from session storage
+  useEffect(() => {
+    const getUserID = sessionStorage.getItem("userid");
+  });
+
   return (
     <>
-      <FeaturedListingsUserHome
-        featuredUserList={featuredUserList}
-        setFeaturedUserList={setFeaturedUserList}
-        featuredRoomList={featuredRoomList}
-        setFeaturedRoomList={setFeaturedRoomList}
-      />
+      <h1> UserHome</h1>
     </>
   );
 }
