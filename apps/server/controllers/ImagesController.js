@@ -57,6 +57,31 @@ router.post("/upload", upload.single("profilePicture"), async (req, res) => {
   res.status(200).send({ imageURL });
 });
 
+router.post("/uploadlisting", upload.single("listingPic"), async (req, res) => {
+  const images = req.file;
+  console.log(images);
+
+  const singleImage = await cloudinary.uploader.upload(images.path, {
+    upload_preset: "rooms",
+    use_filename: true,
+  });
+
+  // const multipleImage = images.map((picture) =>
+  //   cloudinary.uploader.upload(picture.path, {
+  //     upload_preset: "rooms",
+  //     use_filename: true,
+  //   })
+  // );
+
+  // const imageResponse = await Promise.all(multipleImage);
+  // const imageURL = imageResponse.map((image) => image.url);
+
+  const imageURL = singleImage.url;
+
+  console.log(imageURL);
+  res.status(200).send({ imageURL });
+});
+
 router.use((error, req, res, next) => {
   if (error instanceof multer.MulterError) {
     if (error.code === "LIMIT_FILE_SIZE") {

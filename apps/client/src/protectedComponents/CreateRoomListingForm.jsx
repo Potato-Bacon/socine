@@ -7,9 +7,10 @@ import towns from "../staticData/town";
 import mrts from "../staticData/mrts";
 import roomListingTags from "../staticData/roomListingTags";
 import amenitiesTag from "../staticData/amenitiesTag";
-import { v4 as uuidv4 } from "uuid";
+import axios from "axios";
 
-const roomListingURL = "/api/roomlisting/submit";
+const createRoomListingURL = "/api/roomlistings/submit";
+const uploadImageUrl = "/api/images/uploadlisting";
 
 function CreateRoomListingForm({ userName, token }) {
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ function CreateRoomListingForm({ userName, token }) {
       availability: "",
       stayLength: "",
       propertyDescription: "",
-      occupantDescription: "",
+      occupantsDescription: "",
     },
     validationSchema: Yup.object({
       name: Yup.string()
@@ -48,9 +49,9 @@ function CreateRoomListingForm({ userName, token }) {
         .max(60, "5-60 characters long")
         .required("*required"),
 
-      description: Yup.string()
-        .min(40, "40-600 character limit")
-        .max(600)
+      shortDescription: Yup.string()
+        .min(40, "40-200 character limit")
+        .max(200)
         .required("*required"),
 
       listingPic: Yup.mixed().required("A file is required"),
@@ -82,26 +83,37 @@ function CreateRoomListingForm({ userName, token }) {
       availability: Yup.date().min(new Date()).required("*required"),
       stayLength: Yup.string().required("*required"),
       propertyDescription: Yup.string()
-        .min(40, "40-600 character limit")
-        .max(600)
+        .min(100, "100-3000 character limit")
+        .max(3000)
         .required("*required"),
-      occupantDescription: Yup.string()
-        .min(40, "40-600 character limit")
-        .max(600)
+      occupantsDescription: Yup.string()
+        .min(100, "100-3000 character limit")
+        .max(3000)
         .required("*required"),
     }),
     onSubmit: async (values) => {
       console.log(values);
-      const res = await fetch(roomListingURL, {
-        method: "POST",
+      console.log(values.listingPic);
+
+      const formData = new FormData();
+
+      formData.append("listingPic", values.listingPic);
+
+      const config = {
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data",
         },
-        body: JSON.stringify(values),
+      };
+
+      await axios.post(uploadImageUrl, formData, config, {}).then((res) => {
+        values.listingPic = res.data.imageURL;
+        console.log(values.listingPic);
       });
-      const data = await res.json();
-      // include error checking
-      console.log("Response:", data);
+
+      const response = await axios.post(createRoomListingURL, values);
+      console.log(response);
+
+      navigate("/user");
     },
   });
   return (
@@ -208,7 +220,7 @@ function CreateRoomListingForm({ userName, token }) {
                     id="title"
                     name="title"
                     type="text"
-                    placeholder="Enter your description"
+                    placeholder="Enter your title"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.title}
@@ -228,7 +240,7 @@ function CreateRoomListingForm({ userName, token }) {
                     htmlFor="description"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    Description
+                    Short Description
                   </label>
 
                   <input
@@ -292,7 +304,7 @@ function CreateRoomListingForm({ userName, token }) {
                         onChange={(event) => {
                           formik.setFieldValue(
                             "listingPic",
-                            event.currentTarget.files
+                            event.currentTarget.files[0]
                           );
                         }}
                         onBlur={formik.handleBlur}
@@ -487,33 +499,36 @@ function CreateRoomListingForm({ userName, token }) {
                 ) : null}
 
                 {/* room type */}
+                {formik.values.wholeUnitOrRoomOnly === "Room Only" && (
+                  <>
+                    <div className="col-span-6">
+                      <label
+                        htmlFor="roomType"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Room Type
+                      </label>
+                      <select
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.roomType}
+                        name="roomType"
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                      >
+                        <option value="">Choose Room Type</option>
+                        <option value="Master">Master</option>
+                        <option value="Common">Common</option>
+                        <option value="Others">Others</option>
+                      </select>
+                    </div>
 
-                <div className="col-span-6">
-                  <label
-                    htmlFor="roomType"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Room Type?
-                  </label>
-                  <select
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.roomType}
-                    name="roomType"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                  >
-                    <option value="">Choose Room Type</option>
-                    <option value="Master">Master</option>
-                    <option value="Common">Common</option>
-                    <option value="Others">Others</option>
-                  </select>
-                </div>
-
-                {formik.touched.roomType && formik.errors.roomType ? (
-                  <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
-                    {formik.errors.roomType}
-                  </span>
-                ) : null}
+                    {formik.touched.roomType && formik.errors.roomType ? (
+                      <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
+                        {formik.errors.roomType}
+                      </span>
+                    ) : null}
+                  </>
+                )}
 
                 {/* bathroomType */}
 
@@ -756,7 +771,7 @@ function CreateRoomListingForm({ userName, token }) {
                     htmlFor="propertyDescription"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    Description
+                    About the Room / Unit
                   </label>
                   <div className="col-span-6">
                     <textarea
@@ -784,25 +799,25 @@ function CreateRoomListingForm({ userName, token }) {
                     htmlFor="occupantDescription"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    Occupant Description
+                    Describe the occupants
                   </label>
                   <div className="col-span-6">
                     <textarea
-                      id="occupantDescription"
-                      name="occupantDescription"
+                      id="occupantsDescription"
+                      name="occupantsDescription"
                       type="text"
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
-                      value={formik.values.occupantDescription}
+                      value={formik.values.occupantsDescription}
                       className="mt-1 w-full h-32 rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                     />
                   </div>
                 </div>
 
-                {formik.touched.occupantDescription &&
-                formik.errors.occupantDescription ? (
+                {formik.touched.occupantsDescription &&
+                formik.errors.occupantsDescription ? (
                   <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
-                    {formik.errors.occupantDescription}
+                    {formik.errors.occupantsDescription}
                   </span>
                 ) : null}
 

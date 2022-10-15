@@ -10,7 +10,7 @@ import userListingTags from "../staticData/userLiftingTags";
 import axios from "axios";
 const mbtiURL = "/api/mbti";
 const interestsURL = "/api/interests";
-const userlistingURL = "/api/userlistings/submit";
+const createUserListingURL = "/api/userlistings/submit";
 const uploadImageUrl = "/api/images/upload";
 
 function CreateUserListingForm({ userName, token }) {
@@ -85,25 +85,25 @@ function CreateUserListingForm({ userName, token }) {
         values.profilePicture = res.data.imageURL;
       });
 
-      const response = await axios.post(userlistingURL, values);
+      const response = await axios.post(createUserListingURL, values);
       console.log(response);
 
       // axios.post(uploadImageUrl, formData, config).then((res) => {
       //   values.profilePicture = res.data.imageURL;
-      //   return axios.post(userlistingURL, values);
+      //   return axios.post(createUserListingURL, values);
       // });
 
-      const res = await fetch(userlistingURL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(values),
-      });
+      // const res = await fetch(userlistingURL, {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(values),
+      // });
 
-      const data = await res.json();
+      // const data = await res.json();
       // include error checking
-      console.log("Response:", data);
+      // console.log("Response:", data);
       navigate("/users/userlisting");
     },
   });

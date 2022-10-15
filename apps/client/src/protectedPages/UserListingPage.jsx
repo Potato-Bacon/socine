@@ -68,7 +68,7 @@ function UserListingPage({ userName, token }) {
                         {usl?.occupation}
                       </p>
                       <p className="mt-2 text-gray-500 dark:text-gray-300 group-hover:text-gray-300 text-xs">
-                        Preffered Location: {usl?.town}
+                        Prefered Location: {usl?.town}
                       </p>
                       <p className="mt-2 text-gray-500 dark:text-gray-300 group-hover:text-gray-300 text-xs">
                         Budget: ${usl?.budget}
