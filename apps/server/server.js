@@ -55,6 +55,7 @@ app.get("/api/mbti", async (req, res) => {
   }
 });
 
+//get all Interests
 app.get("/api/interests", async (req, res) => {
   try {
     const interests = await Interest.find();
