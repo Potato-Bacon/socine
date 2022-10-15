@@ -1,5 +1,6 @@
 import NavPublic from "../components/NavPublic";
 import Img from "react-cool-img";
+import { Link } from "react-router-dom";
 function LandingPage() {
   return (
     <>
@@ -29,14 +30,12 @@ function LandingPage() {
                 updates.
               </p>
 
-              <a
-                href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+              <button
                 className="mx-auto mt-8 text-sm font-semibold text-blue-600 hover:text-neutral-600"
                 title="read more"
               >
-                {" "}
-                Learn More »{" "}
-              </a>
+                <Link to="/register">Learn More »</Link>
+              </button>
             </div>
           </div>
         </div>
