@@ -50,10 +50,10 @@ function LoginForm({ setUsername, setToken }) {
   return (
     <>
       <form autoComplete="off" onSubmit={formik.handleSubmit}>
-        <div className="bg-white py-6 sm:py-8 lg:py-12">
+        <div className="bg-white py-6 sm:py-8 lg:py-12 ">
           <div className="max-w-screen-2xl px-4 md:px-8 mx-auto">
             <h2 className="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-8">
-              Login
+              Login to Socine
             </h2>
 
             <div className="max-w-lg border rounded-lg mx-auto">
@@ -106,19 +106,21 @@ function LoginForm({ setUsername, setToken }) {
 
                 <button
                   type="submit"
-                  className="block bg-gray-800 hover:bg-gray-700 active:bg-gray-600 focus-visible:ring ring-gray-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3"
+                  className="block bg-blue-600 hover:bg-blue-700 active:bg-blue-800 focus-visible:ring ring-gray-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3"
                 >
                   Log in
                 </button>
 
-                <div className="flex justify-center items-center relative">
+                {/* Reserved for future development */}
+
+                {/* <div className="flex justify-center items-center relative">
                   <span className="h-px bg-gray-300 absolute inset-x-0"></span>
                   <span className="bg-white text-gray-400 text-sm relative px-4">
                     Log in with social
                   </span>
-                </div>
+                </div> */}
 
-                <button className="flex justify-center items-center bg-blue-500 hover:bg-blue-600 active:bg-blue-700 focus-visible:ring ring-blue-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 gap-2 px-8 py-3">
+                {/* <button className="flex justify-center items-center bg-blue-500 hover:bg-blue-600 active:bg-blue-700 focus-visible:ring ring-blue-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 gap-2 px-8 py-3">
                   <svg
                     className="w-5 h-5 shrink-0"
                     width="24"
@@ -133,9 +135,9 @@ function LoginForm({ setUsername, setToken }) {
                     />
                   </svg>
                   Continue with Facebook
-                </button>
+                </button> */}
 
-                <button className="flex justify-center items-center bg-white hover:bg-gray-100 active:bg-gray-200 border border-gray-300 focus-visible:ring ring-gray-300 text-gray-800 text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 gap-2 px-8 py-3">
+                {/* <button className="flex justify-center items-center bg-white hover:bg-gray-100 active:bg-gray-200 border border-gray-300 focus-visible:ring ring-gray-300 text-gray-800 text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 gap-2 px-8 py-3">
                   <svg
                     className="w-5 h-5 shrink-0"
                     width="24"
@@ -162,7 +164,7 @@ function LoginForm({ setUsername, setToken }) {
                     />
                   </svg>
                   Continue with Google
-                </button>
+                </button> */}
               </div>
 
               <div className="flex justify-center items-center bg-gray-100 p-4">

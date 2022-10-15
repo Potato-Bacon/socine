@@ -16,6 +16,7 @@
     "@headlessui/react": "^1.7.3",
     "@heroicons/react": "^2.0.12",
     "axios": "^1.1.2",
+    "daisyui": "^2.31.0",
     "date-fns": "^2.29.3",
     "dotenv": "^16.0.3",
     "formik": "^2.2.9",

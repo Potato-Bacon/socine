@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import LoginForm from "../components/LoginForm";
 import NavPublic from "../components/NavPublic";
 

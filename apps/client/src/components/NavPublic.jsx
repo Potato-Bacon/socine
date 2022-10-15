@@ -1,15 +1,16 @@
 import { Link } from "react-router-dom";
+import Img from "react-cool-img";
 
 function NavPublic() {
   return (
     <>
-      <header className="bg-white dark:bg-gray-900">
+      <header className="bg-gray-900 dark:bg-gray-900">
         <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             <div className="flex-1 md:flex md:items-center md:gap-12">
               <a className="block text-teal-600 dark:text-teal-300" href="/">
                 <div className="inline-flex items-center justify-center flex-shrink-0 w-12 h-12mx-auto text-blue-600 rounded-full bg-gray-50 hover:animate-pulse">
-                  <img
+                  <Img
                     src="https://res.cloudinary.com/dvhamwchi/image/upload/v1665338159/assets/vc9jwpzmrmui9pwimkqq.png"
                     loading="lazy"
                     alt="logo"
@@ -21,16 +22,16 @@ function NavPublic() {
             <div className="md:flex md:items-center md:gap-12">
               <div className="flex items-center gap-4">
                 <div className="sm:flex sm:gap-4">
-                  <button className="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow dark:hover:bg-teal-500">
+                  <button className="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 shadow hover:bg-blue-600 hover:text-gray-100 dark:bg-blue-600 dark:text-white  dark:hover:text-white/75">
                     <Link to="/developers">Meet The Developers</Link>
                   </button>
 
-                  <button className="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow dark:hover:bg-teal-500">
+                  <button className="rounded-md bg-teal-600  px-5 py-2.5 text-sm font-medium text-white shadow hover:bg-blue-600 active:bg-blue-700  hover:dark:bg-blue-600 active:dark:bg-blue-700">
                     <Link to="/login">Login</Link>
                   </button>
 
                   <div className="hidden sm:flex">
-                    <button className="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 dark:bg-gray-800 dark:text-white dark:hover:text-white/75">
+                    <button className="rounded-md bg-teal-600  px-5 py-2.5 text-sm font-medium text-white shadow hover:bg-blue-600 active:bg-blue-700  hover:dark:bg-blue-600 active:dark:bg-blue-700">
                       <Link to="/register">Register</Link>
                     </button>
                   </div>
