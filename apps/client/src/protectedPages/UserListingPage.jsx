@@ -1,15 +1,19 @@
 import { useEffect, useState } from "react";
+import { Link, useNavigate, Navigate } from "react-router-dom";
 import Img from "react-cool-img";
 import SearchBarUserListing from "../protectedComponents/SearchBarUserListing";
-import { Link, useNavigate, Navigate } from "react-router-dom";
 
+// API
 const userListingURL = "/api/userlistings";
-const roomListingURL = "/api/roomlistings";
-const userAuthURL = "/api/auth";
+// const userAuthURL = "/api/auth";
 
 function UserListingPage({ userName, token }) {
   const navigate = useNavigate();
   const [userListing, setUserListing] = useState([]);
+  const [searchUser, setSearchUser] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
+
+  // Fetch User Listing
   useEffect(() => {
     fetch(userListingURL, {
       headers: {
@@ -20,9 +24,9 @@ function UserListingPage({ userName, token }) {
       .then((response) => response.json())
       .then((data) => setUserListing(data));
   }, []);
+
   return (
     <>
-      <SearchBarUserListing />
       <div>
         <section className="bg-white dark:bg-gray-900">
           <div className="container px-6 py-10 mx-auto">
@@ -34,7 +38,14 @@ function UserListingPage({ userName, token }) {
               Here embarks your journey to connect with other Socine members
             </p>
           </div>
-
+          <div>
+            <SearchBarUserListing
+              searchUser={searchUser}
+              setSearchUser={setSearchUser}
+              searchInput={searchInput}
+              setSearchInput={setSearchInput}
+            />
+          </div>
           <div className="mt-8 grid grid-cols-2 gap-x-4 gap-y-8 lg:grid-cols-4">
             {/* Data Mapping Starts Here */}
             {userListing.map((usl) => (

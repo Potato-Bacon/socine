@@ -1,13 +1,35 @@
 /* eslint-disable react/prop-types */
-import React from "react";
+// import React from "react";
+// import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearchengin } from "@fortawesome/free-brands-svg-icons";
 
-function SearchBarUserListing() {
+function SearchBarUserListing({
+  token,
+  searchUser,
+  setSearchUser,
+  searchInput,
+  setSearchInput,
+}) {
+  const handleChange = (event) => {
+    setSearchInput(event.target.value);
+    console.log(searchInput);
+  };
+
+  const handleSearch = () => {
+    const SearchUserListingURL = `api/userlisting/search`;
+    fetch(SearchUserListingURL, {
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => setSearchUser(data));
+  };
   return (
     <>
-      {/* searchInput start
-      <form onSubmit={handleSearch} className="m-6">
+      <form onSubmit={handleSearch} autoComplete="off" className="m-6">
         <fieldset className="w-full space-y-1 dark:text-gray-100">
           <label htmlFor="Search" className="hidden">
             Search
@@ -39,7 +61,6 @@ function SearchBarUserListing() {
           </div>
         </fieldset>
       </form>
-      {/* search input ends */}
     </>
   );
 }
