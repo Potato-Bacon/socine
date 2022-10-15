@@ -65,7 +65,7 @@ function CreateRoomListingForm({ userName, token }) {
       amenities: Yup.array().required("*required"),
       listingTags: Yup.array().required("*required"),
       wholeUnitOrRoomOnly: Yup.string().required("*required"),
-      roomType: Yup.string().required("*required"),
+      // roomType: Yup.string().required("*required"),
       bathroomType: Yup.string().required("*required"),
       genderPreference: Yup.string().required("*required"),
       apartmentType: Yup.string().required("*required"),
