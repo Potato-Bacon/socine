@@ -156,6 +156,22 @@ router.post("/search", async (req, res) => {
 //   res.send(results);
 // });
 
+router.post("/recommendations", async (req, res) => {
+  const { budget, mrt, town } = req.body;
+
+  try {
+    const userListingRecommendations = await UserListings.find({
+      $or: [{ budget: budget }, { mrt: mrt }, { town: town }],
+    }).exec();
+
+    res.status(200).send(userListingRecommendations);
+  } catch (error) {
+    res.status(500).send({ msg: error });
+  }
+
+  console.log(budget, mrt, town);
+});
+
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
   console.log(id);
@@ -200,4 +216,19 @@ router.delete("/delete/:id", async (req, res) => {
   }
 });
 
+//search by submittedBy ObjectID
+router.get("/submittedby/:id", async (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+
+  try {
+    const searchBySubmitted = await UserListings.findOne({
+      submittedBy: id,
+    });
+    res.status(200).send(searchBySubmitted);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ msg: error });
+  }
+});
 module.exports = router;
