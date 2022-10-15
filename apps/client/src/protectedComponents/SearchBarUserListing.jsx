@@ -6,17 +6,17 @@ import { faSearchengin } from "@fortawesome/free-brands-svg-icons";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-function SearchBarUserListing({ token }) {
+function SearchBarUserListing({ setUserListing, userListing }) {
   const [interests, setInterests] = useState([]);
   useEffect(() => {
     const url = "/api/interests";
 
-    const fetchData = async () => {
+    const fetchInterests = async () => {
       const data = await axios.get(url);
       console.log(data);
       setInterests(data);
     };
-    fetchData();
+    fetchInterests();
   }, []);
   //Filter and Search Functions
   const handleSearch = async (event) => {
@@ -74,6 +74,7 @@ function SearchBarUserListing({ token }) {
     const url = "/api/userlistings/search";
     const data = await axios.post(url, searchBody);
     console.log(data);
+    setUserListing(data.data);
   };
 
   return (

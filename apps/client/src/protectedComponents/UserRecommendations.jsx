@@ -5,13 +5,16 @@ function UserRecommendations() {
   const userid = sessionStorage.getItem("userid");
   const userSubmittedListings = `/api/userlistings/${userid}`;
 
-  useEffect(async () => {
-    try {
-      const response = await axios.get(userSubmittedListings);
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
+  useEffect(() => {
+    const recommendations = async () => {
+      try {
+        const response = await axios.get(userSubmittedListings);
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    recommendations();
   }, []);
 
   return (
