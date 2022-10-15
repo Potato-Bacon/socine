@@ -31,8 +31,8 @@ function CreateRoomListingForm({ userName, token }) {
       genderPreference: "",
       apartmentType: "",
       apartmentRoomTypes: "",
-      securityDeposit: 0,
-      rentPerMonth: 0,
+      securityDeposit: "",
+      rentPerMonth: "",
       availability: "",
       stayLength: "",
       propertyDescription: "",
@@ -381,8 +381,10 @@ function CreateRoomListingForm({ userName, token }) {
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   >
                     <option value="">Choose Town</option>
-                    {towns.map((t) => (
-                      <option value={t}>{t}</option>
+                    {towns.map((t, i) => (
+                      <option key={i} value={t}>
+                        {t}
+                      </option>
                     ))}
                   </select>
                 </div>
@@ -410,8 +412,10 @@ function CreateRoomListingForm({ userName, token }) {
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   >
                     <option value="">Choose MRT</option>
-                    {mrts.map((mrt) => (
-                      <option value={mrt}>{mrt}</option>
+                    {mrts.map((mrt, i) => (
+                      <option key={i} value={mrt}>
+                        {mrt}
+                      </option>
                     ))}
                   </select>
                 </div>
@@ -439,8 +443,10 @@ function CreateRoomListingForm({ userName, token }) {
                     name="amenities"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   >
-                    {amenitiesTag.map((amt) => (
-                      <option value={[amt]}>{amt}</option>
+                    {amenitiesTag.map((amt, i) => (
+                      <option key={i} value={[amt]}>
+                        {amt}
+                      </option>
                     ))}
                   </select>
                 </div>
@@ -468,8 +474,10 @@ function CreateRoomListingForm({ userName, token }) {
                     name="listingTags"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   >
-                    {roomListingTags.map((rlt) => (
-                      <option value={[rlt]}>{rlt}</option>
+                    {roomListingTags.map((rlt, i) => (
+                      <option key={i} value={[rlt]}>
+                        {rlt}
+                      </option>
                     ))}
                   </select>
                 </div>
@@ -496,9 +504,15 @@ function CreateRoomListingForm({ userName, token }) {
                     name="wholeUnitOrRoomOnly"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   >
-                    <option value="">Choose Whole Unit / Room Only</option>
-                    <option value="Whole Unit">Whole Unit</option>
-                    <option value="Room Only">Room Only</option>
+                    <option key="0" value="">
+                      Choose Whole Unit / Room Only
+                    </option>
+                    <option key="1" value="Whole Unit">
+                      Whole Unit
+                    </option>
+                    <option key="2" value="Room Only">
+                      Room Only
+                    </option>
                   </select>
                 </div>
 
@@ -525,10 +539,18 @@ function CreateRoomListingForm({ userName, token }) {
                     name="roomType"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   >
-                    <option value="">Choose Room Type</option>
-                    <option value="Master">Master</option>
-                    <option value="Common">Common</option>
-                    <option value="Others">Others</option>
+                    <option key="0" value="">
+                      Choose Room Type
+                    </option>
+                    <option key="1" value="Master">
+                      Master
+                    </option>
+                    <option key="2" value="Common">
+                      Common
+                    </option>
+                    <option key="3" value="Others">
+                      Others
+                    </option>
                   </select>
                 </div>
 
@@ -554,11 +576,21 @@ function CreateRoomListingForm({ userName, token }) {
                     name="bathroomType"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   >
-                    <option value="">Choose Bathroom Type</option>
-                    <option value="Shared Bathroom">Shared Bathroom</option>
-                    <option value="Own Bathroom">Own Bathroom</option>
-                    <option value="Ensuite">Ensuite</option>
-                    <option value="Others">Others</option>
+                    <option key="0" value="">
+                      Choose Bathroom Type
+                    </option>
+                    <option key="1" value="Shared Bathroom">
+                      Shared Bathroom
+                    </option>
+                    <option key="2" value="Own Bathroom">
+                      Own Bathroom
+                    </option>
+                    <option key="3" value="Ensuite">
+                      Ensuite
+                    </option>
+                    <option key="4" value="Others">
+                      Others
+                    </option>
                   </select>
                 </div>
 
@@ -584,10 +616,18 @@ function CreateRoomListingForm({ userName, token }) {
                     name="bathroomType"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   >
-                    <option value="">Choose Gender Preference</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Both">Both</option>
+                    <option key="0" value="">
+                      Choose Gender Preference
+                    </option>
+                    <option key="1" value="Male">
+                      Male
+                    </option>
+                    <option key="2" value="Female">
+                      Female
+                    </option>
+                    <option key="3" value="Both">
+                      Both
+                    </option>
                   </select>
                 </div>
 
@@ -614,11 +654,21 @@ function CreateRoomListingForm({ userName, token }) {
                     name="apartmentType"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   >
-                    <option value="">Choose Apartment Type</option>
-                    <option value="HDB">HDB</option>
-                    <option value="Condo">Condo</option>
-                    <option value="Landed">Landed</option>
-                    <option value="Others">Others</option>
+                    <option key="0" value="">
+                      Choose Apartment Type
+                    </option>
+                    <option key="1" value="HDB">
+                      HDB
+                    </option>
+                    <option key="2" value="Condo">
+                      Condo
+                    </option>
+                    <option key="3" value="Landed">
+                      Landed
+                    </option>
+                    <option key="4" value="Others">
+                      Others
+                    </option>
                   </select>
                 </div>
 
@@ -644,15 +694,33 @@ function CreateRoomListingForm({ userName, token }) {
                     name="roomType"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   >
-                    <option value="">Choose Apartment Room Type</option>
-                    <option value="Studio">Studio</option>
-                    <option value="2-Bedroom">2-Bedroom</option>
-                    <option value="3-Bedroom">3-Bedroom</option>
-                    <option value="4-Bedroom">4-Bedroom</option>
-                    <option value="5-Bedroom">5-Bedroom</option>
-                    <option value="Executive">Executive</option>
-                    <option value="Penthouse">Penthouse</option>
-                    <option value="Others">Others</option>
+                    <option key="0" value="">
+                      Choose Apartment Room Type
+                    </option>
+                    <option key="1" value="Studio">
+                      Studio
+                    </option>
+                    <option key="2" value="2-Bedroom">
+                      2-Bedroom
+                    </option>
+                    <option key="3" value="3-Bedroom">
+                      3-Bedroom
+                    </option>
+                    <option key="4" value="4-Bedroom">
+                      4-Bedroom
+                    </option>
+                    <option key="5" value="5-Bedroom">
+                      5-Bedroom
+                    </option>
+                    <option key="6" value="Executive">
+                      Executive
+                    </option>
+                    <option key="7" value="Penthouse">
+                      Penthouse
+                    </option>
+                    <option key="8" value="Others">
+                      Others
+                    </option>
                   </select>
                 </div>
 
@@ -758,12 +826,24 @@ function CreateRoomListingForm({ userName, token }) {
                     name="roomType"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   >
-                    <option value="">Choose Expected Stay Length</option>
-                    <option value="6 months">6 months</option>
-                    <option value="12 months">12 months</option>
-                    <option value="24 months">24 months</option>
-                    <option value="36 months">36 months</option>
-                    <option value="Others">Others</option>
+                    <option key="0" value="">
+                      Choose Expected Stay Length
+                    </option>
+                    <option key="1" value="6 months">
+                      6 months
+                    </option>
+                    <option key="2" value="12 months">
+                      12 months
+                    </option>
+                    <option key="3" value="24 months">
+                      24 months
+                    </option>
+                    <option key="4" value="36 months">
+                      36 months
+                    </option>
+                    <option key="5" value="Others">
+                      Others
+                    </option>
                   </select>
                 </div>
 

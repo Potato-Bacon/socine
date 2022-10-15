@@ -40,75 +40,75 @@ router.post("/search", async (req, res) => {
   const mrtOrTown = [];
   const search = [];
 
-  try {
-    //if user keys in search input
-    if (req.body.input !== undefined) {
-      mrtOrTown.push({ town: { $regex: req.body.input, $options: "i" } });
-      mrtOrTown.push({ mrt: { $regex: req.body.input, $options: "i" } });
+  // try {
+  //if user keys in search input
+  if (req.body.input !== undefined) {
+    mrtOrTown.push({ town: { $regex: req.body.input, $options: "i" } });
+    mrtOrTown.push({ mrt: { $regex: req.body.input, $options: "i" } });
 
-      // search.push({
-      //   $or: mrtOrTown,
-      // });
-      // const result = await UserListings.find({
-      //   $or: mrtOrTown,
-      // });
-      // res.status(200).send(result);
-    }
-
-    //to combine with filter
-
-    if (req.body.interests !== undefined) {
-      search.push({ interests: req.body.interests });
-    }
-
-    console.log(search, "this is search array");
-
-    if (req.body.userListingTag !== undefined) {
-      search.push({ userListingTag: req.body.userListingTag });
-    }
-    const budget = { budget: { $gte: null, $lte: null } };
-    console.log(budget.budget, "first");
-
-    if (req.body.min !== undefined) {
-      budget.budget.$gte = req.body.min;
-    } else {
-      delete budget.budget.$gte;
-    }
-
-    // console.log(budget, "after min logic");
-
-    if (req.body.max !== undefined) {
-      budget.budget.$lte = req.body.max;
-    } else {
-      delete budget.budget.$lte;
-    }
-    console.log(budget, "after max logic");
-
-    if (budget.budget.$gte === undefined && budget.budget.$lte === undefined) {
-      console.log("no properties found");
-    } else {
-      search.push(budget);
-    }
-
-    console.log(search);
-
-    const results = await UserListings.find({
-      $and: search,
-    })
-      .populate({
-        path: "submittedBy",
-        select:
-          "-password -email -createdAt -updatedAt -favUserListing -favRoomListing -getEmail -mobileNumber",
-      })
-      .populate("interests")
-      .populate("mbti")
-      .exec();
-    console.log(results.length);
-    res.send(results);
-  } catch (error) {
-    console.log(error);
-    res.status(500).send({ msg: error });
+    search.push({
+      $or: mrtOrTown,
+    });
+    const result = await UserListings.find({
+      $or: mrtOrTown,
+    });
+    res.status(200).send(result);
   }
+
+  //to combine with filter
+
+  // if (req.body.interests !== undefined) {
+  //   search.push({ interests: req.body.interests });
+  // }
+
+  // console.log(search, "this is search array");
+
+  // if (req.body.userListingTag !== undefined) {
+  //   search.push({ userListingTag: req.body.userListingTag });
+  // }
+  // const budget = { budget: { $gte: null, $lte: null } };
+  // console.log(budget.budget, "first");
+
+  // if (req.body.min !== undefined) {
+  //   budget.budget.$gte = req.body.min;
+  // } else {
+  //   delete budget.budget.$gte;
+  // }
+
+  // // console.log(budget, "after min logic");
+
+  // if (req.body.max !== undefined) {
+  //   budget.budget.$lte = req.body.max;
+  // } else {
+  //   delete budget.budget.$lte;
+  // }
+  // console.log(budget, "after max logic");
+
+  // if (budget.budget.$gte === undefined && budget.budget.$lte === undefined) {
+  //   console.log("no properties found");
+  // } else {
+  //   search.push(budget);
+  // }
+
+  // console.log(search);
+
+  //   const results = await UserListings.find({
+  //     $and: search,
+  //   })
+  //     .populate({
+  //       path: "submittedBy",
+  //       select:
+  //         "-password -email -createdAt -updatedAt -favUserListing -favRoomListing -getEmail -mobileNumber",
+  //     })
+  //     .populate("interests")
+  //     .populate("mbti")
+  //     .exec();
+  //   console.log(results.length);
+  //   res.send(results);
+  // } catch (error) {
+  //   console.log(error);
+  //   res.status(500).send({ msg: error });
+  // }
 });
 
 // router.post("/search/filter", async (req, res) => {
