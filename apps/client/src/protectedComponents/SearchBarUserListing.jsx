@@ -37,7 +37,6 @@ function SearchBarUserListing({ token }) {
       // elements.Singing.value,
       // elements.Dancing.value,
       // ], // array of interests
-      userListingTag: 
       // userListingTag: [
       //   elements.nonsmoker.value,
       //   elements.ihaveacat.value,
