@@ -12,6 +12,7 @@ const userListingController = require("./controllers/UserListingController");
 const userHomeController = require("./controllers/UserHomeController");
 const Mbti = require("./models/mbtiSchema");
 const Interest = require("./models/interestSchema");
+const isAuth = require("./middleware/isAuth");
 require("./models/roomListingSchema");
 require("./models/mbtiSchema");
 
@@ -56,7 +57,8 @@ app.get("/api/mbti", async (req, res) => {
 });
 
 //get all Interests
-app.get("/api/interests", async (req, res) => {
+app.get("/api/interests", isAuth, async (req, res) => {
+  console.log(res.locals.user);
   try {
     const interests = await Interest.find();
     res.send(interests);

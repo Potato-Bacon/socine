@@ -24,6 +24,22 @@ router.post("/submit", async (req, res) => {
   });
 });
 
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const roomListing = await RoomListing.findById({ _id: id }).exec();
+
+    if (roomListing === null) {
+      res.status(400).send({ msg: "No listings" });
+    } else {
+      res.status(200).send(roomListing);
+    }
+  } catch (error) {
+    res.status(500).send({ msg: error });
+  }
+});
+
 router.put("/:id", isAuth, async (req, res) => {
   const { id } = req.params;
   const update = req.body;
@@ -35,7 +51,7 @@ router.put("/:id", isAuth, async (req, res) => {
     console.log(updateListing);
 
     if (updateListing === null) {
-      res.status(400).send;
+      res.status(400).send({ msg: "No listings" });
     } else {
       res.status(200).send(updateListing);
     }
