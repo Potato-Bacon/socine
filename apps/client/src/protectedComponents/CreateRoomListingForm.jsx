@@ -7,7 +7,7 @@ import towns from "../staticData/town";
 import mrts from "../staticData/mrts";
 import roomListingTags from "../staticData/roomListingTags";
 import amenitiesTag from "../staticData/amenitiesTag";
-// import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4 } from "uuid";
 
 const roomListingURL = "/api/roomlisting/submit";
 
@@ -15,11 +15,10 @@ function CreateRoomListingForm({ userName, token }) {
   const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
-      fullName: "",
-      profilePic: null,
+      name: "",
       title: "",
-      description: "",
-      listingPics: null,
+      shortDescription: "",
+      listingPic: null,
       address: "",
       town: "",
       mrt: "",
@@ -39,12 +38,11 @@ function CreateRoomListingForm({ userName, token }) {
       occupantDescription: "",
     },
     validationSchema: Yup.object({
-      fullName: Yup.string()
+      name: Yup.string()
         .min(2, "Choose a name 2-15 characters long")
         .max(15, "Choose a name 2-15 characters long")
         .required("*required"),
 
-      profilePic: Yup.mixed().required("A file is required"),
       title: Yup.string()
         .min(5, "5-60 characters long")
         .max(60, "5-60 characters long")
@@ -55,7 +53,7 @@ function CreateRoomListingForm({ userName, token }) {
         .max(600)
         .required("*required"),
 
-      listingPics: Yup.mixed().required("A file is required"),
+      listingPic: Yup.mixed().required("A file is required"),
       address: Yup.string()
         .min(5, "5-60 characters long")
         .max(60, "5-60 characters long")
@@ -170,87 +168,57 @@ function CreateRoomListingForm({ userName, token }) {
                 onSubmit={formik.handleSubmit}
                 className="mt-8 grid grid-cols-6 gap-6"
               >
-                {/* fullName */}
+                {/* name */}
                 <div className="col-span-6">
                   <label
-                    htmlFor="fullName"
+                    htmlFor="name"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    Full Name
+                    Name
                   </label>
 
                   <input
-                    id="fullName"
-                    name="fullName"
+                    id="name"
+                    name="name"
                     type="text"
-                    placeholder="Enter your Full Name"
+                    placeholder="Enter your Name"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    value={formik.values.fullName}
+                    value={formik.values.name}
                     className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                   />
                 </div>
-                {formik.touched.fullName && formik.errors.fullName ? (
+                {formik.touched.name && formik.errors.name ? (
                   <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
-                    {formik.errors.fullName}
+                    {formik.errors.name}
                   </span>
                 ) : null}
 
-                {/* Profile Picture */}
+                {/* title */}
+
                 <div className="col-span-6">
-                  <div className="flex justify-center items-center w-full">
-                    <label
-                      htmlFor="profilePic"
-                      className="flex flex-col justify-center items-center w-1/2 h-32 bg-slate-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
-                    >
-                      <div className="flex flex-col justify-center items-center pt-5 pb-6">
-                        <svg
-                          aria-hidden="true"
-                          className="mb-3 w-10 h-10 text-gray-400"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-                          ></path>
-                        </svg>
-                        <p className="mb-2 text-sm text-gray-500 dark:text-gray-400 text-center">
-                          <span className="font-semibold text-center">
-                            Click to upload Profile Picture
-                          </span>
-                          <br /> or drag and drop
-                        </p>
-                        <p className="text-xs text-gray-500 dark:text-gray-400">
-                          SVG, PNG, JPG or GIF
-                        </p>
-                      </div>
-                      <input
-                        id="profilePic"
-                        name="profilePic"
-                        type="file"
-                        accept="image/*"
-                        className="hidden"
-                        onChange={(event) => {
-                          formik.setFieldValue(
-                            "profilePic",
-                            event.currentTarget.files
-                          );
-                        }}
-                        onBlur={formik.handleBlur}
-                        value={undefined}
-                      />
-                    </label>
-                  </div>
+                  <label
+                    htmlFor="title"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Title
+                  </label>
+
+                  <input
+                    id="title"
+                    name="title"
+                    type="text"
+                    placeholder="Enter your description"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.title}
+                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                  />
                 </div>
 
-                {formik.touched.profilePic && formik.errors.profilePic ? (
+                {formik.touched.title && formik.errors.title ? (
                   <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
-                    {formik.errors.profilePic}
+                    {formik.errors.title}
                   </span>
                 ) : null}
 
@@ -264,20 +232,21 @@ function CreateRoomListingForm({ userName, token }) {
                   </label>
 
                   <input
-                    id="description"
-                    name="description"
+                    id="shortDescription"
+                    name="shortDescription"
                     type="text"
                     placeholder="Enter your description"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    value={formik.values.description}
+                    value={formik.values.shortDescription}
                     className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                   />
                 </div>
 
-                {formik.touched.description && formik.errors.description ? (
+                {formik.touched.shortDescription &&
+                formik.errors.shortDescription ? (
                   <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
-                    {formik.errors.description}
+                    {formik.errors.shortDescription}
                   </span>
                 ) : null}
 
@@ -285,7 +254,7 @@ function CreateRoomListingForm({ userName, token }) {
                 <div className="col-span-6">
                   <div className="flex justify-center items-center w-full">
                     <label
-                      htmlFor="listingPics"
+                      htmlFor="listingPic"
                       className="flex flex-col justify-center items-center w-1/2 h-32 bg-slate-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
                     >
                       <div className="flex flex-col justify-center items-center pt-5 pb-6">
@@ -315,14 +284,14 @@ function CreateRoomListingForm({ userName, token }) {
                         </p>
                       </div>
                       <input
-                        id="listingPics"
-                        name="listingPics"
+                        id="listingPic"
+                        name="listingPic"
                         type="file"
                         accept="image/*"
                         className="hidden"
                         onChange={(event) => {
                           formik.setFieldValue(
-                            "listingPics",
+                            "listingPic",
                             event.currentTarget.files
                           );
                         }}
@@ -333,9 +302,9 @@ function CreateRoomListingForm({ userName, token }) {
                   </div>
                 </div>
 
-                {formik.touched.listingPics && formik.errors.listingPics ? (
+                {formik.touched.listingPic && formik.errors.listingPic ? (
                   <span className="text-sm text-red-500 italic col-span-6 flex gap-4">
-                    {formik.errors.listingPics}
+                    {formik.errors.listingPic}
                   </span>
                 ) : null}
 
@@ -504,15 +473,9 @@ function CreateRoomListingForm({ userName, token }) {
                     name="wholeUnitOrRoomOnly"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   >
-                    <option key="0" value="">
-                      Choose Whole Unit / Room Only
-                    </option>
-                    <option key="1" value="Whole Unit">
-                      Whole Unit
-                    </option>
-                    <option key="2" value="Room Only">
-                      Room Only
-                    </option>
+                    <option value="">Choose Whole Unit / Room Only</option>
+                    <option value="Whole Unit">Whole Unit</option>
+                    <option value="Room Only">Room Only</option>
                   </select>
                 </div>
 
@@ -539,18 +502,10 @@ function CreateRoomListingForm({ userName, token }) {
                     name="roomType"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   >
-                    <option key="0" value="">
-                      Choose Room Type
-                    </option>
-                    <option key="1" value="Master">
-                      Master
-                    </option>
-                    <option key="2" value="Common">
-                      Common
-                    </option>
-                    <option key="3" value="Others">
-                      Others
-                    </option>
+                    <option value="">Choose Room Type</option>
+                    <option value="Master">Master</option>
+                    <option value="Common">Common</option>
+                    <option value="Others">Others</option>
                   </select>
                 </div>
 
@@ -576,21 +531,11 @@ function CreateRoomListingForm({ userName, token }) {
                     name="bathroomType"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   >
-                    <option key="0" value="">
-                      Choose Bathroom Type
-                    </option>
-                    <option key="1" value="Shared Bathroom">
-                      Shared Bathroom
-                    </option>
-                    <option key="2" value="Own Bathroom">
-                      Own Bathroom
-                    </option>
-                    <option key="3" value="Ensuite">
-                      Ensuite
-                    </option>
-                    <option key="4" value="Others">
-                      Others
-                    </option>
+                    <option value="">Choose Bathroom Type</option>
+                    <option value="Shared Bathroom">Shared Bathroom</option>
+                    <option value="Own Bathroom">Own Bathroom</option>
+                    <option value="Ensuite">Ensuite</option>
+                    <option value="Others">Others</option>
                   </select>
                 </div>
 
@@ -613,21 +558,13 @@ function CreateRoomListingForm({ userName, token }) {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.genderPreference}
-                    name="bathroomType"
+                    name="genderPreference"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   >
-                    <option key="0" value="">
-                      Choose Gender Preference
-                    </option>
-                    <option key="1" value="Male">
-                      Male
-                    </option>
-                    <option key="2" value="Female">
-                      Female
-                    </option>
-                    <option key="3" value="Both">
-                      Both
-                    </option>
+                    <option value="">Choose Gender Preference</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Both">Both</option>
                   </select>
                 </div>
 
@@ -654,21 +591,11 @@ function CreateRoomListingForm({ userName, token }) {
                     name="apartmentType"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   >
-                    <option key="0" value="">
-                      Choose Apartment Type
-                    </option>
-                    <option key="1" value="HDB">
-                      HDB
-                    </option>
-                    <option key="2" value="Condo">
-                      Condo
-                    </option>
-                    <option key="3" value="Landed">
-                      Landed
-                    </option>
-                    <option key="4" value="Others">
-                      Others
-                    </option>
+                    <option value="">Choose Apartment Type</option>
+                    <option value="HDB">HDB</option>
+                    <option value="Condo">Condo</option>
+                    <option value="Landed">Landed</option>
+                    <option value="Others">Others</option>
                   </select>
                 </div>
 
@@ -691,36 +618,18 @@ function CreateRoomListingForm({ userName, token }) {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.apartmentRoomTypes}
-                    name="roomType"
+                    name="apartmentRoomTypes"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   >
-                    <option key="0" value="">
-                      Choose Apartment Room Type
-                    </option>
-                    <option key="1" value="Studio">
-                      Studio
-                    </option>
-                    <option key="2" value="2-Bedroom">
-                      2-Bedroom
-                    </option>
-                    <option key="3" value="3-Bedroom">
-                      3-Bedroom
-                    </option>
-                    <option key="4" value="4-Bedroom">
-                      4-Bedroom
-                    </option>
-                    <option key="5" value="5-Bedroom">
-                      5-Bedroom
-                    </option>
-                    <option key="6" value="Executive">
-                      Executive
-                    </option>
-                    <option key="7" value="Penthouse">
-                      Penthouse
-                    </option>
-                    <option key="8" value="Others">
-                      Others
-                    </option>
+                    <option value="">Choose Apartment Room Type</option>
+                    <option value="Studio">Studio</option>
+                    <option value="2-Bedroom">2-Bedroom</option>
+                    <option value="3-Bedroom">3-Bedroom</option>
+                    <option value="4-Bedroom">4-Bedroom</option>
+                    <option value="5-Bedroom">5-Bedroom</option>
+                    <option value="Executive">Executive</option>
+                    <option value="Penthouse">Penthouse</option>
+                    <option value="Others">Others</option>
                   </select>
                 </div>
 
@@ -823,27 +732,15 @@ function CreateRoomListingForm({ userName, token }) {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.stayLength}
-                    name="roomType"
+                    name="stayLength"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   >
-                    <option key="0" value="">
-                      Choose Expected Stay Length
-                    </option>
-                    <option key="1" value="6 months">
-                      6 months
-                    </option>
-                    <option key="2" value="12 months">
-                      12 months
-                    </option>
-                    <option key="3" value="24 months">
-                      24 months
-                    </option>
-                    <option key="4" value="36 months">
-                      36 months
-                    </option>
-                    <option key="5" value="Others">
-                      Others
-                    </option>
+                    <option value="">Choose Expected Stay Length</option>
+                    <option value="6 months">6 months</option>
+                    <option value="12 months">12 months</option>
+                    <option value="24 months">24 months</option>
+                    <option value="36 months">36 months</option>
+                    <option value="Others">Others</option>
                   </select>
                 </div>
 

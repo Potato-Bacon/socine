@@ -3,10 +3,9 @@ const mongoose = require("mongoose");
 const roomListingSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
-    profilePic: { type: String, required: true },
     title: { type: String, required: true },
-    description: { type: String, required: true },
-    listingPics: { type: String, required: true },
+    shortDescription: { type: String, required: true },
+    listingPic: { type: String, required: true },
     address: { type: String, required: true },
     town: {
       type: mongoose.Schema.Types.ObjectId,
@@ -43,7 +42,6 @@ const roomListingSchema = new mongoose.Schema(
     submittedBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      required: true,
     },
   },
   { timestamps: true }
