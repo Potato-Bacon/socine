@@ -175,6 +175,7 @@ router.get("/:id", async (req, res) => {
     res.status(200).send(userListing);
   }
 });
+
 router.put("/edit/:id", async (req, res) => {
   const { id } = req.params;
   const userListing = req.body;

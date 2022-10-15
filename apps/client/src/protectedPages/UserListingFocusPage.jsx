@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Img from "react-cool-img";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 function UserListingFocusPage({ userName, token }) {
   // const navigate = useNavigate();
@@ -45,49 +45,34 @@ function UserListingFocusPage({ userName, token }) {
                   />
                 </div>
                 <div className="flex flex-col items-center text-center justify-center">
-                  <h2 className="font-medium title-font mt-4 text-gray-900 text-lg">
+                  <h2 className="text-sm mt-4 text-gray-900 dark:text-slate-50">
                     {userFocus?.name}
                   </h2>
-                  <h2 className="font-medium title-font mt-4 text-gray-900 text-lg">
+                  <h2 className="text-sm mt-4 text-gray-900 dark:text-slate-50">
                     {userFocus?.occupation}
                   </h2>
                   <div className="w-12 h-1 bg-red-500 rounded mt-2 mb-4"></div>
-                  <p className="text-base">Age: {userFocus?.age}</p>
-                  <p className="text-base">Gender: {userFocus?.gender}</p>
-                  <p className="text-base">
+                  <p className="text-sm dark:text-slate-50">
+                    Age: {userFocus?.age}
+                  </p>
+                  <p className="text-sm dark:text-slate-50">
+                    Gender: {userFocus?.gender}
+                  </p>
+                  <p className="text-sm dark:text-slate-50">
                     Personality: {userFocus?.mbti?.mbti} -{" "}
                     {userFocus?.mbti?.description}
                   </p>
                 </div>
               </div>
-              <div className="sm:w-2/3 sm:pl-8 sm:py-8 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
-                <h1>Description</h1>
+              <div className="sm:w-2/3 sm:pl-8 sm:py-8 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left text-sm dark:text-slate-50">
+                <h1 className="text-lg font-semibold">Description</h1>
                 <p className="leading-relaxed text-sm mb-4">
                   {userFocus?.description}
                 </p>
-                <p className="text-base">
-                  Preferred Location: {userFocus?.town}
-                </p>
-                <p className="text-base">
-                  Preffered MRT Station proximity: {userFocus?.mrt}
-                </p>
-                <p className="text-base">
-                  Overall Budget: ${userFocus?.budget}
-                </p>
-                {/* <a className="text-red-500 inline-flex items-center">
-                  Learn More
-                  <svg
-                    fill="none"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    className="w-4 h-4 ml-2"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M5 12h14M12 5l7 7-7 7"></path>
-                  </svg>
-                </a> */}
+                <h1 className="text-lg font-semibold">Other Details</h1>
+                <p>Preferred Location: {userFocus?.town}</p>
+                <p>Preffered MRT Station proximity: {userFocus?.mrt}</p>
+                <p>Overall Budget: ${userFocus?.budget}</p>
               </div>
             </div>
           </div>
