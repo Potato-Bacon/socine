@@ -102,12 +102,11 @@ function RoomListingPage({ username, token }) {
                       {rl?.shortDescription}
                     </p>
 
-                    <a
-                      href="#"
-                      className="inline-block mt-4 text-blue-500 underline hover:text-blue-400"
-                    >
-                      Find Out More
-                    </a>
+                    <button className="inline-block mt-4 text-blue-500 underline hover:text-blue-400">
+                      <Link to={`/user/roomlisting/${rl._id}`}>
+                        Find Out More
+                      </Link>
+                    </button>
                   </div>
                 </>
               ))}
