@@ -4,12 +4,24 @@ const router = express.Router();
 const UserListing = require("../models/userListingSchema");
 const RoomListing = require("../models/roomListingSchema");
 
-router.get("/", async (req, res) => {
+router.get("/featureduserlist", async (req, res) => {
   try {
     const featuredUserListings = await UserListing.find().limit(8);
     // const featuredRoomListings = await RoomListing.find().limit(10);
 
     res.status(200).send(featuredUserListings);
+  } catch (error) {
+    console.log(error);
+    res.send({ msg: error });
+  }
+});
+
+router.get("/featuredroomlist", async (req, res) => {
+  try {
+    // const featuredUserListings = await UserListing.find().limit(8);
+    const featuredRoomListings = await RoomListing.find().limit(10);
+
+    res.status(200).send(featuredRoomListings);
   } catch (error) {
     console.log(error);
     res.send({ msg: error });
