@@ -162,7 +162,7 @@ function SearchBarUserListing({ setUserListing, userListing }) {
             >
               {interests?.data?.map((interest) => (
                 // eslint-disable-next-line react/jsx-key
-                <option value={interest}>{interest.interests}</option>
+                <option value={interest._id}>{interest.interests}</option>
               ))}
               {/* <option value={"634441e31953bd9d609ef3c0"}>Basketball</option> */}
             </select>
