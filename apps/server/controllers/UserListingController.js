@@ -36,7 +36,7 @@ router.post("/submit", async (req, res) => {
 
 //search by location/mrt and filter
 router.post("/search", async (req, res) => {
-  console.log(req.body.input);
+  // console.log(req.body.input === "", "hihihihihihihihihihih");
   const mrtOrTown = [];
   const search = [];
 
@@ -90,7 +90,7 @@ router.post("/search", async (req, res) => {
       search.push(budget);
     }
 
-    console.log(search);
+    console.log(search, "what is this");
 
     const results = await UserListings.find({
       $and: search,
@@ -115,7 +115,7 @@ router.post("/search", async (req, res) => {
 //   console.log(req.query.min, "min value");
 //   console.log(req.query.min, "max value");
 
-//   const budget = { budget: { $gte: null, $lte: null } };
+//   const budget = { budget: { $gte: undefined, $lte: undefined } };
 //   console.log(budget.budget, "first");
 
 //   if (req.query.interest !== undefined) {
@@ -158,6 +158,7 @@ router.post("/search", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
+  console.log(id);
   const userListing = await UserListings.findById(id)
     .populate({
       path: "submittedBy",
@@ -168,7 +169,7 @@ router.get("/:id", async (req, res) => {
     .populate("mbti")
     .exec();
 
-  if (userListing === null) {
+  if (userListing === undefined) {
     res.status(500).send({ error: "Listing not found" });
   } else {
     res.status(200).send(userListing);
@@ -180,7 +181,7 @@ router.put("/edit/:id", async (req, res) => {
   const updatedListing = await UserListings.findByIdAndUpdate(id, userListing, {
     new: true,
   });
-  if (updatedListing === null) {
+  if (updatedListing === undefined) {
     res.status(500).send({ error: "Listing not found" });
   } else {
     res.status(200).send(updatedListing);
