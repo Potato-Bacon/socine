@@ -17,19 +17,22 @@ function SearchBarUserListing({
   };
 
   const handleSearch = () => {
-    const SearchUserListingURL = `api/user/userlisting/search`;
+    const SearchUserListingURL = `api/userlistings/search`;
     fetch(SearchUserListingURL, {
+      method: "POST",
       headers: {
         "Content-type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-    })
-      .then((response) => response.json())
-      .then((data) => setSearchInput(data));
+      body: JSON.stringify({
+        input: searchInput,
+      }),
+    }).then((response) => console.log(response));
+    // .then((data) => setSearchInput(data));
   };
   return (
     <>
-      <form onSubmit={handleSearch} autoComplete="off" className="m-6">
+      <form onSubmit={() => handleSearch} autoComplete="off" className="m-6">
         <fieldset className="w-full space-y-1 dark:text-gray-100">
           <label htmlFor="Search" className="hidden">
             Search
