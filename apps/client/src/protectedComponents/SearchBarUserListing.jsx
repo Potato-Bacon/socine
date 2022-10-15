@@ -17,7 +17,7 @@ function SearchBarUserListing({
   };
 
   const handleSearch = () => {
-    const SearchUserListingURL = `api/userlisting/search`;
+    const SearchUserListingURL = `api/user/userlisting/search`;
     fetch(SearchUserListingURL, {
       headers: {
         "Content-type": "application/json",
@@ -25,7 +25,7 @@ function SearchBarUserListing({
       },
     })
       .then((response) => response.json())
-      .then((data) => setSearchUser(data));
+      .then((data) => setSearchInput(data));
   };
   return (
     <>
