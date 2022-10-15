@@ -1,15 +1,17 @@
 import { useState, useEffect } from "react";
+import UserRecommendations from "../protectedComponents/UserRecommendations";
 
+// useEffect(() => {
+//   const getUserID = sessionStorage.getItem("userid");
+// });
 function UserHome() {
   const [userID, setUserID] = useState("");
   //fetch userID from session storage
-  useEffect(() => {
-    const getUserID = sessionStorage.getItem("userid");
-  });
 
   return (
     <>
       <h1> UserHome</h1>
+      <UserRecommendations />
     </>
   );
 }

@@ -4,53 +4,77 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearchengin } from "@fortawesome/free-brands-svg-icons";
 import axios from "axios";
+import { useEffect, useState } from "react";
 
-function SearchBarUserListing({ token }) {
+function SearchBarUserListing({ setUserListing, userListing }) {
+  const [interests, setInterests] = useState([]);
+  useEffect(() => {
+    const url = "/api/interests";
+
+    const fetchInterests = async () => {
+      const data = await axios.get(url);
+      console.log(data);
+      setInterests(data);
+    };
+    fetchInterests();
+  }, []);
   //Filter and Search Functions
   const handleSearch = async (event) => {
     event.preventDefault();
     const elements = event.target.elements;
+
+    const min = elements.min.value === "" ? 0 : elements.min.value;
+    const max = elements.max.value === "" ? 99999 : elements.max.value;
+
     const searchBody = {
-      input: elements.input.value, //search input
-      min: elements.min.value, // min budget input
-      max: elements.max.value, // max budget value
-      // interests: elements.interests.value,
-      // interests: [
-      //   "elements.Basketball.value",
-      //   "elements.Swimming.value",
-      //   "elements.Badminton.value",
-      //   "elements.Tennis.value",
-      // elements.Yoga.value,
-      // elements.TableTennis.value,
-      // elements.ScubaDiving.value,
-      // elements.Hiking.value,
-      // elements.Baseball.value,
-      // elements.Archery.value,
-      // elements.Bowling.value,
-      // elements.Cycling.value,
-      // elements.Running.value,
-      // elements.Shopping.value,
-      // elements.Traveling.value,
-      // elements.Painting.value,
-      // elements.Gaming.value,
-      // elements.Cooking.value,
-      // elements.Singing.value,
-      // elements.Dancing.value,
-      // ], // array of interests
-      // userListingTag: [
-      //   elements.nonsmoker.value,
-      //   elements.ihaveacat.value,
-      //   elements.ihaveadog.value,
-      //   elements.iamastudent.value,
-      //   elements.lgbtfriendly.value,
-      //   elements.diversityfriendly.value,
-      // ],
-      // userListingTag: elements.userListingTag.value,
+      ...(elements.input.value !== "" && { input: elements.input.value }),
+      ...(elements.interests.value !== "" && {
+        interests: elements.interests.value,
+      }),
+
+      min: min,
+      max: max,
     };
 
+    // let searchBody = {};
+
+    // if (elements.interests.value === "") {
+    //   if (elements.input.value === "") {
+    //     searchBody = {
+    //       min: min,
+    //       max: max,
+    //     };
+    //   } else {
+    //     searchBody = {
+    //       input: elements.input.value,
+    //       min: min,
+    //       max: max,
+    //     };
+    //   }
+    // } else {
+    //   if (elements.input.value === "") {
+    //     searchBody = {
+    //       min: min,
+    //       max: max,
+    //       interests: elements.interests.value,
+    //     };
+    //   } else {
+    //     searchBody = {
+    //       input: elements.input.value,
+    //       min: min,
+    //       max: max,
+    //       interests: elements.interests.value,
+    //     };
+    //   }
+    // }
+
+    console.log(elements.input.value, "this is input");
+    console.log(elements.min.value, "this is min");
+    console.log(elements.interests.value, "this is interests");
     const url = "/api/userlistings/search";
     const data = await axios.post(url, searchBody);
     console.log(data);
+    setUserListing(data.data);
   };
 
   return (
@@ -96,7 +120,6 @@ function SearchBarUserListing({ token }) {
               </button>
             </div>
           </div>
-
           {/* div wrapper and Min. Budget */}
           <div className="flex-row flex justify-items-start justify-center">
             <label
@@ -125,7 +148,7 @@ function SearchBarUserListing({ token }) {
           </div>
           <div className="flex-row flex justify-items-start justify-center">
             {/* Interests */}
-            {/* <label
+            <label
               htmlFor="interests"
               className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300"
             >
@@ -135,32 +158,19 @@ function SearchBarUserListing({ token }) {
               multiple
               name="interests"
               className="block p-4 pl-10 w-72 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-5"
-            > */}
-            {/* <option value="">---Please choose your options---</option> */}
-            {/* <option value={["634441e31953bd9d609ef3c0"]}>Basketball</option> */}
-            {/* <option value={["634441e31953bd9d609ef3c2"]}>Swimming</option> */}
-            {/* <option value="Badminton">Badminton</option>
-              <option value="Tennis">Tennis</option>
-              <option value="Yoga">Yoga</option>
-              <option value="TableTennis">Table Tennis</option>
-              <option value="ScubaDiving">Scuba Diving</option>
-              <option value="Hiking">Hiking</option>
-              <option value="Baseball">Baseball</option>
-              <option value="Archery">Archery</option>
-              <option value="Bowling">Bowling</option>
-              <option value="Cycling">Cycling</option>
-              <option value="Running">Running</option>
-              <option value="Shopping">Shopping</option>
-              <option value="Travelling">Travelling</option>
-              <option value="Painting">Painting</option>
-              <option value="Gaming">Gaming</option>
-              <option value="Cooking">Cooking</option>
-              <option value="Singing">Singing</option>
-              <option value="Dancing">Dancing</option> */}
-            {/* </select> */}
+              placeholder="Maximum Budget"
+            >
+              {interests?.data?.map((interest) => (
+                // eslint-disable-next-line react/jsx-key
+                <option value={interest}>{interest.interests}</option>
+              ))}
+              {/* <option value={"634441e31953bd9d609ef3c0"}>Basketball</option> */}
+            </select>
+          </div>
 
-            {/* userListingTag */}
-            {/* <label
+          {/* <div className="flex-row flex justify-items-start justify-center">
+            
+            <label
               htmlFor="interests"
               className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300"
             >
@@ -168,13 +178,18 @@ function SearchBarUserListing({ token }) {
             </label>
             <select
               multiple
-              name="userListingTag"
+              name="listingTag"
               className="block p-4 pl-10 w-72 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-5"
+              placeholder="Maximum Budget"
             >
-              {/* <option value="">---Please choose your options---</option> */}
-            {/* </select> */}
-          </div>
-
+              <option value="Non-Smoker">Non-Smoker</option>
+              <option value="I have a cat">I have a cat</option>
+              <option value="I have a dog"> I have a dog</option>
+              <option value="I'm a student">I am a student</option>
+              <option value="LGBT+ Friendly">LGBT+ Friendly</option>
+              <option value="Diversity Friendly">Diversity Friendly</option>
+            </select>
+          </div> */}
           {/* Submit Search Button */}
           <div className="flex-row flex justify-items-center justify-center my-5">
             <button

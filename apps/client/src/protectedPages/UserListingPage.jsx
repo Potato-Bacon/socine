@@ -40,10 +40,8 @@ function UserListingPage({ userName, token }) {
           </div>
           <div>
             <SearchBarUserListing
-              searchUser={searchUser}
-              setSearchUser={setSearchUser}
-              searchInput={searchInput}
-              setSearchInput={setSearchInput}
+              setUserListing={setUserListing}
+              userListing={userListing}
             />
           </div>
           <div className="mt-8 grid grid-cols-2 gap-x-4 gap-y-8 lg:grid-cols-4">
