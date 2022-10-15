@@ -8,7 +8,7 @@ function RoomListingFocusPage({ userName, token }) {
   const { id } = useParams();
   const roomFocusURL = `/api/roomListings/${id}`;
 
-  //fetch RoomFocus Data
+  //fetch roomFocus Data
   useEffect(() => {
     fetch(roomFocusURL, {
       headers: {
@@ -22,78 +22,80 @@ function RoomListingFocusPage({ userName, token }) {
 
   return (
     <>
-      <>
-        <section className="text-gray-600 body-font">
-          <div className="container px-5 py-24 mx-auto flex flex-col">
-            <div className="lg:w-4/6 mx-auto">
-              <div className="rounded-lg h-64 overflow-hidden">
-                <Img
-                  alt="content"
-                  className="object-cover object-center h-full w-full"
-                  loading="lazy"
-                  src="https://images.unsplash.com/photo-1499420838073-7de9d689547d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
-                />
+      <section className="text-gray-600 body-font">
+        <div className="container px-5 py-24 mx-auto flex flex-col">
+          <div className="lg:w-4/6 mx-auto">
+            <div className="rounded-lg h-80 overflow-hidden">
+              <Img
+                alt="content"
+                className="object-cover object-center h-full w-full"
+                loading="lazy"
+                src={roomFocus?.listingPic}
+              />
+            </div>
+            <div className="flex flex-col sm:flex-row mt-10">
+              <div className="sm:w-1/3 text-center sm:pr-8 sm:py-8">
+                <div className="flex flex-col items-center text-center justify-center">
+                  <h2 className="text-sm mt-4 text-gray-900 dark:text-slate-50">
+                    {roomFocus?.name}
+                  </h2>
+                  <div className="w-12 h-1 bg-red-500 rounded mt-2 mb-4" />
+                  <p className="font-semibold dark:text-slate-50 text-xs">
+                    Rent:
+                  </p>
+                  <p className="text-lg dark:text-slate-50">
+                    ${roomFocus?.rentPerMonth}
+                  </p>
+                  <p className="font-semibold dark:text-slate-50 text-xs mt-5">
+                    Security Deposit:
+                  </p>
+                  <p className="text-lg dark:text-slate-50">
+                    ${roomFocus?.securityDeposit}
+                  </p>
+                  <p className="font-semibold dark:text-slate-50 text-xs mt-5">
+                    Lease duration
+                  </p>
+                  <p className="text-lg dark:text-slate-50">
+                    {roomFocus?.stayLength}
+                  </p>
+                </div>
               </div>
-              <div className="flex flex-col sm:flex-row mt-10">
-                <div className="sm:w-1/3 text-center sm:pr-8 sm:py-8">
-                  <div className="w-32 h-32 rounded-full inline-flex items-center justify-center bg-gray-200 text-gray-400">
-                    <Img
-                      alt="content"
-                      className="rounded-full object-cover object-center h-full w-full"
-                      loading="lazy"
-                      src={roomFocus?.profilePicture}
-                    />
-                  </div>
-                  <div className="flex flex-col items-center text-center justify-center">
-                    <h2 className="font-medium title-font mt-4 text-gray-900 text-lg">
-                      {roomFocus?.name}
-                    </h2>
-                    <h2 className="font-medium title-font mt-4 text-gray-900 text-lg">
-                      {roomFocus?.occupation}
-                    </h2>
-                    <div className="w-12 h-1 bg-red-500 rounded mt-2 mb-4"></div>
-                    <p className="text-base">Age: {roomFocus?.age}</p>
-                    <p className="text-base">Gender: {roomFocus?.gender}</p>
-                    <p className="text-base">
-                      Personality: {roomFocus?.mbti?.mbti} -{" "}
-                      {roomFocus?.mbti?.description}
-                    </p>
-                  </div>
+              <div className="sm:w-2/3 sm:pl-8 sm:py-8 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left text-xs dark:text-slate-50">
+                <h1 className="text-xl font-bold">{roomFocus?.title}</h1>
+                <p className="leading-relaxed text-sm">{roomFocus?.address}</p>
+                <p className="leading-relaxed text-sm mb-6">
+                  {roomFocus?.town}
+                </p>
+                <div className="flex-row justify-items-start my-3">
+                  <span className="bg-indigo-100 text-indigo-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-indigo-200 dark:text-indigo-900">
+                    {roomFocus?.wholeUnitOrRoomOnly}
+                  </span>
+                  <span className="bg-indigo-100 text-indigo-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-indigo-200 dark:text-indigo-900">
+                    {roomFocus?.apartmentType}
+                  </span>
+                  <span className="bg-indigo-100 text-indigo-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-indigo-200 dark:text-indigo-900">
+                    {roomFocus?.apartmentRoomTypes}
+                  </span>
                 </div>
-                <div className="sm:w-2/3 sm:pl-8 sm:py-8 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
-                  <h1>Description</h1>
-                  <p className="leading-relaxed text-sm mb-4">
-                    {roomFocus?.description}
-                  </p>
-                  <p className="text-base">
-                    Preferred Location: {roomFocus?.town}
-                  </p>
-                  <p className="text-base">
-                    Preffered MRT Station proximity: {roomFocus?.mrt}
-                  </p>
-                  <p className="text-base">
-                    Overall Budget: ${roomFocus?.budget}
-                  </p>
-                  {/* <a className="text-red-500 inline-flex items-center">
-                  Learn More
-                  <svg
-                    fill="none"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    className="w-4 h-4 ml-2"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M5 12h14M12 5l7 7-7 7"></path>
-                  </svg>
-                </a> */}
+                <div className="flex-row justify-items-start my-3">
+                  <span className="bg-yellow-100 text-yellow-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-200 dark:text-yellow-900">
+                    {roomFocus?.listingTags?.[0]}
+                  </span>
+                  <span className="bg-yellow-100 text-yellow-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-200 dark:text-yellow-900">
+                    {roomFocus?.mrt} Mrt Station
+                  </span>
                 </div>
+                <p className="font-semibold mt-6">Summary</p>
+                <p>{roomFocus?.shortDescription}</p>
+                <p className="font-semibold mt-5">Property Description</p>
+                <p>{roomFocus?.propertyDescription}</p>
+                <p className="font-semibold mt-5">Tenant Preferences</p>
+                <p>{roomFocus?.occupantsDescription}</p>
               </div>
             </div>
           </div>
-        </section>
-      </>
+        </div>
+      </section>
     </>
   );
 }

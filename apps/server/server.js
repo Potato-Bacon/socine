@@ -57,7 +57,7 @@ app.get("/api/mbti", async (req, res) => {
 });
 
 //get all Interests
-app.get("/api/interests", isAuth, async (req, res) => {
+app.get("/api/interests", async (req, res) => {
   console.log(res.locals.user);
   try {
     const interests = await Interest.find();
