@@ -147,7 +147,7 @@ function CreateUserListingForm({ userName, token }) {
             <Img
               alt="Night"
               loading="lazy"
-              src="https://images.unsplash.com/photo-1499420838073-7de9d689547d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+              src="https://images.pexels.com/photos/3640993/pexels-photo-3640993.jpeg"
               className="absolute inset-0 h-full w-full object-cover opacity-80"
             />
 
@@ -207,7 +207,7 @@ function CreateUserListingForm({ userName, token }) {
                   <div className="flex justify-center items-center w-full">
                     <label
                       htmlFor="profilePicture"
-                      className="flex flex-col justify-center items-center w-1/2 h-32 bg-slate-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+                      className="flex flex-col justify-center items-center w-1/2 h-48 bg-slate-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
                     >
                       <div className="flex flex-col justify-center items-center pt-5 pb-6">
                         <svg

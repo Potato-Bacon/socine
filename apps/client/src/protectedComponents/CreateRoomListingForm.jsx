@@ -132,7 +132,7 @@ function CreateRoomListingForm({ userName, token }) {
             <Img
               alt="Night"
               loading="lazy"
-              src="https://images.unsplash.com/photo-1499420838073-7de9d689547d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+              src="https://images.pexels.com/photos/3640993/pexels-photo-3640993.jpeg"
               className="absolute inset-0 h-full w-full object-cover opacity-80"
             />
 
@@ -189,7 +189,7 @@ function CreateRoomListingForm({ userName, token }) {
                 className="mt-8 grid grid-cols-6 gap-6"
               >
                 {/* name */}
-                <div className="col-span-6">
+                <div className="col-span-6 sm:col-span-3">
                   <label
                     htmlFor="name"
                     className="block text-sm font-medium text-gray-700"
@@ -216,7 +216,7 @@ function CreateRoomListingForm({ userName, token }) {
 
                 {/* title */}
 
-                <div className="col-span-6">
+                <div className="col-span-6 sm:col-span-3">
                   <label
                     htmlFor="title"
                     className="block text-sm font-medium text-gray-700"
@@ -275,7 +275,7 @@ function CreateRoomListingForm({ userName, token }) {
                   <div className="flex justify-center items-center w-full">
                     <label
                       htmlFor="listingPic"
-                      className="flex flex-col justify-center items-center w-1/2 h-32 bg-slate-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+                      className="flex flex-col justify-center items-center w-1/2 h-48 bg-slate-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
                     >
                       <div className="flex flex-col justify-center items-center pt-5 pb-6">
                         <svg
@@ -355,7 +355,7 @@ function CreateRoomListingForm({ userName, token }) {
                 ) : null}
 
                 {/* town */}
-                <div className="col-span-6">
+                <div className="col-span-6 sm:col-span-3">
                   <label
                     htmlFor="town"
                     className="block text-sm font-medium text-gray-700"
@@ -386,7 +386,7 @@ function CreateRoomListingForm({ userName, token }) {
 
                 {/* mrt */}
 
-                <div className="col-span-6">
+                <div className="col-span-6 sm:col-span-3">
                   <label
                     htmlFor="mrt"
                     className="block text-sm font-medium text-gray-700"
@@ -509,7 +509,7 @@ function CreateRoomListingForm({ userName, token }) {
                 {/* room type */}
                 {formik.values.wholeUnitOrRoomOnly === "Room Only" && (
                   <>
-                    <div className="col-span-6">
+                    <div className="col-span-6 sm:col-span-3">
                       <label
                         htmlFor="roomType"
                         className="block text-sm font-medium text-gray-700"
@@ -540,7 +540,7 @@ function CreateRoomListingForm({ userName, token }) {
 
                 {/* bathroomType */}
 
-                <div className="col-span-6">
+                <div className="col-span-6 sm:col-span-3">
                   <label
                     htmlFor="bathroomType"
                     className="block text-sm font-medium text-gray-700"
@@ -570,7 +570,7 @@ function CreateRoomListingForm({ userName, token }) {
 
                 {/* genderPreference */}
 
-                <div className="col-span-6">
+                <div className="col-span-6 sm:col-span-3">
                   <label
                     htmlFor="genderPreference"
                     className="block text-sm font-medium text-gray-700"
@@ -600,7 +600,7 @@ function CreateRoomListingForm({ userName, token }) {
 
                 {/* aprtmentType */}
 
-                <div className="col-span-6">
+                <div className="col-span-6 sm:col-span-3">
                   <label
                     htmlFor="apartmentType"
                     className="block text-sm font-medium text-gray-700"
@@ -630,7 +630,7 @@ function CreateRoomListingForm({ userName, token }) {
 
                 {/* apartment room type */}
 
-                <div className="col-span-6">
+                <div className="col-span-6 sm:col-span-3">
                   <label
                     htmlFor="apartmentRoomTypes"
                     className="block text-sm font-medium text-gray-700"
@@ -664,7 +664,7 @@ function CreateRoomListingForm({ userName, token }) {
                 ) : null}
 
                 {/* Security Deposit */}
-                <div className="col-span-6">
+                <div className="col-span-6 sm:col-span-3">
                   <label
                     htmlFor="securityDeposit"
                     className="block text-sm font-medium text-gray-700"
@@ -691,7 +691,7 @@ function CreateRoomListingForm({ userName, token }) {
                 ) : null}
 
                 {/* Rent Per Month */}
-                <div className="col-span-6">
+                <div className="col-span-6 sm:col-span-3">
                   <label
                     htmlFor="rentPerMonth"
                     className="block text-sm font-medium text-gray-700"
@@ -717,7 +717,7 @@ function CreateRoomListingForm({ userName, token }) {
                 ) : null}
 
                 {/* Availability */}
-                <div className="col-span-6">
+                <div className="col-span-6 sm:col-span-3">
                   <label
                     htmlFor="availability"
                     className="block text-sm font-medium text-gray-700"
@@ -744,7 +744,7 @@ function CreateRoomListingForm({ userName, token }) {
 
                 {/* stay length */}
 
-                <div className="col-span-6">
+                <div className="col-span-6 sm:col-span-3">
                   <label
                     htmlFor="stayLength"
                     className="block text-sm font-medium text-gray-700"

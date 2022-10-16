@@ -30,7 +30,7 @@ function UserListingPage({ userName, token }) {
       <div>
         <section className="bg-white dark:bg-gray-900">
           {/* Header Starts here */}
-          <div className="my-8 max-w-xl md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
+          <div className="pt-12 max-w-xl md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
             <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
               You are <span className="border-b-8 border-red-600">not</span>{" "}
               <mark className="px-2 text-white bg-blue-600 rounded dark:bg-blue-500">
