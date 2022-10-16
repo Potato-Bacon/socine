@@ -1,4 +1,5 @@
 const express = require("express");
+const isAuth = require("../middleware/isAuth");
 const UserListings = require("../models/userListingSchema");
 const User = require("../models/userSchema");
 
@@ -22,7 +23,7 @@ router.get("/", async (req, res) => {
 });
 
 //new form
-router.post("/submit", async (req, res) => {
+router.post("/submit", isAuth, async (req, res) => {
   const newUserListing = req.body;
 
   await UserListings.create(newUserListing, (error, submission) => {
@@ -36,7 +37,6 @@ router.post("/submit", async (req, res) => {
 
 //search by location/mrt and filter
 router.post("/search", async (req, res) => {
-  // console.log(req.body.input === "", "hihihihihihihihihihih");
   const mrtOrTown = [];
   const search = [];
 
@@ -179,7 +179,7 @@ router.get("/:id", async (req, res) => {
     .populate({
       path: "submittedBy",
       select:
-        "-password -email -createdAt -updatedAt -favUserListing -favRoomListing -getEmail",
+        "-password  -createdAt -updatedAt -favUserListing -favRoomListing -getEmail",
     })
     .populate("interests")
     .populate("mbti")
