@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useFormik } from "formik";
+import { FormikProvider, useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import Img from "react-cool-img";
@@ -10,28 +10,42 @@ import userListingTags from "../staticData/userLiftingTags";
 import axios from "axios";
 const mbtiURL = "/api/mbti";
 const interestsURL = "/api/interests";
-const createUserListingURL = "/api/userlistings/submit";
 const uploadImageUrl = "/api/images/upload";
 
-function CreateUserListingForm({ userName, token }) {
+function EditUserListingForm() {
   const navigate = useNavigate();
   const [mbti, setMbti] = useState([]);
   const [interests, setInterests] = useState([]);
+  const [formInfo, setFormInfo] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const id = sessionStorage.getItem("userid");
+
+      const url = `/api/userlistings/submittedby/${id}`;
+      const data = await axios.get(url);
+      console.log(data);
+      setFormInfo(data.data);
+    };
+    fetchData();
+  }, []);
+
   const formik = useFormik({
+    enableReinitialize: true,
     initialValues: {
-      profilePicture: null,
-      name: "",
-      age: "",
-      gender: "",
-      occupation: "",
-      mbti: "",
-      interests: "",
-      town: "",
-      mrt: "",
-      budget: "",
-      earlyMoveInDate: "",
-      userListingTag: "",
-      description: "",
+      profilePicture: formInfo.profilePicture || null,
+      name: formInfo.name || "",
+      age: formInfo.age || "",
+      gender: formInfo.gender || "",
+      occupation: formInfo.occupation || "",
+      mbti: formInfo.mbti || "",
+      interests: formInfo.interests || "",
+      town: formInfo.town || "",
+      mrt: formInfo.mrt || "",
+      budget: formInfo.budget || "",
+      earlyMoveInDate: formInfo.earlyMoveInDate?.split("T")[0] || "",
+      userListingTag: formInfo.userListingTag || "",
+      description: formInfo.description || "",
       submittedBy: sessionStorage.getItem("userid"),
     },
     validationSchema: Yup.object({
@@ -61,8 +75,8 @@ function CreateUserListingForm({ userName, token }) {
         .min(0, "We suggest to indicate a realistic amount")
         .max(9999999)
         .required("*required"),
-      earlyMoveInDate: Yup.date().min(new Date()).required("*required"),
-      userListingTag: Yup.string().required("*required"),
+      earlyMoveInDate: Yup.date().required("*required"),
+      userListingTag: Yup.array().required("*required"),
       description: Yup.string()
         .min(40, "40-600 character limit")
         .max(600)
@@ -76,19 +90,21 @@ function CreateUserListingForm({ userName, token }) {
       const token = sessionStorage.getItem("accessToken");
       const username = sessionStorage.getItem("username");
 
-      formData.append("profilePicture", values.profilePicture);
+      // formData.append("profilePicture", values.profilePicture);
 
-      const config = {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      };
+      // const config = {
+      //   headers: {
+      //     "Content-Type": "multipart/form-data",
+      //   },
+      // };
 
-      await axios.post(uploadImageUrl, formData, config, {}).then((res) => {
-        values.profilePicture = res.data.imageURL;
-      });
+      // await axios.post(uploadImageUrl, formData, config, {}).then((res) => {
+      //   values.profilePicture = res.data.imageURL;
+      // });
 
-      const response = await axios.post(createUserListingURL, values, {
+      const editUserListingURL = `/api/userlistings/edit/${formInfo._id}`;
+
+      const response = await axios.put(editUserListingURL, values, {
         headers: {
           Authorization: `Bearer ${token} ${username}`,
         },
@@ -161,7 +177,7 @@ function CreateUserListingForm({ userName, token }) {
               </div>
 
               <h1 className="mt-6 text-2xl font-bold text-white sm:text-3xl md:text-4xl">
-                Create User Listing
+                Edit User Listing
               </h1>
 
               <p className="mt-4 leading-relaxed text-white/90">
@@ -187,11 +203,11 @@ function CreateUserListingForm({ userName, token }) {
                 </button>
 
                 <h1 className="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
-                  Create User Listing
+                  Edit User Listing
                 </h1>
 
                 <p className="mt-4 leading-relaxed text-gray-500">
-                  we have made the process of connecting with other users
+                  We have made the process of connecting with other users
                   seamless and quick.
                 </p>
               </div>
@@ -328,8 +344,8 @@ function CreateUserListingForm({ userName, token }) {
                   >
                     <option value="">Gender</option>
 
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
                   </select>
                 </div>
 
@@ -555,6 +571,7 @@ function CreateUserListingForm({ userName, token }) {
                     User Listing Tag
                   </label>
                   <select
+                    multiple
                     name="userListingTag"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
@@ -563,7 +580,7 @@ function CreateUserListingForm({ userName, token }) {
                   >
                     <option value="">Choose Tag</option>
                     {userListingTags.map((ult) => (
-                      <option key={ult._id} value={ult}>
+                      <option key={ult._id} value={[ult]}>
                         {ult}
                       </option>
                     ))}
@@ -609,7 +626,7 @@ function CreateUserListingForm({ userName, token }) {
                     type="submit"
                     className="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
                   >
-                    Create User Listing
+                    Edit User Listing
                   </button>
                 </div>
               </form>
@@ -621,4 +638,4 @@ function CreateUserListingForm({ userName, token }) {
   );
 }
 
-export default CreateUserListingForm;
+export default EditUserListingForm;
