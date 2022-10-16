@@ -163,6 +163,9 @@ function SearchBarUserListing({ setUserListing, userListing }) {
               className="block p-4 pl-10 w-72 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-5 mx-2"
               placeholder="Maximum Budget"
             >
+              <option disabled selected>
+                Select Interests
+              </option>
               {interests?.data?.map((interest) => (
                 // eslint-disable-next-line react/jsx-key
                 <option value={interest._id}>{interest.interests}</option>
@@ -183,6 +186,9 @@ function SearchBarUserListing({ setUserListing, userListing }) {
               className="block p-4 pl-10 w-72 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-5"
               placeholder="Maximum Budget"
             >
+              <option disabled selected>
+                Select Listing Tags
+              </option>
               <option value="Non-Smoker">Non-Smoker</option>
               <option value="I have a cat">I have a cat</option>
               <option value="I have a dog"> I have a dog</option>

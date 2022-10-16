@@ -21,7 +21,6 @@ function LandingPage() {
                       alt="logo"
                     />
                   </div>
-                  ¸
                   <p className="max-w-xl mx-auto mt-8 text-base leading-relaxed text-center text-white">
                     Having to move into a new space and connect with strangers
                     can seem overwhelming and you are not alone. At Socine we

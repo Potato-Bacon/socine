@@ -150,6 +150,9 @@ function SearchBarRoomListing({ setRoomListing, roomListing }) {
               name="amenities"
               className="block p-4 pl-10 w-72 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-5 mx-2"
             >
+              <option disabled selected>
+                Select Amenities
+              </option>
               {amenitiesTag.map((amenity) => (
                 // eslint-disable-next-line react/jsx-key
                 <option value={amenity}>{amenity}</option>
@@ -166,10 +169,14 @@ function SearchBarRoomListing({ setRoomListing, roomListing }) {
             </label>
             <select
               multiple
+              id="listingTags"
               name="listingTags"
               className="block p-4 pl-10 w-72 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-5"
               placeholder="listingTags"
             >
+              <option disabled selected>
+                Select Listing Tags
+              </option>
               {roomListingTags.map((tag) => (
                 // eslint-disable-next-line react/jsx-key
                 <option value={tag}>{tag}</option>
