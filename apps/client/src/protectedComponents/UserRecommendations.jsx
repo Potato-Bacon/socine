@@ -6,9 +6,11 @@ import Img from "react-cool-img";
 function UserRecommendations() {
   const userid = sessionStorage.getItem("userid");
   const userSubmittedListings = `/api/userlistings/submittedby/${userid}`;
-  const recommendationsURL = "/api/userlistings/recommendations";
+  const userRecommendationsURL = "/api/userlistings/recommendations";
+  const roomRecommendationsURL = "/api/roomlistings/recommendations";
 
-  const [recommendations, setRecommendations] = useState([]);
+  const [userRecommendations, setUserRecommendations] = useState([]);
+  const [roomRecommendations, setRoomRecommendations] = useState([]);
   const [userSubmittedData, setUserSubmittedData] = useState([]);
 
   useEffect(() => {
@@ -26,8 +28,19 @@ function UserRecommendations() {
             mrt: response.data.mrt,
             town: response.data.town,
           };
-          const response1 = await axios.post(recommendationsURL, body);
-          setRecommendations(response1.data);
+          const response1 = await axios.post(userRecommendationsURL, body);
+          setUserRecommendations(response1.data);
+        } catch (error) {
+          console.log(error);
+        }
+        try {
+          const body = {
+            rentPerMonth: response.data.budget,
+            mrt: response.data.mrt,
+            town: response.data.town,
+          };
+          const response2 = await axios.post(roomRecommendationsURL, body);
+          setRoomRecommendations(response2.data);
         } catch (error) {
           console.log(error);
         }
@@ -75,7 +88,7 @@ function UserRecommendations() {
       <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {/* Start of User Reccomendation Mapping */}
-          {recommendations.map((r) => (
+          {userRecommendations.map((r) => (
             <>
               <Link to={`/user/userlisting/${r?._id}`}>
                 <div key={r?._id}>
