@@ -8,6 +8,8 @@ import towns from "../staticData/town";
 import mrts from "../staticData/mrts";
 import userListingTags from "../staticData/userLiftingTags";
 import axios from "axios";
+import { toast } from "react-toastify";
+
 const mbtiURL = "/api/mbti";
 const interestsURL = "/api/interests";
 const createUserListingURL = "/api/userlistings/submit";
@@ -112,7 +114,9 @@ function CreateUserListingForm({ userName, token }) {
       // include error checking
       // console.log("Response:", data);
 
-      navigate("/user/userlisting");
+      toast.success("Room Listing Form Created!");
+
+      navigate("/user/");
     },
   });
 
