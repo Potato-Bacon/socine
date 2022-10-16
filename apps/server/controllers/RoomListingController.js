@@ -136,6 +136,22 @@ router.post("/search", async (req, res) => {
   }
 });
 
+router.post("/recommendations", async (req, res) => {
+  const { rentPerMonth, mrt, town } = req.body;
+  try {
+    const userListingRecommendations = await RoomListing.find({
+      $and: [
+        { $or: [{ mrt: mrt }, { town: town }] },
+        { rentPerMonth: { $lte: rentPerMonth } },
+      ],
+    }).exec();
+
+    res.status(200).send(userListingRecommendations);
+  } catch (error) {
+    res.status(500).send({ msg: error });
+  }
+});
+
 //search by submittedBy ObjectID
 router.get("/submittedby/:id", async (req, res) => {
   const { id } = req.params;
