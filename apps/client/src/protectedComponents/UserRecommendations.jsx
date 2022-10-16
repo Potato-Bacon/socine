@@ -51,7 +51,7 @@ function UserRecommendations() {
           <span className="px-2 text-slate-50 bg-blue-600 rounded dark:bg-blue-500">
             Budget
           </span>{" "}
-          or{" "}
+          and{" "}
           <span className="border-solid border-red-600 border-b-4 font-semibold">
             proximity
           </span>{" "}
