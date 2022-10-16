@@ -103,13 +103,13 @@ function RoomListingPage({ username, token }) {
                         {rl?.mrt} Mrt Station
                       </span>
                     </div>
-                    <hr className="w-32 my-6 text-blue-500" />
+                    <hr className="w-32 my-4 text-blue-500" />
 
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                    <p className="text-xs text-gray-500 dark:text-gray-400">
                       {rl?.shortDescription}
                     </p>
 
-                    <button className="inline-block mt-4 text-blue-500 underline hover:text-blue-400">
+                    <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 my-3">
                       <Link to={`/user/roomlisting/${rl._id}`}>
                         Find Out More
                       </Link>
