@@ -22,6 +22,8 @@ import ProtectedErrorPage from "./protectedPages/ProtectedErrorPage";
 import { ProtectedRoute } from "./protectedComponents/ProtectedRoute";
 import { AuthProvider } from "./hooks/useAuth";
 export const PersonContext = createContext();
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [userName, setUsername] = useState("");
@@ -88,6 +90,15 @@ function App() {
               <Route path="*" element={<ProtectedErrorPage token={token} />} />
             </Route>
           </Routes>
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            closeOnClick={true}
+            draggable={true}
+            progress={undefined}
+            pauseOnHover={true}
+          />
         </BrowserRouter>
       </PersonContext.Provider>
     </div>
