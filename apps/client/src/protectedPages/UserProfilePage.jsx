@@ -120,7 +120,7 @@ function UserProfilePage() {
                 <div key={userListing._id}>
                   <div className="relative overflow-hidden transition duration-300 transform rounded shadow-lg lg:hover:-translate-y-2 hover:shadow-2xl">
                     <Img
-                      className="object-cover w-full h-57 md:h-96 xl:h-96"
+                      className="object-cover w-full h-56 md:h-64 xl:h-80"
                       src={userListing.profilePicture}
                       alt="Person"
                       loading="lazy"
@@ -154,21 +154,23 @@ function UserProfilePage() {
                       <p className="mb-4 text-xs text-gray-100">
                         SGD ${userListing.budget}
                       </p>
+
                       <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 my-3">
                         <Link to={`/user/edituserlisting`}>Edit</Link>
-                      </button>
-                    </div>
-                    <div>
-                      <button
-                        onClick={handleDelete}
-                        className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800 my-3"
-                      >
-                        Delete
                       </button>
                     </div>
                   </div>
                 </div>
               </Link>
+
+              <div className="absolute ml-2">
+                <button
+                  onClick={handleDelete}
+                  className=" text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800 my-3"
+                >
+                  Delete
+                </button>
+              </div>
             </>
           </div>
         </div>
@@ -234,13 +236,18 @@ function UserProfilePage() {
                       <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 my-3">
                         <Link to={`/user/editroomlisting`}>Edit</Link>
                       </button>
-                      <button className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800 my-3">
-                        <Link to={`/user/edituserlisting`}>Delete</Link>
-                      </button>
                     </div>
                   </div>
                 </div>
               </Link>
+              <div className="absolute ml-2">
+                <button
+                  onClick={handleDelete}
+                  className=" text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800 my-3"
+                >
+                  Delete
+                </button>
+              </div>
             </>
           </div>
         </div>
