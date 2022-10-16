@@ -168,4 +168,15 @@ router.get("/submittedby/:id", async (req, res) => {
   }
 });
 
+router.delete("/delete/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const deleteListing = await RoomListing.findByIdAndDelete({ _id: id });
+    res.status(200).send(deleteListing);
+  } catch (error) {
+    res.status(500).send({ msg: error });
+  }
+});
+
 module.exports = router;
