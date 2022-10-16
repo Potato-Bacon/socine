@@ -16,19 +16,16 @@ function UserProfilePage() {
       const userListingUrl = `/api/userlistings/submittedby/${id}`;
 
       const userList = await axios.get(userListingUrl);
-      console.log(userList, "this is userlist");
       setUserListing(userList.data);
 
       const roomListingUrl = `/api/roomlistings/submittedby/${id}`;
 
       const roomList = await axios.get(roomListingUrl);
-      console.log(roomList, "this is room list");
       setRoomListing(roomList.data);
 
       const profileUrl = `/api/user/${id}`;
       const findProfile = await axios.get(profileUrl);
-      console.log(findProfile, "this is profile");
-      setProfile(findProfile);
+      setProfile(findProfile.data);
     };
     fetchData();
   }, []);
@@ -36,6 +33,10 @@ function UserProfilePage() {
   return (
     <>
       <h1>User Profile Page</h1>
+      <div>Username: {profile.username}</div>
+      <div>Mobile Number: {profile.mobileNumber}</div>
+      <div>Email: {profile.email}</div>
+
       {userListing.data === "" ? (
         <Link to={"/user/createroomlisting"}>
           <div>User Listing not created. Click here to get started </div>
@@ -86,6 +87,7 @@ function UserProfilePage() {
                   </div>
                 </div>
               </Link>
+              <button>Edit</button>
             </>
           </div>
         </div>
