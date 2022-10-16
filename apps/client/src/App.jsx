@@ -18,6 +18,7 @@ import CreateRoomListingPage from "./protectedPages/CreateRoomListingPage";
 import UserWatchListPage from "./protectedPages/UserWatchListPage";
 import UserListingFocusPage from "./protectedPages/UserListingFocusPage";
 import RoomListingFocusPage from "./protectedPages/RoomListingFocusPage";
+import EditUserListingPage from "./protectedPages/EditUserListingPage";
 import ProtectedErrorPage from "./protectedPages/ProtectedErrorPage";
 import { ProtectedRoute } from "./protectedComponents/ProtectedRoute";
 import { AuthProvider } from "./hooks/useAuth";
@@ -78,6 +79,10 @@ function App() {
               <Route
                 path="/user/createuserlisting"
                 element={<CreateUserListingPage token={token} />}
+              />
+              <Route
+                path="/user/edituserlisting"
+                element={<EditUserListingPage token={token} />}
               />
               <Route
                 path="/user/createroomlisting"

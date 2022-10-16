@@ -21,11 +21,7 @@ function LandingPage() {
                       alt="logo"
                     />
                   </div>
-                  <h1 className="max-w-5xl text-2xl font-bold leading-none tracking-tighter text-white md:text-5xl lg:text-6xl lg:max-w-7xl">
-                    The freedom to make <br className="hidden lg:block" />
-                    better choices
-                  </h1>
-
+                  ¸
                   <p className="max-w-xl mx-auto mt-8 text-base leading-relaxed text-center text-white">
                     Having to move into a new space and connect with strangers
                     can seem overwhelming and you are not alone. At Socine we
@@ -34,7 +30,6 @@ function LandingPage() {
                     with one another and make informed decisions for your
                     perfect tenant experience.
                   </p>
-
                   <button
                     className="mx-auto mt-8 text-sm font-semibold text-blue-600 hover:text-neutral-600"
                     title="read more"
