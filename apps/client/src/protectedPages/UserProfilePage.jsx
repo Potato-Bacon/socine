@@ -128,7 +128,7 @@ function UserProfilePage() {
                   <div key={r._id}>
                     <div className="relative overflow-hidden transition duration-300 transform rounded shadow-lg lg:hover:-translate-y-2 hover:shadow-2xl">
                       <Img
-                        className="object-cover w-full h-56 md:h-64 xl:h-80"
+                        className="object-cover w-full h-72 md:h-96 xl:h-96"
                         src={r.profilePicture}
                         alt="Person"
                         loading="lazy"
@@ -209,7 +209,7 @@ function UserProfilePage() {
                     <div key={roomListing?._id}>
                       <div className="relative overflow-hidden transition duration-300 transform rounded shadow-lg lg:hover:-translate-y-2 hover:shadow-2xl">
                         <Img
-                          className="object-cover w-full h-56 md:h-64 xl:h-80"
+                          className="object-cover w-full h-72 md:h-96 xl:h-96"
                           src={r?.listingPic}
                           alt="Person"
                           loading="lazy"
