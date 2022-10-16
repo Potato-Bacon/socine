@@ -5,6 +5,7 @@ import "yup-phone";
 // import YupPassword from "yup-password";
 // YupPassword(Yup);
 import Img from "react-cool-img";
+import { toast } from "react-toastify";
 
 const url = "/api/register";
 
@@ -64,7 +65,17 @@ function RegistrationForm() {
           "There is something wrong with your submmision. Please try again"
         );
       } else {
-        alert("Registration Successful - Thank you for being part of Socine");
+        // alert("Registration Successful - Thank you for being part of Socine");
+        toast.success("Registration Successful", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
         navigate("/login");
       }
     },

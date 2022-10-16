@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 // import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import * as Yup from "yup";
+import { toast } from "react-toastify";
 
 const url = "/api/login";
 
@@ -45,6 +46,16 @@ function LoginForm({ setUsername, setToken }) {
         sessionStorage.setItem("username", data.payload.username);
         // console.log(data);
         navigate("/user");
+        toast.success("Login Successful, Welcome to Socine", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
       }
     },
   });
