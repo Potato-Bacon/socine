@@ -86,27 +86,27 @@ function UserRecommendations() {
         </p>
       </div>
       {/* End of Recommendations Home Header */}
-      {/* Start of Recommendation Cards */}
+      {/* Start of User Recommendation Cards */}
       <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {/* Start of User Reccomendation Mapping */}
-          {userRecommendations.map((r) => (
+          {userRecommendations.map((ur) => (
             <>
-              <Link to={`/user/userlisting/${r?._id}`}>
-                <div key={r?._id}>
+              <Link to={`/user/userlisting/${ur?._id}`}>
+                <div key={ur?._id}>
                   <div className="relative overflow-hidden transition duration-300 transform rounded shadow-lg lg:hover:-translate-y-2 hover:shadow-2xl">
                     <Img
-                      className="object-cover w-full h-56 md:h-64 xl:h-80"
-                      src={r?.profilePicture}
+                      className="object-cover w-full h-64 md:h-72 xl:h-96"
+                      src={ur?.profilePicture}
                       alt="Person"
                       loading="lazy"
                     />
                     <div className="absolute inset-0 flex flex-col justify-center px-5 py-4 text-center transition-opacity duration-300 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
                       <p className="mb-1 text-lg font-bold text-gray-100">
-                        {r?.name}
+                        {ur?.name}
                       </p>
                       <p className="mb-4 text-xs text-gray-100">
-                        {r?.occupation}
+                        {ur?.occupation}
                       </p>
                       {/* <p className="mb-4 text-xs tracking-wide text-gray-400">
                     {r?.description}
@@ -115,16 +115,16 @@ function UserRecommendations() {
                       <p className="text-xs tracking-wide text-gray-400">
                         Preferred Location
                       </p>
-                      <p className="mb-4 text-xs text-gray-100">{r?.town}</p>
+                      <p className="mb-4 text-xs text-gray-100">{ur?.town}</p>
                       <p className="text-xs tracking-wide text-gray-400">
                         MRT Station Proximity
                       </p>
-                      <p className="mb-4 text-xs text-gray-100">{r?.mrt}</p>
+                      <p className="mb-4 text-xs text-gray-100">{ur?.mrt}</p>
                       <p className="text-xs tracking-wide text-gray-400">
                         Overall Budget
                       </p>
                       <p className="mb-4 text-xs text-gray-100">
-                        SGD ${r?.budget}
+                        SGD ${ur?.budget}
                       </p>
                     </div>
                   </div>
@@ -135,6 +135,56 @@ function UserRecommendations() {
         </div>
       </div>
       {/* End of Reccomendation Cards */}
+
+      {/* Start of Room Recommendation Cards */}
+      <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Start of User Reccomendation Mapping */}
+          {roomRecommendations.map((rr) => (
+            <>
+              <Link to={`/user/roomlisting/${rr?._id}`}>
+                <div key={rr?._id}>
+                  <div className="relative overflow-hidden transition duration-300 transform rounded shadow-lg lg:hover:-translate-y-2 hover:shadow-2xl">
+                    <Img
+                      className="object-cover w-full h-64 md:h-72 xl:h-96"
+                      src={rr?.listingPic}
+                      alt="Person"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 flex flex-col justify-center px-5 py-4 text-center transition-opacity duration-300 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
+                      <p className="mb-1 text-lg font-bold text-gray-100">
+                        {rr?.title}
+                      </p>
+                      <p className="mb-4 text-xs text-gray-100">
+                        {rr?.address}
+                      </p>
+                      {/* <p className="mb-4 text-xs tracking-wide text-gray-400">
+                    {r?.description}
+                  </p> */}
+
+                      <p className="text-xs tracking-wide text-gray-400">
+                        Location
+                      </p>
+                      <p className="mb-4 text-xs text-gray-100">{rr?.town}</p>
+                      <p className="text-xs tracking-wide text-gray-400">
+                        MRT Station Proximity
+                      </p>
+                      <p className="mb-4 text-xs text-gray-100">{rr?.mrt}</p>
+                      <p className="text-xs tracking-wide text-gray-400">
+                        Rent
+                      </p>
+                      <p className="mb-4 text-xs text-gray-100">
+                        SGD ${rr?.rentPerMonth}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </>
+          ))}
+        </div>
+      </div>
+      {/* End of Room Reccomendation Cards */}
     </>
   );
 }
