@@ -136,4 +136,20 @@ router.post("/search", async (req, res) => {
   }
 });
 
+//search by submittedBy ObjectID
+router.get("/submittedby/:id", async (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+
+  try {
+    const searchBySubmitted = await RoomListing.findOne({
+      submittedBy: id,
+    });
+    res.status(200).send(searchBySubmitted);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ msg: error });
+  }
+});
+
 module.exports = router;

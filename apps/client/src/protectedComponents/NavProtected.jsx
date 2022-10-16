@@ -128,7 +128,7 @@ function NavProtected({ setToken }) {
                             </button>
                           )}
                         </Menu.Item>
-                        {/* <Menu.Item>
+                        <Menu.Item>
                           {({ active }) => (
                             <button
                               className={classNames(
@@ -139,7 +139,7 @@ function NavProtected({ setToken }) {
                               <Link to="/user/watchlist">Watch List</Link>
                             </button>
                           )}
-                        </Menu.Item> */}
+                        </Menu.Item>
                         <Menu.Item>
                           {({ active }) => (
                             <button
