@@ -27,6 +27,7 @@ function UserRecommendations() {
             budget: response.data.budget,
             mrt: response.data.mrt,
             town: response.data.town,
+            id: response.data._id,
           };
           const response1 = await axios.post(userRecommendationsURL, body);
           setUserRecommendations(response1.data);
