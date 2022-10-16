@@ -42,6 +42,7 @@ function LoginForm({ setUsername, setToken }) {
         // setToken(data.accessToken);
         sessionStorage.setItem("accessToken", data.accessToken);
         sessionStorage.setItem("userid", data.payload.userid);
+        sessionStorage.setItem("username", data.payload.username);
         // console.log(data);
         navigate("/user");
       }

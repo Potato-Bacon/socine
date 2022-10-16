@@ -31,6 +31,9 @@ function SearchBarUserListing({ setUserListing, userListing }) {
       ...(elements.interests.value !== "" && {
         interests: elements.interests.value,
       }),
+      ...(elements.userListingTag.value !== "" && {
+        userListingTag: elements.userListingTag.value,
+      }),
 
       min: min,
       max: max,
@@ -168,17 +171,16 @@ function SearchBarUserListing({ setUserListing, userListing }) {
             </select>
           </div>
 
-          {/* <div className="flex-row flex justify-items-start justify-center">
-            
+          <div className="flex-row flex justify-items-start justify-center">
             <label
-              htmlFor="interests"
+              htmlFor="userListingTag"
               className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300"
             >
-              Interests
+              Listing Tags
             </label>
             <select
               multiple
-              name="listingTag"
+              name="userListingTag"
               className="block p-4 pl-10 w-72 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-5"
               placeholder="Maximum Budget"
             >
@@ -189,7 +191,7 @@ function SearchBarUserListing({ setUserListing, userListing }) {
               <option value="LGBT+ Friendly">LGBT+ Friendly</option>
               <option value="Diversity Friendly">Diversity Friendly</option>
             </select>
-          </div> */}
+          </div>
           {/* Submit Search Button */}
           <div className="flex-row flex justify-items-center justify-center my-5">
             <button

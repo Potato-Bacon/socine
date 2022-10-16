@@ -8,11 +8,11 @@ function UserProfilePage({ userName, token }) {
     const fetchData = async () => {
       const url = "/api/interests";
 
-      const userid = sessionStorage.getItem("userid");
+      const username = sessionStorage.getItem("username");
 
       const data = await axios.get(url, {
         headers: {
-          Authorization: `Bearer ${token} ${userid}`,
+          Authorization: `Bearer ${token} ${username}`,
         },
       });
       console.log(data);

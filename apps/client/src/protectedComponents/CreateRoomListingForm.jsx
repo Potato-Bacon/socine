@@ -37,6 +37,7 @@ function CreateRoomListingForm({ userName, token }) {
       stayLength: "",
       propertyDescription: "",
       occupantsDescription: "",
+      submittedBy: sessionStorage.getItem("userid"),
     },
     validationSchema: Yup.object({
       name: Yup.string()
@@ -110,7 +111,14 @@ function CreateRoomListingForm({ userName, token }) {
         console.log(values.listingPic);
       });
 
-      const response = await axios.post(createRoomListingURL, values);
+      const token = sessionStorage.getItem("accessToken");
+      const username = sessionStorage.getItem("username");
+
+      const response = await axios.post(createRoomListingURL, values, {
+        headers: {
+          Authorization: `Bearer ${token} ${username}`,
+        },
+      });
       console.log(response);
 
       navigate("/user");

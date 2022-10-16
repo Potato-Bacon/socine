@@ -32,6 +32,7 @@ function CreateUserListingForm({ userName, token }) {
       earlyMoveInDate: "",
       userListingTag: "",
       description: "",
+      submittedBy: sessionStorage.getItem("userid"),
     },
     validationSchema: Yup.object({
       profilePicture: Yup.mixed().required("A file is required"),
@@ -72,6 +73,8 @@ function CreateUserListingForm({ userName, token }) {
       console.log(values.profilePicture);
 
       const formData = new FormData();
+      const token = sessionStorage.getItem("accessToken");
+      const username = sessionStorage.getItem("username");
 
       formData.append("profilePicture", values.profilePicture);
 
@@ -85,7 +88,11 @@ function CreateUserListingForm({ userName, token }) {
         values.profilePicture = res.data.imageURL;
       });
 
-      const response = await axios.post(createUserListingURL, values);
+      const response = await axios.post(createUserListingURL, values, {
+        headers: {
+          Authorization: `Bearer ${token} ${username}`,
+        },
+      });
       console.log(response);
 
       // axios.post(uploadImageUrl, formData, config).then((res) => {
