@@ -114,7 +114,7 @@ function CreateUserListingForm({ userName, token }) {
       // include error checking
       // console.log("Response:", data);
 
-      toast.success("Room Listing Form Created!");
+      toast.success("Room Listing Created!");
 
       navigate("/user/");
     },

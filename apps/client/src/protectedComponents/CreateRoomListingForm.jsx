@@ -121,7 +121,7 @@ function CreateRoomListingForm({ userName, token }) {
         },
       });
       console.log(response);
-      toast.success("Room Listing Form Created!");
+      toast.success("Room Listing Created!");
 
       navigate("/user");
     },
