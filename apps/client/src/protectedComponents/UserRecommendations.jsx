@@ -36,13 +36,23 @@ function UserRecommendations() {
 
   return (
     <>
-      <div>UserRecommendations</div>
-
-      <div>Based on your UserListing of budget, mrt, town </div>
-
-      {/* {recommendations.map((r)=> (
-
-      ))} */}
+      <div className="my-8 mx-12">
+        <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+          Regain{" "}
+          <mark className="px-2 text-white bg-blue-600 rounded dark:bg-blue-500">
+            control
+          </mark>{" "}
+          over your tenant experience
+        </h1>
+        <p className="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">
+          Here at Socine we focus on technology, user experience and
+          innovations. We have curated the recommendations below based on your{" "}
+          <span className="px-2 text-slate-50 bg-blue-600 rounded dark:bg-blue-500">
+            Budget
+          </span>{" "}
+          and <span>proximity</span> to <span>Town</span> and <span>MRT</span>.
+        </p>
+      </div>
     </>
   );
 }
