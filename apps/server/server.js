@@ -13,6 +13,7 @@ const userHomeController = require("./controllers/UserHomeController");
 const Mbti = require("./models/mbtiSchema");
 const Interest = require("./models/interestSchema");
 const isAuth = require("./middleware/isAuth");
+const User = require("./models/userSchema");
 require("./models/roomListingSchema");
 require("./models/mbtiSchema");
 
@@ -49,7 +50,7 @@ app.get("/", (req, res) => {
 //get all MBTI
 app.get("/api/mbti", async (req, res) => {
   try {
-    const mbti = await Mbti.find();
+    const mbti = await Mbti.find().exec();
     res.send(mbti);
   } catch (error) {
     res.status(500).send({ error });
@@ -59,8 +60,19 @@ app.get("/api/mbti", async (req, res) => {
 //get all Interests
 app.get("/api/interests", async (req, res) => {
   try {
-    const interests = await Interest.find();
+    const interests = await Interest.find().exec();
     res.send(interests);
+  } catch (error) {
+    res.status(500).send({ error });
+  }
+});
+
+app.get("/api/user/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const profile = await User.findById({ _id: id }).exec();
+    res.status(200).send(profile);
   } catch (error) {
     res.status(500).send({ error });
   }
