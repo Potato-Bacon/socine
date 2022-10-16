@@ -111,6 +111,7 @@ function CreateUserListingForm({ userName, token }) {
       // const data = await res.json();
       // include error checking
       // console.log("Response:", data);
+
       navigate("/user/userlisting");
     },
   });

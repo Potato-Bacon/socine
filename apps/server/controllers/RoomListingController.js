@@ -40,7 +40,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.put("/:id", isAuth, async (req, res) => {
+router.put("/edit/:id", async (req, res) => {
   const { id } = req.params;
   const update = req.body;
 

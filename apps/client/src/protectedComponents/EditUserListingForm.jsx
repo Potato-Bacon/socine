@@ -11,6 +11,7 @@ import axios from "axios";
 const mbtiURL = "/api/mbti";
 const interestsURL = "/api/interests";
 const uploadImageUrl = "/api/images/upload";
+import { toast } from "react-toastify";
 
 function EditUserListingForm() {
   const navigate = useNavigate();
@@ -86,7 +87,7 @@ function EditUserListingForm() {
       console.log(values);
       console.log(values.profilePicture);
 
-      const formData = new FormData();
+      // const formData = new FormData();
       const token = sessionStorage.getItem("accessToken");
       const username = sessionStorage.getItem("username");
 
@@ -127,7 +128,8 @@ function EditUserListingForm() {
       // const data = await res.json();
       // include error checking
       // console.log("Response:", data);
-      navigate("/user/userlisting");
+      toast.success("User Listing Form Updated!");
+      navigate("/user/profile");
     },
   });
 

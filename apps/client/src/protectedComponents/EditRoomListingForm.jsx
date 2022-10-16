@@ -8,36 +8,51 @@ import mrts from "../staticData/mrts";
 import roomListingTags from "../staticData/roomListingTags";
 import amenitiesTag from "../staticData/amenitiesTag";
 import axios from "axios";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 const createRoomListingURL = "/api/roomlistings/submit";
 const uploadImageUrl = "/api/images/uploadlisting";
 
-function CreateRoomListingForm({ userName, token }) {
+function EditRoomListingForm({ userName, token }) {
+  const [formInfo, setFormInfo] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const id = sessionStorage.getItem("userid");
+
+      const url = `/api/roomlistings/submittedby/${id}`;
+      const data = await axios.get(url);
+      console.log(data);
+      setFormInfo(data.data);
+    };
+    fetchData();
+  }, []);
   const navigate = useNavigate();
   const formik = useFormik({
+    enableReinitialize: true,
     initialValues: {
-      name: "",
-      title: "",
-      shortDescription: "",
-      listingPic: null,
-      address: "",
-      town: "",
-      mrt: "",
-      amenities: "",
-      listingTags: "",
-      wholeUnitOrRoomOnly: "",
-      roomType: "",
-      bathroomType: "",
-      genderPreference: "",
-      apartmentType: "",
-      apartmentRoomTypes: "",
-      securityDeposit: "",
-      rentPerMonth: "",
-      availability: "",
-      stayLength: "",
-      propertyDescription: "",
-      occupantsDescription: "",
+      name: formInfo.name || "",
+      title: formInfo.title || "",
+      shortDescription: formInfo.shortDescription || "",
+      listingPic: formInfo.listingPic || "",
+      address: formInfo.address || "",
+      town: formInfo.town || "",
+      mrt: formInfo.mrt || "",
+      amenities: formInfo.amenities || "",
+      listingTags: formInfo.listingTags || "",
+      wholeUnitOrRoomOnly: formInfo.wholeUnitOrRoomOnly || "",
+      roomType: formInfo.roomType || "",
+      bathroomType: formInfo.bathroomType || "",
+      genderPreference: formInfo.genderPreference || "",
+      apartmentType: formInfo.apartmentType || "",
+      apartmentRoomTypes: formInfo.apartmentRoomTypes || "",
+      securityDeposit: formInfo.securityDeposit || "",
+      rentPerMonth: formInfo.rentPerMonth || "",
+      availability: formInfo.availability?.split("T")[0] || "",
+      stayLength: formInfo.stayLength || "",
+      propertyDescription: formInfo.propertyDescription || "",
+      occupantsDescription: formInfo.occupantsDescription || "",
       submittedBy: sessionStorage.getItem("userid"),
     },
     validationSchema: Yup.object({
@@ -94,36 +109,38 @@ function CreateRoomListingForm({ userName, token }) {
         .required("*required"),
     }),
     onSubmit: async (values) => {
-      console.log(values);
-      console.log(values.listingPic);
+      // console.log(values);
+      // console.log(values.listingPic);
 
-      const formData = new FormData();
+      // const formData = new FormData();
 
-      formData.append("listingPic", values.listingPic);
+      // formData.append("listingPic", values.listingPic);
 
-      const config = {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      };
+      // const config = {
+      //   headers: {
+      //     "Content-Type": "multipart/form-data",
+      //   },
+      // };
 
-      await axios.post(uploadImageUrl, formData, config, {}).then((res) => {
-        values.listingPic = res.data.imageURL;
-        console.log(values.listingPic);
-      });
+      // await axios.post(uploadImageUrl, formData, config, {}).then((res) => {
+      //   values.listingPic = res.data.imageURL;
+      //   console.log(values.listingPic);
+      // });
 
       const token = sessionStorage.getItem("accessToken");
       const username = sessionStorage.getItem("username");
 
-      const response = await axios.post(createRoomListingURL, values, {
+      const editUserListingURL = `/api/roomlistings/edit/${formInfo._id}`;
+
+      const response = await axios.put(editUserListingURL, values, {
         headers: {
           Authorization: `Bearer ${token} ${username}`,
         },
       });
       console.log(response);
-      toast.success("Room Listing Form Created!");
+      toast.success("Room Listing Form Updated!");
 
-      navigate("/user");
+      navigate("/user/profile");
     },
   });
   return (
@@ -148,7 +165,7 @@ function CreateRoomListingForm({ userName, token }) {
               </div>
 
               <h1 className="mt-6 text-2xl font-bold text-white sm:text-3xl md:text-4xl">
-                Create Room Listing
+                Edit Room Listing
               </h1>
 
               <p className="mt-4 leading-relaxed text-white/90">
@@ -174,7 +191,7 @@ function CreateRoomListingForm({ userName, token }) {
                 </button>
 
                 <h1 className="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
-                  Create Room Listing
+                  Edit Room Listing
                 </h1>
 
                 <p className="mt-4 leading-relaxed text-gray-500">
@@ -836,7 +853,7 @@ function CreateRoomListingForm({ userName, token }) {
                     type="submit"
                     className="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
                   >
-                    Create Room Listing
+                    Edit Room Listing
                   </button>
                 </div>
               </form>
@@ -848,4 +865,4 @@ function CreateRoomListingForm({ userName, token }) {
   );
 }
 
-export default CreateRoomListingForm;
+export default EditRoomListingForm;
