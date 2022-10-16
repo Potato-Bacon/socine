@@ -62,7 +62,7 @@ function CreateUserListingForm({ userName, token }) {
         .max(9999999)
         .required("*required"),
       earlyMoveInDate: Yup.date().min(new Date()).required("*required"),
-      userListingTag: Yup.string().required("*required"),
+      userListingTag: Yup.array().required("*required"),
       description: Yup.string()
         .min(40, "40-600 character limit")
         .max(600)
@@ -313,7 +313,7 @@ function CreateUserListingForm({ userName, token }) {
                     {formik.errors.age}
                   </span>
                 ) : null}
-                <div className="col-span-6 sm:col-span-3">
+                <div className="col-span-6">
                   <label
                     htmlFor="gender"
                     className="block text-sm font-medium text-gray-700"
@@ -396,7 +396,7 @@ function CreateUserListingForm({ userName, token }) {
                   </span>
                 ) : null}
 
-                <div className="col-span-6">
+                <div className="col-span-6 ">
                   <label
                     htmlFor="interests"
                     className="block text-sm font-medium text-gray-700"
@@ -548,7 +548,7 @@ function CreateUserListingForm({ userName, token }) {
                 ) : null}
 
                 {/* interest */}
-                <div className="col-span-6 sm:col-span-3">
+                <div className="col-span-6">
                   <label
                     htmlFor="userListingTag"
                     className="block text-sm font-medium text-gray-700"
@@ -556,15 +556,15 @@ function CreateUserListingForm({ userName, token }) {
                     User Listing Tag
                   </label>
                   <select
+                    multiple
                     name="userListingTag"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.userListingTag}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   >
-                    <option value="">Choose Tag</option>
                     {userListingTags.map((ult) => (
-                      <option key={ult._id} value={ult}>
+                      <option key={ult._id} value={[ult]}>
                         {ult}
                       </option>
                     ))}
