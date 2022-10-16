@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-key */
 import { useFormik } from "formik";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import * as Yup from "yup";
 import Img from "react-cool-img";
 import towns from "../staticData/town";
@@ -16,12 +16,11 @@ const uploadImageUrl = "/api/images/uploadlisting";
 
 function EditRoomListingForm({ userName, token }) {
   const [formInfo, setFormInfo] = useState([]);
+  const { id } = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
-      const id = sessionStorage.getItem("userid");
-
-      const url = `/api/roomlistings/submittedby/${id}`;
+      const url = `/api/roomlistings/${id}`;
       const data = await axios.get(url);
       console.log(data);
       setFormInfo(data.data);

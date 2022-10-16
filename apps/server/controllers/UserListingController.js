@@ -157,12 +157,13 @@ router.post("/search", async (req, res) => {
 // });
 
 router.post("/recommendations", async (req, res) => {
-  const { budget, mrt, town } = req.body;
+  const { budget, mrt, town, id } = req.body;
   try {
     const userListingRecommendations = await UserListings.find({
       $and: [
         { $or: [{ mrt: mrt }, { town: town }] },
         { budget: { $lte: budget } },
+        { _id: { $nin: id } },
       ],
     }).exec();
 
@@ -220,6 +221,21 @@ router.delete("/delete/:id", async (req, res) => {
 
 //search by submittedBy ObjectID
 router.get("/submittedby/:id", async (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+
+  try {
+    const searchBySubmitted = await UserListings.find({
+      submittedBy: id,
+    });
+    res.status(200).send(searchBySubmitted);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ msg: error });
+  }
+});
+
+router.get("/submittedby/1/:id", async (req, res) => {
   const { id } = req.params;
   console.log(id);
 

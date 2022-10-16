@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -22,6 +23,7 @@ function UserProfilePage() {
       const roomListingUrl = `/api/roomlistings/submittedby/${id}`;
 
       const roomList = await axios.get(roomListingUrl);
+      console.log(roomList, "roomlist");
       setRoomListing(roomList.data);
 
       const profileUrl = `/api/user/${id}`;
@@ -113,67 +115,67 @@ function UserProfilePage() {
           <div>User Listing not created. Click here to get started </div>
         </Link>
       ) : (
-        <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-            <>
-              <Link to={`/user/userlisting/${userListing._id}`}>
-                <div key={userListing._id}>
-                  <div className="relative overflow-hidden transition duration-300 transform rounded shadow-lg lg:hover:-translate-y-2 hover:shadow-2xl">
-                    <Img
-                      className="object-cover w-full h-56 md:h-64 xl:h-80"
-                      src={userListing.profilePicture}
-                      alt="Person"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 flex flex-col justify-center px-5 py-4 text-center transition-opacity duration-300 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
-                      <p className="mb-1 text-lg font-bold text-gray-100">
-                        {userListing.name}
-                      </p>
-                      <p className="mb-4 text-xs text-gray-100">
-                        {userListing.occupation}
-                      </p>
-                      {/* <p className="mb-4 text-xs tracking-wide text-gray-400">
-                  {userListing.description}
-                </p> */}
+        userListing.map((r) => (
+          <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+            <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+              <>
+                <Link to={`/user/userlisting/${r._id}`}>
+                  <div key={r._id}>
+                    <div className="relative overflow-hidden transition duration-300 transform rounded shadow-lg lg:hover:-translate-y-2 hover:shadow-2xl">
+                      <Img
+                        className="object-cover w-full h-56 md:h-64 xl:h-80"
+                        src={r.profilePicture}
+                        alt="Person"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 flex flex-col justify-center px-5 py-4 text-center transition-opacity duration-300 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
+                        <p className="mb-1 text-lg font-bold text-gray-100">
+                          {r.name}
+                        </p>
+                        <p className="mb-4 text-xs text-gray-100">
+                          {r.occupation}
+                        </p>
+                        {/* <p className="mb-4 text-xs tracking-wide text-gray-400">
+              {userListing.description}
+            </p> */}
 
-                      <p className="text-xs tracking-wide text-gray-400">
-                        Preferred Location
-                      </p>
-                      <p className="mb-4 text-xs text-gray-100">
-                        {userListing.town}
-                      </p>
-                      <p className="text-xs tracking-wide text-gray-400">
-                        MRT Station Proximity
-                      </p>
-                      <p className="mb-4 text-xs text-gray-100">
-                        {userListing.mrt}
-                      </p>
-                      <p className="text-xs tracking-wide text-gray-400">
-                        Overall Budget
-                      </p>
-                      <p className="mb-4 text-xs text-gray-100">
-                        SGD ${userListing.budget}
-                      </p>
+                        <p className="text-xs tracking-wide text-gray-400">
+                          Preferred Location
+                        </p>
+                        <p className="mb-4 text-xs text-gray-100">{r.town}</p>
+                        <p className="text-xs tracking-wide text-gray-400">
+                          MRT Station Proximity
+                        </p>
+                        <p className="mb-4 text-xs text-gray-100">{r.mrt}</p>
+                        <p className="text-xs tracking-wide text-gray-400">
+                          Overall Budget
+                        </p>
+                        <p className="mb-4 text-xs text-gray-100">
+                          SGD ${r.budget}
+                        </p>
 
-                      <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 my-3">
-                        <Link to={`/user/edituserlisting`}>Edit</Link>
-                      </button>
+                        <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 my-3">
+                          <Link to={`/user/edituserlisting/${r._id}`}>
+                            Edit
+                          </Link>
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Link>
+                </Link>
 
-              <div className="absolute ml-2">
-                <button
-                  onClick={handleDelete}
-                  className=" text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800 my-3"
-                >
-                  Delete
-                </button>
-              </div>
-            </>
+                <div className="absolute ml-2">
+                  <button
+                    onClick={handleDelete}
+                    className=" text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800 my-3"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </>
+            </div>
           </div>
-        </div>
+        ))
       )}
 
       {/* Check for users roomlisting */}
@@ -195,59 +197,59 @@ function UserProfilePage() {
             {/* Start of User Reccomendation Mapping */}
 
             <>
-              <Link to={`/user/userlisting/${roomListing._id}`}>
-                <div key={roomListing?._id}>
-                  <div className="relative overflow-hidden transition duration-300 transform rounded shadow-lg lg:hover:-translate-y-2 hover:shadow-2xl">
-                    <Img
-                      className="object-cover w-full h-56 md:h-64 xl:h-80"
-                      src={roomListing?.listingPic}
-                      alt="Person"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 flex flex-col justify-center px-5 py-4 text-center transition-opacity duration-300 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
-                      <p className="mb-1 text-lg font-bold text-gray-100">
-                        {roomListing?.title}
-                      </p>
-                      <p className="mb-4 text-xs text-gray-100">
-                        {roomListing?.address}
-                      </p>
-                      {/* <p className="mb-4 text-xs tracking-wide text-gray-400">
-                    {userListing.description}
-                  </p> */}
+              {roomListing.map((r) => (
+                <>
+                  {" "}
+                  <Link to={`/user/userlisting/${r._id}`}>
+                    <div key={roomListing?._id}>
+                      <div className="relative overflow-hidden transition duration-300 transform rounded shadow-lg lg:hover:-translate-y-2 hover:shadow-2xl">
+                        <Img
+                          className="object-cover w-full h-56 md:h-64 xl:h-80"
+                          src={r?.listingPic}
+                          alt="Person"
+                          loading="lazy"
+                        />
+                        <div className="absolute inset-0 flex flex-col justify-center px-5 py-4 text-center transition-opacity duration-300 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
+                          <p className="mb-1 text-lg font-bold text-gray-100">
+                            {r?.title}
+                          </p>
+                          <p className="mb-4 text-xs text-gray-100">
+                            {r?.address}
+                          </p>
 
-                      <p className="text-xs tracking-wide text-gray-400">
-                        Location
-                      </p>
-                      <p className="mb-4 text-xs text-gray-100">
-                        {roomListing.town}
-                      </p>
-                      <p className="text-xs tracking-wide text-gray-400">
-                        MRT Station Proximity
-                      </p>
-                      <p className="mb-4 text-xs text-gray-100">
-                        {roomListing.mrt}
-                      </p>
-                      <p className="text-xs tracking-wide text-gray-400">
-                        Rent per Month
-                      </p>
-                      <p className="mb-4 text-xs text-gray-100">
-                        SGD ${roomListing.rentPerMonth}
-                      </p>
-                      <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 my-3">
-                        <Link to={`/user/editroomlisting`}>Edit</Link>
-                      </button>
+                          <p className="text-xs tracking-wide text-gray-400">
+                            Location
+                          </p>
+                          <p className="mb-4 text-xs text-gray-100">{r.town}</p>
+                          <p className="text-xs tracking-wide text-gray-400">
+                            MRT Station Proximity
+                          </p>
+                          <p className="mb-4 text-xs text-gray-100">{r.mrt}</p>
+                          <p className="text-xs tracking-wide text-gray-400">
+                            Rent per Month
+                          </p>
+                          <p className="mb-4 text-xs text-gray-100">
+                            SGD ${r.rentPerMonth}
+                          </p>
+                          <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 my-3">
+                            <Link to={`/user/editroomlisting/${r._id}`}>
+                              Edit
+                            </Link>
+                          </button>
+                        </div>
+                      </div>
                     </div>
+                  </Link>
+                  <div className="absolute ml-2">
+                    <button
+                      onClick={handleDelete}
+                      className=" text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800 my-3"
+                    >
+                      Delete
+                    </button>
                   </div>
-                </div>
-              </Link>
-              <div className="absolute ml-2">
-                <button
-                  onClick={handleDelete}
-                  className=" text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800 my-3"
-                >
-                  Delete
-                </button>
-              </div>
+                </>
+              ))}
             </>
           </div>
         </div>

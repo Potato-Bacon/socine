@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { FormikProvider, useFormik } from "formik";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import * as Yup from "yup";
 import Img from "react-cool-img";
 import { useEffect, useState } from "react";
@@ -18,12 +18,11 @@ function EditUserListingForm() {
   const [mbti, setMbti] = useState([]);
   const [interests, setInterests] = useState([]);
   const [formInfo, setFormInfo] = useState([]);
+  const { id } = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
-      const id = sessionStorage.getItem("userid");
-
-      const url = `/api/userlistings/submittedby/${id}`;
+      const url = `/api/userlistings/${id}`;
       const data = await axios.get(url);
       console.log(data);
       setFormInfo(data.data);
@@ -39,8 +38,8 @@ function EditUserListingForm() {
       age: formInfo.age || "",
       gender: formInfo.gender || "",
       occupation: formInfo.occupation || "",
-      mbti: formInfo.mbti || "",
-      interests: formInfo.interests || "",
+      mbti: formInfo.mbti?._id || "",
+      interests: formInfo.interests?._id || "",
       town: formInfo.town || "",
       mrt: formInfo.mrt || "",
       budget: formInfo.budget || "",
@@ -346,8 +345,8 @@ function EditUserListingForm() {
                   >
                     <option value="">Gender</option>
 
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
                   </select>
                 </div>
 

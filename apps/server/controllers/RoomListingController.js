@@ -158,7 +158,7 @@ router.get("/submittedby/:id", async (req, res) => {
   console.log(id);
 
   try {
-    const searchBySubmitted = await RoomListing.findOne({
+    const searchBySubmitted = await RoomListing.find({
       submittedBy: id,
     });
     res.status(200).send(searchBySubmitted);

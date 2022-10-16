@@ -82,7 +82,7 @@ function App() {
                 element={<CreateUserListingPage token={token} />}
               />
               <Route
-                path="/user/edituserlisting"
+                path="/user/edituserlisting/:id"
                 element={<EditUserListingPage token={token} />}
               />
               <Route
@@ -90,7 +90,7 @@ function App() {
                 element={<CreateRoomListingPage token={token} />}
               />
               <Route
-                path="/user/editroomlisting"
+                path="/user/editroomlisting/:id"
                 element={<EditRoomListingPage token={token} />}
               />
               <Route

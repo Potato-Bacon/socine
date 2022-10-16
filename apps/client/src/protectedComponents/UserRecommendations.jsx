@@ -5,7 +5,7 @@ import Img from "react-cool-img";
 
 function UserRecommendations() {
   const userid = sessionStorage.getItem("userid");
-  const userSubmittedListings = `/api/userlistings/submittedby/${userid}`;
+  const userSubmittedListings = `/api/userlistings/submittedby/1/${userid}`;
   const userRecommendationsURL = "/api/userlistings/recommendations";
   const roomRecommendationsURL = "/api/roomlistings/recommendations";
 
@@ -42,6 +42,7 @@ function UserRecommendations() {
           };
           const response2 = await axios.post(roomRecommendationsURL, body);
           setRoomRecommendations(response2.data);
+          console.log(response2, "room listings");
         } catch (error) {
           console.log(error);
         }
