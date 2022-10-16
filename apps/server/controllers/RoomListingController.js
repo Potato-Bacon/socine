@@ -87,31 +87,34 @@ router.post("/search", async (req, res) => {
 
     console.log(search, "this is search array");
 
-    if (req.body.userListingTag !== undefined) {
-      search.push({ userListingTag: req.body.userListingTag });
+    if (req.body.listingTags !== undefined) {
+      search.push({ listingTags: req.body.listingTags });
     }
-    const budget = { budget: { $gte: null, $lte: null } };
-    console.log(budget.budget, "first");
+    const rentPerMonth = { rentPerMonth: { $gte: null, $lte: null } };
+    console.log(rentPerMonth.rentPerMonth, "first");
 
     if (req.body.min !== undefined) {
-      budget.budget.$gte = req.body.min;
+      rentPerMonth.rentPerMonth.$gte = req.body.min;
     } else {
-      delete budget.budget.$gte;
+      delete rentPerMonth.rentPerMonth.$gte;
     }
 
     // console.log(budget, "after min logic");
 
     if (req.body.max !== undefined) {
-      budget.budget.$lte = req.body.max;
+      rentPerMonth.rentPerMonth.$lte = req.body.max;
     } else {
-      delete budget.budget.$lte;
+      delete rentPerMonth.rentPerMonth.$lte;
     }
-    console.log(budget, "after max logic");
+    console.log(rentPerMonth, "after max logic");
 
-    if (budget.budget.$gte === undefined && budget.budget.$lte === undefined) {
+    if (
+      rentPerMonth.rentPerMonth.$gte === undefined &&
+      rentPerMonth.rentPerMonth.$lte === undefined
+    ) {
       console.log("no properties found");
     } else {
-      search.push(budget);
+      search.push(rentPerMonth);
     }
 
     console.log(search, "what is this");
@@ -124,8 +127,6 @@ router.post("/search", async (req, res) => {
         select:
           "-password -email -createdAt -updatedAt -favUserListing -favRoomListing -getEmail -mobileNumber",
       })
-      .populate("interests")
-      .populate("mbti")
       .exec();
     console.log(results.length);
     res.send(results);

@@ -1,21 +1,23 @@
 import axios from "axios";
+import { useState } from "react";
 import { useEffect } from "react";
 
-function UserProfilePage({ userName, token }) {
+function UserProfilePage() {
+  const [userListing, setUserListing] = useState();
+
   useEffect(() => {
-    const token = sessionStorage.getItem("accessToken");
-    console.log(token);
+    const id = sessionStorage.getItem("userid");
+
     const fetchData = async () => {
-      const url = "/api/interests";
+      const userListingUrl = `/api/userlistings/${id}`;
 
-      const username = sessionStorage.getItem("username");
+      const userList = await axios.get(userListingUrl);
+      console.log(userList);
 
-      const data = await axios.get(url, {
-        headers: {
-          Authorization: `Bearer ${token} ${username}`,
-        },
-      });
-      console.log(data);
+      const roomListingUrl = `/api/roomlistings/${id}`;
+
+      const roomList = await axios.get(roomListingUrl);
+      console.log(roomList);
     };
     fetchData();
   }, []);

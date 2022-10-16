@@ -160,7 +160,10 @@ router.post("/recommendations", async (req, res) => {
   const { budget, mrt, town } = req.body;
   try {
     const userListingRecommendations = await UserListings.find({
-      $or: [{ budget: { $lte: budget } }, { mrt: mrt }, { town: town }],
+      $and: [
+        { $or: [{ mrt: mrt }, { town: town }] },
+        { budget: { $lte: budget } },
+      ],
     }).exec();
 
     res.status(200).send(userListingRecommendations);
