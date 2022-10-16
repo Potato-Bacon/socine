@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Img from "react-cool-img";
 
 function UserRecommendations() {
@@ -75,38 +76,46 @@ function UserRecommendations() {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {/* Start of User Reccomendation Mapping */}
           {recommendations.map((r) => (
-            <div key={r?._id}>
-              <div className="relative overflow-hidden transition duration-300 transform rounded shadow-lg lg:hover:-translate-y-2 hover:shadow-2xl">
-                <Img
-                  className="object-cover w-full h-56 md:h-64 xl:h-80"
-                  src={r?.profilePicture}
-                  alt="Person"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 flex flex-col justify-center px-5 py-4 text-center transition-opacity duration-300 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
-                  <p className="mb-1 text-lg font-bold text-gray-100">
-                    {r?.name}
-                  </p>
-                  <p className="mb-4 text-xs text-gray-100">{r?.occupation}</p>
-                  {/* <p className="mb-4 text-xs tracking-wide text-gray-400">
+            <>
+              <Link to={`/user/userlisting/${r?._id}`}>
+                <div key={r?._id}>
+                  <div className="relative overflow-hidden transition duration-300 transform rounded shadow-lg lg:hover:-translate-y-2 hover:shadow-2xl">
+                    <Img
+                      className="object-cover w-full h-56 md:h-64 xl:h-80"
+                      src={r?.profilePicture}
+                      alt="Person"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 flex flex-col justify-center px-5 py-4 text-center transition-opacity duration-300 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
+                      <p className="mb-1 text-lg font-bold text-gray-100">
+                        {r?.name}
+                      </p>
+                      <p className="mb-4 text-xs text-gray-100">
+                        {r?.occupation}
+                      </p>
+                      {/* <p className="mb-4 text-xs tracking-wide text-gray-400">
                     {r?.description}
                   </p> */}
 
-                  <p className="text-xs tracking-wide text-gray-400">
-                    Preferred Location
-                  </p>
-                  <p className="mb-4 text-xs text-gray-100">{r?.town}</p>
-                  <p className="text-xs tracking-wide text-gray-400">
-                    MRT Station Proximity
-                  </p>
-                  <p className="mb-4 text-xs text-gray-100">{r?.mrt}</p>
-                  <p className="text-xs tracking-wide text-gray-400">
-                    Overall Budget
-                  </p>
-                  <p className="mb-4 text-xs text-gray-100">SGD ${r?.budget}</p>
+                      <p className="text-xs tracking-wide text-gray-400">
+                        Preferred Location
+                      </p>
+                      <p className="mb-4 text-xs text-gray-100">{r?.town}</p>
+                      <p className="text-xs tracking-wide text-gray-400">
+                        MRT Station Proximity
+                      </p>
+                      <p className="mb-4 text-xs text-gray-100">{r?.mrt}</p>
+                      <p className="text-xs tracking-wide text-gray-400">
+                        Overall Budget
+                      </p>
+                      <p className="mb-4 text-xs text-gray-100">
+                        SGD ${r?.budget}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
+              </Link>
+            </>
           ))}
         </div>
       </div>

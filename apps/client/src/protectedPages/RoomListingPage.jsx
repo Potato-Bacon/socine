@@ -55,15 +55,15 @@ function RoomListingPage({ username, token }) {
                         alt="listingPic"
                       />
 
-                      <div className="absolute bottom-0 flex p-3 bg-white dark:bg-gray-900 ">
-                        <Img
+                      <div className="absolute bottom-0 flex p-3 bg-white dark:bg-gray-900 rounded-tr-md">
+                        {/* <Img
                           className="object-cover object-center w-10 h-10 rounded-full"
                           src="https://i.picsum.photos/id/1005/5760/3840.jpg?hmac=2acSJCOwz9q_dKtDZdSB-OIK1HUcwBeXco_RMMTUgfY"
                           alt="listingPic"
-                        />
+                        /> */}
 
                         <div className="mx-4">
-                          <h1 className="text-sm text-gray-700 dark:text-gray-200">
+                          <h1 className="text-sm text-gray-700 dark:text-gray-200 font-semibold">
                             {rl?.name}
                           </h1>
                           {/* <p className="text-sm text-gray-500 dark:text-gray-400">
