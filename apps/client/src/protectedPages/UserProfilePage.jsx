@@ -32,11 +32,77 @@ function UserProfilePage() {
 
   return (
     <>
-      <h1>User Profile Page</h1>
-      <div>Username: {profile.username}</div>
-      <div>Mobile Number: {profile.mobileNumber}</div>
-      <div>Email: {profile.email}</div>
+      {/* start of profile */}
+      <section className="text-gray-600 body-font">
+        <div className="container px-5 py-12 mx-auto flex flex-col">
+          <div className="lg:w-4/6 mx-auto">
+            {/* Header Starts here */}
+            <div className="max-w-xl md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
+              <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+                OMG! Its
+                <span className="border-b-8 border-red-600"> your</span>{" "}
+                <mark className="px-2 text-white bg-blue-600 rounded dark:bg-blue-500">
+                  Profile
+                </mark>{" "}
+                <br />
+                Looking Awesome
+              </h1>
+            </div>
+            {/*  End of header */}
 
+            <div className="flex flex-col sm:flex-row mt-10">
+              <div className="sm:w-1/3 text-center sm:pr-8 sm:py-8">
+                <div className="w-52 h-52 rounded-xl inline-flex items-center justify-center bg-gray-200 text-gray-400">
+                  <Img
+                    alt="content"
+                    className="rounded-xl object-cover object-center h-full w-full"
+                    loading="lazy"
+                    src="https://images.pexels.com/photos/7533347/pexels-photo-7533347.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
+                  />
+                </div>
+              </div>
+              <div className="sm:w-2/3 sm:pl-8 sm:py-8 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left text-sm dark:text-slate-50">
+                <h1 className="text-xs font-light border-b-8 border-blue-600 w-7">
+                  Username
+                </h1>
+                <h1 className="text-xl font-semibold mb-2">
+                  {profile?.username}
+                </h1>
+                <h1 className="text-xs font-light border-b-8 border-blue-600 w-7">
+                  Email
+                </h1>
+                <h1 className="text-xl font-semibold mb-2">{profile?.email}</h1>
+                <h1 className="text-xs font-light border-b-8 border-blue-600 w-7">
+                  Mobile No
+                </h1>
+                <h1 className="text-xl font-semibold mb-4">
+                  +65 {profile?.mobileNumber}
+                </h1>
+
+                <h1 className="text-xs font-light border-b-8 border-blue-600 w-7">
+                  Introduction
+                </h1>
+                <p className="leading-relaxed text-xs mb-4">
+                  Hey hi, this is hardcoded, but we have plans to include like a
+                  short description of the user, which can be obtained during
+                  the registration process or when the user logs in and be able
+                  to update their profile.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* end of profile */}
+      {/* Header Starts here */}
+      <div className="max-w-xl md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
+        <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+          User
+          <span className="border-b-8 border-red-600"> Listing</span>{" "}
+        </h1>
+      </div>
+      {/*  End of header */}
+      {/* Check for users userlisting */}
       {userListing.data === "" ? (
         <Link to={"/user/createroomlisting"}>
           <div>User Listing not created. Click here to get started </div>
@@ -95,6 +161,7 @@ function UserProfilePage() {
         </div>
       )}
 
+      {/* Check for users roomlisting */}
       {roomListing === "" ? (
         <Link to={"/user/createroomlisting"}>
           <div>Room Listing not created. Click here to get started </div>
