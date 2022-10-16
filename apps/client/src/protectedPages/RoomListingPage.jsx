@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, Navigate } from "react-router-dom";
 import Img from "react-cool-img";
+import SearchBarRoomListing from "../protectedComponents/SearchBarRoomListing";
 
 const roomListingURL = "/api/roomlistings";
 
@@ -35,6 +36,10 @@ function RoomListingPage({ username, token }) {
                 members.
               </p>
             </div>
+            <SearchBarRoomListing
+              setRoomListing={setRoomListing}
+              roomListing={roomListing}
+            />
 
             <div className="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2 xl:grid-cols-3">
               {roomListing.map((rl) => (
