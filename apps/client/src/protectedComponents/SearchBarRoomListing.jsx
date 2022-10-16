@@ -148,7 +148,7 @@ function SearchBarRoomListing({ setRoomListing, roomListing }) {
             <select
               multiple
               name="amenities"
-              className="block p-4 pl-10 w-72 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-5"
+              className="block p-4 pl-10 w-72 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-5 mx-2"
             >
               {amenitiesTag.map((amenity) => (
                 // eslint-disable-next-line react/jsx-key
@@ -156,9 +156,8 @@ function SearchBarRoomListing({ setRoomListing, roomListing }) {
               ))}
               \{" "}
             </select>
-          </div>
 
-          <div className="flex-row flex justify-items-start justify-center">
+            {/* ListingTags */}
             <label
               htmlFor="listingTags"
               className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300"

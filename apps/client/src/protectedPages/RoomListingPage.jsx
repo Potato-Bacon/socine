@@ -26,16 +26,18 @@ function RoomListingPage({ username, token }) {
       <div>
         <section className="bg-white dark:bg-gray-900">
           <div className="container px-6 py-10 mx-auto">
-            <div className="text-center">
-              <h1 className="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-white">
-                Socine Property Listing
+            {/* Header Starts here */}
+            <div className="my-8 max-w-xl md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
+              <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+                We got <span className="border-b-8 border-red-600">you</span>{" "}
+                <mark className="px-2 text-white bg-blue-600 rounded dark:bg-blue-500">
+                  covered.
+                </mark>{" "}
+                <br />
+                Lets roof this!
               </h1>
-
-              <p className="max-w-lg mx-auto mt-4 text-gray-500">
-                One place to match your listed properties to other Socine
-                members.
-              </p>
             </div>
+            {/*  End of header */}
             <SearchBarRoomListing
               setRoomListing={setRoomListing}
               roomListing={roomListing}
