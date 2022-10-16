@@ -168,32 +168,40 @@ function UserProfilePage() {
         </Link>
       ) : (
         <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+          {/* Header Starts here */}
+          <div className="max-w-xl md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
+            <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+              Room
+              <span className="border-b-8 border-red-600"> Listing</span>{" "}
+            </h1>
+          </div>
+          {/*  End of header */}
           <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
             {/* Start of User Reccomendation Mapping */}
 
             <>
               <Link to={`/user/userlisting/${roomListing._id}`}>
-                <div key={roomListing._id}>
+                <div key={roomListing?._id}>
                   <div className="relative overflow-hidden transition duration-300 transform rounded shadow-lg lg:hover:-translate-y-2 hover:shadow-2xl">
                     <Img
                       className="object-cover w-full h-56 md:h-64 xl:h-80"
-                      src={roomListing.profilePicture}
+                      src={roomListing?.listingPic}
                       alt="Person"
                       loading="lazy"
                     />
                     <div className="absolute inset-0 flex flex-col justify-center px-5 py-4 text-center transition-opacity duration-300 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
                       <p className="mb-1 text-lg font-bold text-gray-100">
-                        {roomListing.name}
+                        {roomListing?.title}
                       </p>
                       <p className="mb-4 text-xs text-gray-100">
-                        {roomListing.occupation}
+                        {roomListing?.address}
                       </p>
                       {/* <p className="mb-4 text-xs tracking-wide text-gray-400">
                     {userListing.description}
                   </p> */}
 
                       <p className="text-xs tracking-wide text-gray-400">
-                        Preferred Location
+                        Location
                       </p>
                       <p className="mb-4 text-xs text-gray-100">
                         {roomListing.town}
@@ -205,11 +213,14 @@ function UserProfilePage() {
                         {roomListing.mrt}
                       </p>
                       <p className="text-xs tracking-wide text-gray-400">
-                        Overall Budget
+                        Rent per Month
                       </p>
                       <p className="mb-4 text-xs text-gray-100">
-                        SGD ${roomListing.budget}
+                        SGD ${roomListing.rentPerMonth}
                       </p>
+                      <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 my-3">
+                        <Link to={`/user/editroomlisting`}>Edit</Link>
+                      </button>
                     </div>
                   </div>
                 </div>
