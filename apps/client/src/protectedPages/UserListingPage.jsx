@@ -10,8 +10,8 @@ const userListingURL = "/api/userlistings";
 function UserListingPage({ userName, token }) {
   const navigate = useNavigate();
   const [userListing, setUserListing] = useState([]);
-  // const [searchUser, setSearchUser] = useState([]);
-  // const [searchInput, setSearchInput] = useState("");
+  const [searchUser, setSearchUser] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
 
   // Fetch User Listing
   useEffect(() => {
@@ -27,7 +27,6 @@ function UserListingPage({ userName, token }) {
 
   return (
     <>
-      {/* Header starts here */}
       <div>
         <section className="bg-white dark:bg-gray-900">
           {/* Header Starts here */}
@@ -42,55 +41,55 @@ function UserListingPage({ userName, token }) {
             </h1>
           </div>
           {/*  End of header */}
-          {/* Search Bar and Filter components */}
+          {/* Search Bar and Filter Component */}
           <div>
             <SearchBarUserListing
               setUserListing={setUserListing}
               userListing={userListing}
             />
           </div>
-          {/* End of Search Bar and Filter components */}
-
-          {/* Start of grid */}
+          {/* End of Search Bar and Filter Components */}
+          {/* User Listing Rendering */}
           <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
             <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+              {/* Data Mapping Starts Here */}
               {userListing.map((usl) => (
-                <div key={usl?._id}>
-                  <div className="relative overflow-hidden transition duration-300 transform rounded shadow-lg lg:hover:-translate-y-2 hover:shadow-2xl">
-                    <Img
-                      className="object-cover w-full h-56 md:h-64 xl:h-80"
-                      src={usl?.profilePicture}
-                      alt="Person"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 flex flex-col justify-center px-5 py-4 text-center transition-opacity duration-300 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
-                      <p className="mb-1 text-lg font-bold text-gray-100">
-                        {usl?.name}
-                      </p>
-                      <p className="mb-4 text-xs text-gray-100">
-                        {usl?.occupation}
-                      </p>
-                      <p className="text-xs tracking-wide text-gray-400">
-                        Preferred Location
-                      </p>
-                      <p className="mb-4 text-xs text-gray-100">{usl?.town}</p>
-                      <p className="text-xs tracking-wide text-gray-400">
-                        MRT Station Proximity
-                      </p>
-                      <p className="mb-4 text-xs text-gray-100">{usl?.mrt}</p>
-                      <p className="text-xs tracking-wide text-gray-400">
-                        Overall Budget
-                      </p>
-                      <p className="mb-4 text-xs text-gray-100">
-                        SGD ${usl?.budget}
-                      </p>
+                <>
+                  <Link to={`/user/userlisting/${usl._id}`}>
+                    <div className="flex justify-center" key={usl._id}>
+                      <div className="flex flex-col items-center p-8 transition-colors duration-300 transform cursor-pointer group hover:bg-blue-600 rounded-xl text-center">
+                        <Img
+                          className="object-cover w-48 h-48 rounded-md ring-4 ring-gray-300"
+                          src={usl?.profilePicture}
+                          alt="profilePicture"
+                          loading="lazy"
+                        />
+
+                        <h1 className="mt-4 text-2xl font-semibold text-gray-700 capitalize dark:text-white group-hover:text-white">
+                          {usl?.name}
+                        </h1>
+                        <p className=" text-gray-500 capitalize dark:text-gray-300 group-hover:text-gray-300 mb-3 text-xs">
+                          {usl?.occupation}
+                        </p>
+                        <p className="text-xs tracking-wide text-gray-400">
+                          Preferred Location
+                        </p>
+                        <p className="mb-1 text-xs text-gray-500 dark:text-gray-300 group-hover:text-gray-300">
+                          {usl?.town}
+                        </p>
+                        <p className="text-xs tracking-wide text-gray-400">
+                          Budget
+                        </p>
+                        <p className="mb-4 text-xs text-gray-500 dark:text-gray-300 group-hover:text-gray-300">
+                          SGD ${usl?.budget}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                </div>
+                  </Link>
+                </>
               ))}
             </div>
           </div>
-          {/* grid ends here */}
         </section>
       </div>
     </>
