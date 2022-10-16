@@ -115,6 +115,7 @@ function UserProfilePage() {
       </div>
       {/*  End of header */}
       {/* Check for users userlisting */}
+
       {userListing === "" ? (
         <Link to={"/user/createroomlisting"}>
           <div>User Listing not created. Click here to get started </div>
@@ -204,7 +205,6 @@ function UserProfilePage() {
             <>
               {roomListing.map((r) => (
                 <>
-                  {" "}
                   <Link to={`/user/userlisting/${r._id}`}>
                     <div key={roomListing?._id}>
                       <div className="relative overflow-hidden transition duration-300 transform rounded shadow-lg lg:hover:-translate-y-2 hover:shadow-2xl">
@@ -236,6 +236,7 @@ function UserProfilePage() {
                           <p className="mb-4 text-xs text-gray-100">
                             SGD ${r.rentPerMonth}
                           </p>
+
                           <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 my-3">
                             <Link to={`/user/editroomlisting/${r._id}`}>
                               Edit
