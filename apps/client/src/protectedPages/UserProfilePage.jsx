@@ -16,6 +16,7 @@ function UserProfilePage() {
       const userListingUrl = `/api/userlistings/submittedby/${id}`;
 
       const userList = await axios.get(userListingUrl);
+      console.log(userList);
       setUserListing(userList.data);
 
       const roomListingUrl = `/api/roomlistings/submittedby/${id}`;
@@ -103,7 +104,7 @@ function UserProfilePage() {
       </div>
       {/*  End of header */}
       {/* Check for users userlisting */}
-      {userListing.data === "" ? (
+      {userListing === "" ? (
         <Link to={"/user/createroomlisting"}>
           <div>User Listing not created. Click here to get started </div>
         </Link>
