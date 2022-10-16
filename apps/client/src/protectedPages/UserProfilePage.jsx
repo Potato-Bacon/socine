@@ -83,11 +83,13 @@ function UserProfilePage() {
                       <p className="mb-4 text-xs text-gray-100">
                         SGD ${userListing.budget}
                       </p>
+                      <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 my-3">
+                        <Link to={`/user/edituserlisting`}>Edit</Link>
+                      </button>
                     </div>
                   </div>
                 </div>
               </Link>
-              <button>Edit</button>
             </>
           </div>
         </div>
@@ -149,7 +151,6 @@ function UserProfilePage() {
           </div>
         </div>
       )}
-      <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 my-3"></button>
     </>
   );
 }
