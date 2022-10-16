@@ -121,9 +121,9 @@ function UserProfilePage() {
           <div>User Listing not created. Click here to get started </div>
         </Link>
       ) : (
-        userListing.map((r) => (
-          <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-            <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+            {userListing.map((r) => (
               <>
                 <Link to={`/user/userlisting/${r._id}`}>
                   <div key={r._id}>
@@ -142,8 +142,8 @@ function UserProfilePage() {
                           {r.occupation}
                         </p>
                         {/* <p className="mb-4 text-xs tracking-wide text-gray-400">
-              {userListing.description}
-            </p> */}
+      {userListing.description}
+    </p> */}
 
                         <p className="text-xs tracking-wide text-gray-400">
                           Preferred Location
@@ -179,9 +179,9 @@ function UserProfilePage() {
                   </button>
                 </div>
               </>
-            </div>
+            ))}
           </div>
-        ))
+        </div>
       )}
 
       {/* Check for users roomlisting */}
